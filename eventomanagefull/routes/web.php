@@ -26,8 +26,8 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Route::post('/register/vendor', 'Auth\RegisterController@createVendor');
 
 Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin','admin');
-Route::view('/vendor','vendor');
+Route::view('/admin','admin')->middleware('auth');
+Route::view('/vendor','vendor')->middleware('auth');
 
 Route::get('admin/password/reset','Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin/password/email','Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
