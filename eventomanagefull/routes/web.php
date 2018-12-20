@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 Auth::routes();
 
@@ -30,3 +28,8 @@ Route::post('/register/vendor', 'Auth\RegisterController@createVendor');
 Route::view('/home', 'home')->middleware('auth');
 Route::view('/admin','admin');
 Route::view('/vendor','vendor');
+
+Route::get('admin/password/reset','Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+Route::post('admin/password/email','Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+Route::post('admin/password/reset','Auth\AdminResetPasswordController@reset');
+Route::get('admin/password/reset/{token}','Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
