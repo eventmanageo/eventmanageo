@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Auth; 
+use Response;
+use Request;
 
 class Handler extends ExceptionHandler
 {
