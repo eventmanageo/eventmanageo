@@ -67,23 +67,23 @@ class RegisterController extends Controller
      * @return \App\User
      */
 
-    /* protected function create(array $data)
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    } */
+    }
 
     public function showAdminRegisterForm()
     {
-        return view('auth.register', ['url' => 'admin']);
+        return view('auth.registerAdmin', ['url' => 'admin']);
     }
 
     public function showVendorRegisterForm()
     {
-        return view('auth.register', ['url' => 'vendor']);
+        return view('auth.registerVendor', ['url' => 'vendor']);
     }
 
     protected function createAdmin(Request $request)
@@ -108,16 +108,25 @@ class RegisterController extends Controller
     {
         /* $this->validator($request->all())->validate(); */
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'contact' => ['required','string','min:10','max:10'],
+            ],
+            [
+                'contact.required' => 'Contact number is required',
+                'contact.min' => 'Contact number should be of 10 digits',
+                'contact.max' => 'Contact number should be of 10 digits',
+            ]
+        );
 
         $vendor = Vendor::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'contact' => $request['contact'],
         ]);
         return redirect()->intended('login/vendor');
     }
