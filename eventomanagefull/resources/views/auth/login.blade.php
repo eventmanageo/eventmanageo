@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="login_user_con">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -60,12 +60,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
+                                
                                 <a class="btn btn-link" href="
                                     @isset($url)
                                         {{ url("$url/password/reset") }}
                                     @else
-                                        {{ route('password.request') }}
+                                        {{ route("password.request") }}
                                     @endisset
                                 ">
                                     {{ __('Forgot Your Password?') }}
@@ -76,7 +76,19 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif --}}
+
+                               <div style="margin-top:2%">
+                                New user?<a href="
+                                    @isset($url)
+                                        {{ url("register/$url") }}
+                                    @else
+                                        {{ route('register') }}
+                                    @endisset
+                                "
+                                >click here</a>
+                                </div>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
