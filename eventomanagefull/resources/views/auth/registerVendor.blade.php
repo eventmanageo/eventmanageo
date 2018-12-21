@@ -64,11 +64,48 @@
                             <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" required>
+                                <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" required value="{{ old('contact') }}">
 
                                 @if ($errors->has('contact'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('contact') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+
+                            <div class="col-md-6">                                
+                                <select id="category" class="form-control{{ $errors->has('category') ? 'is-valid' : ''}}" name="category" required>
+                                    <option selected disabled value="">--Select Category--</option>
+                                    <option value="caterer">Caterer</option>
+                                    <option value="makeup">Make-up</option>
+                                    <option value="transport">Transport</option>
+                                    <option value="photographer">Photographer</option>
+                                    <option value="decorator">Decorator</option>
+                                    <option value="land">Land/Plot/Area</option>
+                                    <option value="sound">Sound/DJ</option>
+                                </select>
+
+                                @if ($errors->has('category'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('category') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="address" cols="5" rows="5" style="resize:none;" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required></textarea>
+
+                                @if ($errors->has('address'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>

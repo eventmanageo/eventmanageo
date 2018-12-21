@@ -13,7 +13,7 @@ class Vendor extends Authenticatable
     protected $guard = 'vendor';
 
     protected $fillable = [
-        'name', 'email', 'password','contact',
+        'name', 'email', 'password','contact','category','address'
     ];
 
     protected $hidden = [
