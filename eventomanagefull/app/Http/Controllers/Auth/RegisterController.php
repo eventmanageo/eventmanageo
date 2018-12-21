@@ -88,7 +88,6 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
-        /* $this->validator($request->all())->validate(); */
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -106,19 +105,23 @@ class RegisterController extends Controller
 
     protected function createVendor(Request $request)
     {
-        /* $this->validator($request->all())->validate(); */
-
         $request->validate(
             [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:vendors'],
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
                 'contact' => ['required','string','min:10','max:10'],
+                'category' => ['required'],
+                'address' => ['required','string','min:10','max:1000'],
             ],
             [
                 'contact.required' => 'Contact number is required',
                 'contact.min' => 'Contact number should be of 10 digits',
                 'contact.max' => 'Contact number should be of 10 digits',
+                'category.required' => 'Required field',
+                'address.required' => 'Address is required',
+                'address.min' => 'Minimum character 10',
+                'address.max' => 'Maximum character 1000',
             ]
         );
 
@@ -127,6 +130,8 @@ class RegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'contact' => $request['contact'],
+            'category' => $request['category'],
+            'address' => $request['address'],
         ]);
         return redirect()->intended('login/vendor');
     }
