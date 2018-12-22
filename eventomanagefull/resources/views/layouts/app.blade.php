@@ -55,9 +55,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Contact us') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+                            <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/login/admin">Admin</a>
+                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('user') }}</a>
+                            <a class="dropdown-item" href="/login/vendor">Vendor</a>
+                            </div>
+                           </li>
                             @if (Route::has('register'))
                                <!-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
