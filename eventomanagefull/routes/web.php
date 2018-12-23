@@ -38,3 +38,6 @@ Route::get('vendor/password/reset','Auth\VendorForgotPasswordController@showLink
 Route::post('vendor/password/email','Auth\VendorForgotPasswordController@sendResetLinkEmail')->name('vendor.password.email');
 Route::post('vendor/password/reset','Auth\VendorResetPasswordController@reset');
 Route::get('vendor/password/reset/{token}','Auth\VendorResetPasswordController@showResetForm')->name('vendor.password.reset');
+
+Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistration');
+Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
