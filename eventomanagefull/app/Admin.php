@@ -13,11 +13,11 @@ class Admin extends Authenticatable
     protected $guard = 'admin';
 
     protected $fillable = [
-        'admin_name', 'admin_email', 'admin_password',
+        'name', 'email', 'password',
     ];
 
     protected $hidden = [
-        'admin_password', 'remember_token',
+        'password', 'remember_token',
     ];
 
     public function sendPasswordResetNotification($token)
