@@ -24,8 +24,8 @@
             @foreach($eventmanagers as $eventmanager)
             <tr>
                 <td>{{ $eventmanager->id }}</td>
-                <td>{{ $eventmanager->eventmanagername }}</td>
-                <td>{{ $eventmanager->eventmanageremail }}</td>
+                <td>{{ $eventmanager->name }}</td>
+                <td>{{ $eventmanager->email }}</td>
                 <td>
                     <form action="{{url('admin/eventmanager-remove',['id' => $eventmanager->id])}}" method="POST">
                         <input class="btn btn-danger" type="submit" value="Delete"/>

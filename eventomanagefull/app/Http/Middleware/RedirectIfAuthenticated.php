@@ -23,6 +23,9 @@ class RedirectIfAuthenticated
         if($guard=="vendor" && Auth::guard($guard)->check()){
             return redirect('/vendor');
         }
+        if($guard=="eventmanager" && Auth::guard($guard)->check()){
+            return redirect('/eventmanager');
+        }
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }

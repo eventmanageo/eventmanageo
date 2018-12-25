@@ -23,21 +23,21 @@ class AdminController extends Controller
 
     protected function registerEventManager(Request $request){
         $this->validate($request,[
-                'eventmanagername' => ['required','string','max:100','min:3'],
-                'eventmanageremail' => ['required','string','email','unique:eventmanager'],
-                'eventmanagerpassword' => ['required','string','min:6','confirmed'],
+                'name' => ['required','string','max:100','min:3'],
+                'email' => ['required','string','email','unique:eventmanager'],
+                'password' => ['required','string','min:6','confirmed'],
             ],
             [
-                'eventmanagername.min' => 'Should have minimum 3 characters',
-                'eventmanagerpassword.min' => 'Should have minimum 6 character/digits',
-                'eventmanagerpassword.confirmed' => 'Both password should match',
+                'name.min' => 'Should have minimum 3 characters',
+                'password.min' => 'Should have minimum 6 character/digits',
+                'password.confirmed' => 'Both password should match',
             ]
         );
 
         $eventmanager = EventManager::create([
-            'eventmanagername' => $request['eventmanagername'],
-            'eventmanageremail' => $request['eventmanageremail'],
-            'eventmanagerpassword' => Hash::make($request['eventmanagerpassword']),
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
 
         if($eventmanager->wasRecentlyCreated === true){
