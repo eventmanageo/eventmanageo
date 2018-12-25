@@ -40,6 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
         $this->middleware('guest:vendor')->except('logout');
+        $this->middleware('guest:eventmanager')->except('logout');
     }
 
     public function showAdminLoginForm()
@@ -76,6 +77,24 @@ class LoginController extends Controller
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/vendor');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function showEventManagerLoginForm()
+    {
+        return view('auth.login', ['url' => 'eventmanager']);
+    }
+
+    public function eventmanagerLogin(Request $request){
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Auth::guard('eventmanager')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/eventmanager');
         }
         return back()->withInput($request->only('email', 'remember'));
     }
