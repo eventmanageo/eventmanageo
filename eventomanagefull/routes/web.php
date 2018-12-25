@@ -43,6 +43,10 @@ Route::get('vendor/password/reset/{token}','Auth\VendorResetPasswordController@s
 Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistration');
 Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
 
+Route::get('homepage',function(){
+    return view("/End-user/homepage");
+});
+
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
 Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');
 
