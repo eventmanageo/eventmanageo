@@ -14,12 +14,12 @@
                                 <label>Name :</label>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" id="eventmanagername" name="eventmanagername" class="form-control" required/>
+                                <input type="text" id="name" name="name" class="form-control" required/>
                             </div>
                             <div class="col-md-4 col-form-label">
-                                @if($errors->has('eventmanagername'))
+                                @if($errors->has('name'))
                                     <label class="text-danger text-md-right">
-                                        {{$errors->first('eventmanagername')}}
+                                        {{$errors->first('name')}}
                                     </label>
                                 @else
                                 <label class="text-success text-md-right">
@@ -33,12 +33,12 @@
                                 <label>E-mail :</label>
                             </div>
                             <div class="col-md-5">
-                                <input type="email" id="eventmanageremail" name="eventmanageremail" class="form-control" required/>
+                                <input type="email" id="email" name="email" class="form-control" required/>
                             </div>
                             <div class="col-md-4 col-form-label">
-                                @if($errors->has('eventmanageremail'))
+                                @if($errors->has('email'))
                                     <label class="text-danger text-md-right">
-                                        {{$errors->first('eventmanageremail')}}
+                                        {{$errors->first('email')}}
                                     </label>
                                 @else
                                     <label class="text-success text-md-right">*Should not match previous one's.</label>
@@ -50,12 +50,12 @@
                                 <label>Password :</label>
                             </div>
                             <div class="col-md-5">
-                                <input type="password" id="eventmanagerpassword" name="eventmanagerpassword" class="form-control" required/>
+                                <input type="password" id="password" name="password" class="form-control" required/>
                             </div>
                             <div class="col-md-4 col-form-label">
-                                    @if($errors->has('eventmanagerpassword'))
+                                    @if($errors->has('password'))
                                     <label class="text-danger text-md-right">
-                                        {{$errors->first('eventmanagerpassword')}}
+                                        {{$errors->first('password')}}
                                     </label>
                                 @else
                                 <label class="text-success text-md-right">
@@ -69,7 +69,7 @@
                                 <label>Confirm Password :</label>
                             </div>
                             <div class="col-md-5">
-                                <input type="text" id="eventmanagercpassword" name="eventmanagerpassword_confirmation" class="form-control" required/>
+                                <input type="text" id="confirm_password" name="password_confirmation" class="form-control" required/>
                             </div>
                         </div>
                         <div class="form-group row">

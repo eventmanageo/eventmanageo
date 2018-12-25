@@ -53,6 +53,10 @@ return [
             'driver' => 'session',
             'provider' => 'vendors',
         ],
+        'eventmanager' => [
+            'driver' => 'session',
+            'provider' => 'eventmanagers',
+        ]
     ],
 
     /*
@@ -85,6 +89,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Vendor::class,
         ],
+        'eventmanagers' => [
+            'driver' => 'eloquent',
+            'model' => App\EventManagerAuth::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

@@ -28,6 +28,7 @@ Route::post('/register/vendor', 'Auth\RegisterController@createVendor');
 Route::view('/home', 'home')->middleware('auth');
 Route::view('/admin','admin')->middleware('auth:admin');
 Route::view('/vendor','vendor')->middleware('auth:vendor');
+Route::view('/eventmanager','eventmanager')->middleware('auth:eventmanager');
 
 Route::get('admin/password/reset','Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::post('admin/password/email','Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -41,3 +42,9 @@ Route::get('vendor/password/reset/{token}','Auth\VendorResetPasswordController@s
 
 Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistration');
 Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
+
+Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
+Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');
+
+Route::get('login/eventmanager','Auth\LoginController@showEventManagerLoginForm');
+Route::post('login/eventmanager', 'Auth\LoginController@eventmanagerLogin');

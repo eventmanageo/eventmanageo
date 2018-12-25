@@ -64,6 +64,9 @@ class Handler extends ExceptionHandler
         if ($request->is('vendor') || $request->is('vendor/*')) {
             return redirect()->guest('/login/vendor');
         }
+        if ($request->is('eventmanager') || $request->is('eventmanager/*')) {
+            return redirect()->guest('/login/eventmanager');
+        }
         return redirect()->guest(route('login'));
     }
 }
