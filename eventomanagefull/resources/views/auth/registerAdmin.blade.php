@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="register_admin_con">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
+                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register Admin') }}</div>
                 
                 <div class="card-body">
                     <form method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
