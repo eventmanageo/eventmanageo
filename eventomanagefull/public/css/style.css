@@ -302,3 +302,10 @@ input[type=number] {
       opacity: 0.5;
       filter: alpha(opacity=50);
   }
+  .card-header
+  {
+     
+      font-size: 15px;
+      font-style: normal;
+      
+  }

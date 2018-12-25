@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'end_user.homepage');
 
 Auth::routes();
 
@@ -44,7 +44,7 @@ Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistratio
 Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
 
 Route::get('homepage',function(){
-    return view("/End-user/homepage");
+    return view("end_user.homepage");
 });
 
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');

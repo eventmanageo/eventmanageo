@@ -54,12 +54,22 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
+                        @isset($url)    
+                            @if($url=="admin" || $url=="eventmanager")
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     {{ __('Login') }}
                                 </button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                            @else
+                                
+                            <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Login') }}
+                                </button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
                                 
                                 <a class="btn btn-link" href="
                                     @isset($url)
@@ -77,16 +87,63 @@
                                     </a>
                                 @endif --}}
 
-                               <div style="margin-top:2%">
-                                New user?<a href="
+                                @endif
+                                @else
+                                <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Login') }}
+
+                                </button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                
+                                <a class="btn btn-link" href="
                                     @isset($url)
-                                        {{ url("register/$url") }}
+                                        {{ url("$url/password/reset") }}
                                     @else
-                                        {{ route('register') }}
+                                        {{ route("password.request") }}
                                     @endisset
-                                "
-                                >click here</a>
-                                </div>
+                                ">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+
+                                {{-- @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif --}}
+
+                            @endisset
+                                @isset($url) 
+                                    @if($url=="admin" || $url=="eventmanager")
+
+                                    @else
+                                            <div style="margin-top:2%">
+                                        New user?<a href="
+                                            @isset($url)
+                                                
+                                                {{ url("register/$url") }}
+                                            @else
+                                                {{ route('register') }}
+                                            @endisset
+                                        "
+                                        >click here</a>
+                                        </div>
+                                    @endif
+                                @else
+                                <div style="margin-top:2%">
+                                        New user?<a href="
+                                            @isset($url)
+                                                {{ url("register/$url") }}
+                                            @else
+                                                {{ route('register') }}
+                                            @endisset
+                                        "
+                                        >click here</a>
+                                        </div>
+                                @endisset
+                                
+                             
                             </div>
                             
                         </div>
