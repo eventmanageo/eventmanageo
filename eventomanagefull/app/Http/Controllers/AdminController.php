@@ -47,4 +47,21 @@ class AdminController extends Controller
         }
         return redirect()->to('admin/eventmanager-reg');
     }
+
+    protected function goToEventManagerRemove(){
+        $eventmanagers = EventManager::paginate(10);
+        return view('admin.eventmanagerRemove',compact('eventmanagers'));
+    }
+
+    protected function removeEventManager(Request $request){
+        $id = $request['id'];
+        $eventmanager = EventManager::findOrFail($id);
+
+        if($eventmanager->delete()){
+            $request->session()->flash('alert-success','Event manager successfully deleted');
+        }else{
+            $request->session()->flash('alert-danger','Failed! Try after some time.');
+        }
+        return redirect()->to('admin/eventmanager-remove');
+    }
 }
