@@ -43,9 +43,30 @@ Route::get('vendor/password/reset/{token}','Auth\VendorResetPasswordController@s
 Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistration');
 Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
 
+//end_user root path
 Route::get('homepage',function(){
     return view("end_user.homepage");
 });
+Route::get('about',function(){
+    return view("end_user.about_us");
+});
+Route::get('gallery',function(){
+    return view("end_user.gallery");
+});
+Route::get('contact',function(){
+    return view("end_user.contact");
+});
+
+
+///wedding services add and redirected
+/*Route::get('login', function () {
+    if(Auth::check()) {
+        return redirect('home');
+    } else {
+        return view('auth.login');
+    }
+});*/
+
 
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
 Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');

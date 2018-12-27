@@ -309,3 +309,9 @@ input[type=number] {
       font-style: normal;
       
   }
+
+  #contact_head
+  {
+    text-align: center;
+    font-size: 25px;
+  }

@@ -58,7 +58,8 @@
 
   <div class="container" style="margin-top:10%">
       <div class="row" id="row1">
-        <div class="col-sm" id="grid1">
+        <div class="col-sm" id="grid1" onclick="location.href='{{ url('login') }}'">
+                    
             <div class="media">
               <i class="fa fa-suitcase" id="font_awesome" aria-hidden="true"></i>
                 <div class="media-body">
@@ -69,7 +70,7 @@
         </div>
       
 
-        <div class="col-sm" id="grid2">
+        <div class="col-sm" id="grid2" onclick="location.href='{{ url('login') }}'">
             <div class="media">
                 <i class="fa fa-birthday-cake mr-3 display-5" style="font-size:48px;margin-top: 10%"></i>
                 <div class="media-body">
@@ -79,7 +80,7 @@
               </div>
         </div>
       
-        <div class="col-sm" id="grid3">
+        <div class="col-sm" id="grid3" onclick="location.href='{{ url('login') }}'"> 
             <div class="media">
               <i class="fa fa-calendar-o" id="font_awesome" aria-hidden="true"></i>
                 <div class="media-body">
@@ -96,18 +97,20 @@
 
     <div class="container">
         <div class="row" id="row1">
-          <div class="col-sm" id="grid1">
+          <div class="col-sm" id="grid1" onclick="location.href='{{ url('login') }}'">
               <div class="media">
                 <i class="fa fa-handshake-o" id="font_awesome" aria-hidden="true"></i>
+                  
                   <div class="media-body">
                     <h5 class="mt-0">Engagement ceremony</h5>
                     <p>The engagement ceremony is an important pre-wedding ritual in Indian cultures.</p>
                   </div>
                   
+                  
                 </div>
           </div>
           
-          <div class="col-sm" id="grid2">
+          <div class="col-sm" id="grid2" onclick="location.href='{{ url('login') }}'">
               <div class="media">
                 <i class="fa fa-users" id="font_awesome" aria-hidden="true"></i>
                   <div class="media-body">
@@ -117,7 +120,7 @@
                 </div>
           </div>
           
-          <div class="col-sm" id="grid3">
+          <div class="col-sm" id="grid3" onclick="location.href='{{ url('login') }}'">
               <div class="media">
                 <i class="fa fa-beer" id="font_awesome" aria-hidden="true"></i>
                   <div class="media-body">
