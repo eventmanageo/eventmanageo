@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Vendor;
+use Session;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -59,7 +60,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/admin');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput([$request->only('email', 'remember'),'status-failed'=>'Please check email/password.']);
     }
 
     public function showVendorLoginForm()
@@ -73,12 +74,17 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-
+        
         if (Auth::guard('vendor')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-            return redirect()->intended('/vendor');
+            $vendor = Vendor::where('email','=',$request['email'])->first();
+            if($vendor != null){
+                Session::put('vendor_category',$vendor['category']);
+                Session::put('vendor_email',$request['email']);
+                return redirect()->intended('/vendor');
+            }
         }
-        return back()->withInput($request->only('email', 'remember'));
+
+        return back()->withInput([$request->only('email', 'remember'),'status-failed'=>'Please check email/password.']);
     }
 
     public function showEventManagerLoginForm()
@@ -96,6 +102,6 @@ class LoginController extends Controller
 
             return redirect()->intended('/eventmanager');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        return back()->withInput([$request->only('email', 'remember'),'status-failed'=>'Please check email/password.']);
     }
 }
