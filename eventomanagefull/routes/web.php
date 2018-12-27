@@ -57,6 +57,9 @@ Route::get('contact',function(){
     return view("end_user.contact");
 });
 
+Route::get('service',function(){
+    return view("end_user.serv_wedding");
+});
 
 ///wedding services add and redirected
 /*Route::get('login', function () {

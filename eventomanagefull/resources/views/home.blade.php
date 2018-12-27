@@ -19,7 +19,7 @@
 
   <div class="container" style="margin-top:10%">
       <div class="row" id="row1">
-        <div class="col-sm" id="grid1" onclick="location.href='{{ url('login') }}'">
+        <div class="col-sm" id="grid1" onclick="location.href='{{ url('service') }}'">
                     
             <div class="media">
               <i class="fa fa-suitcase" id="font_awesome" aria-hidden="true"></i>
