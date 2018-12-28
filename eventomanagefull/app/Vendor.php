@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\VendorResetPasswordNotification;
+use CompanyDetails;
 
 class Vendor extends Authenticatable
 {
@@ -24,4 +25,9 @@ class Vendor extends Authenticatable
     {
         $this->notify(new VendorResetPasswordNotification($token));
     }
+
+    public function companydetails(){
+        return $this->hasOne(CompanyDetails::class);
+    }
+    
 }
