@@ -12,6 +12,9 @@
     @if(Session::get('vendor_category')==="makeup")
         <a href="{{Session::get('vendor_category')}}/make/package">Make Package Makeup</a>
     @endif
+    @if(Session::get('vendor_category')==="photographer")
+        <a href="{{Session::get('vendor_category')}}/make/package">Make Package Photographer</a>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
