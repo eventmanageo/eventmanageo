@@ -66,7 +66,7 @@
               <div class="card" style="width: 100%;">
                   <img class="card-img-top" src="images/b1.jpg" alt="Card image cap">
                   <div class="card-body">
-                      <p id="services_type">Wedding invites</p>
+                    <p id="services_type">Wedding invites</p>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="btn btn-success float-right" role="button">procced</a>
                    </div>
@@ -203,8 +203,5 @@
     </div>
   </div>
 </div>
-
-
-
 
 @endsection
