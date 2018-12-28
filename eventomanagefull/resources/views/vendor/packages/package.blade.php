@@ -13,5 +13,8 @@
             @include('vendor.packages.catererpackage')
         @endif
     @endif
+    @if($data['vendortype'] == "makeup")
+        @include('vendor.packages.makeuppackage')
+    @endif
 </div>
 @endsection
