@@ -11,9 +11,15 @@ use App\PackageCaterer;
 use App\PackageCatererItem;
 use App\PackageMakeupItem;
 use App\PackageMakeup;
+use App\TransportService;
+use App\DecoratorService;
 use App\LandService;
+use App\PhotographerService;
+use App\PackagePhotographer;
+use App\PackagePhotographerItem;
 use App\MakeupItem;
 use App\CompanyDetails;
+use App\SoundService;
 
 class VendorController extends Controller
 {
@@ -155,6 +161,117 @@ class VendorController extends Controller
                 $request->session()->flash('alert-failed','Failed');
                 return redirect()->back();
             }
+        }elseif($vendorType==="transport"){
+            
+            $this->validate($request,[
+                'vehicle_name' => ['required','max:200','min:3'],
+                'vehicle_type' => ['required','in:ac,nonac'],
+                'vehicle_description' => ['required','max:1000'],
+                'vehicle_picture' => ['required','max:10000','mimes:jpeg,png,jpg'],
+                'vehicle_price' => ['required'],
+            ],
+            [
+                'vehicle_name.max' => 'Maximum allowed character 200',
+                'vehicle_name.required' => 'Required',
+                'vehicle_type.required' => 'Required',
+                'vehicle_type.in' => 'Should be in AC/Non-Ac',
+                'vehicle_description.required' => 'Required',
+                'vehicle_description.max' => 'Maximum allowed character 1000',
+                'vehicle_picture.required' => 'Required',
+                'vehicle_picture.max' => 'Maximum file size allowed 10000Kb',
+                'vehicle_price.required' => 'Required',
+            ]);
+
+            if($this->saveIntoTransportService($request)){
+                $request->session()->flash('alert-success','Item Added Successfully');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('alert-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($vendorType==="decorator"){
+            
+            $this->validate($request,
+            [
+                'item_name' => ['required','max:200','min:3'],
+                'item_description' => ['required','max:1000'],
+                'item_picture' => ['required','max:10000','mimes:jpeg,png,jpg'],
+                'item_price' => ['required'],
+            ],
+            [
+                'item_name.required' => 'Required',
+                'item_name.max' => 'Maximum allowed character 200',
+                'item_name.min' => 'Minimum allowed character 3',
+                'item_description.required' => 'Required',
+                'item_description.max' => 'Maximum allowed character 1000',
+                'item_picture.required' => 'Required',
+                'item_picture.max' => 'Maximum file size allowed 10000Kb',
+                'item_price.required' => 'Required',
+            ]);
+
+            if($this->saveIntoDecoratorService($request)){
+                $request->session()->flash('alert-success','Item Added Successfully');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('alert-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($vendorType==="photographer"){
+            $this->validate($request,
+            [
+                'item_name' => ['required','max:200','min:3'],
+                'item_description' => ['required','max:1000'],
+                'item_picture' => ['required','max:10000','mimes:jpeg,png,jpg'],
+                'item_price' => ['required'],
+            ],
+            [
+                'item_name.required' => 'Required',
+                'item_name.max' => 'Maximum allowed character 200',
+                'item_name.min' => 'Minimum allowed character 3',
+                'item_description.required' => 'Required',
+                'item_description.max' => 'Maximum allowed character 1000',
+                'item_picture.required' => 'Required',
+                'item_picture.max' => 'Maximum file size allowed 10000Kb',
+                'item_price.required' => 'Required',
+            ]);
+
+            if($this->saveIntoPhotographerService($request)){
+                $request->session()->flash('alert-success','Item Added Successfully');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('alert-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($vendorType==="sound"){
+            $this->validate($request,
+            [
+                'service_name' => ['required','max:200','min:3'],
+                'service_description' => ['required','max:1000'],
+                'service_picture' => ['required','max:10000','mimes:jpeg,png,jpg'],
+                'service_price' => ['required'],
+                'service_type' => ['required','in:orchestra,dj'],
+
+            ],
+            [
+                'service_name.required' => 'Required',
+                'service_name.max' => 'Maximum allowed character 200',
+                'service_name.min' => 'Minimum allowed character 3',
+                'service_description.required' => 'Required',
+                'service_description.max' => 'Maximum allowed character 1000',
+                'service_picture.required' => 'Required',
+                'service_picture.max' => 'Maximum file size allowed 10000Kb',
+                'service_price.required' => 'Required',
+                'service_type.required' => 'Required',
+                'service_type.in' => 'Should be in Orchestra/Dj',
+            ]);
+
+            if($this->saveIntoSoundService($request)){
+                $request->session()->flash('alert-success','Item Added Successfully');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('alert-failed','Failed');
+                return redirect()->back();
+            }
         }
     }
 
@@ -218,6 +335,80 @@ class VendorController extends Controller
         }
     }
 
+    public function saveIntoTransportService($inputtedData){
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $transport_service = new TransportService();
+        $transport_service->vehicle_name = $inputtedData->vehicle_name;
+        $transport_service->vehicle_description = $inputtedData->vehicle_description;
+        $transport_service->vehicle_picture = $inputtedData->vehicle_picture;
+        $transport_service->vehicle_price = $inputtedData->vehicle_price;
+        $transport_service->vehicle_type = $inputtedData->vehicle_type;
+        $transport_service->vendor_id = $vendor_id;
+
+        if($transport_service->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function saveIntoDecoratorService($inputtedData){
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $decorator_service = new DecoratorService();
+        $decorator_service->item_name = $inputtedData->item_name;
+        $decorator_service->item_description = $inputtedData->item_description;
+        $decorator_service->item_picture = $inputtedData->item_picture;
+        $decorator_service->item_price = $inputtedData->item_price;
+        $decorator_service->vendor_id = $vendor_id;
+
+        if($decorator_service->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function saveIntoPhotographerService($inputtedData){
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $photographer_service = new PhotographerService();
+        $photographer_service->item_name = $inputtedData->item_name;
+        $photographer_service->item_description = $inputtedData->item_description;
+        $photographer_service->item_picture = $inputtedData->item_picture;
+        $photographer_service->item_price = $inputtedData->item_price;
+        $photographer_service->vendor_id = $vendor_id;
+
+        if($photographer_service->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function saveIntoSoundService($inputtedData){
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $sound_service = new SoundService();
+        $sound_service->service_name = $inputtedData->service_name;
+        $sound_service->service_description = $inputtedData->service_description;
+        $sound_service->service_picture = $inputtedData->service_picture;
+        $sound_service->service_price = $inputtedData->service_price;
+        $sound_service->service_type = $inputtedData->service_type;
+        $sound_service->vendor_id = $vendor_id;
+
+        if($sound_service->save()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function goToMakePackageWithData($vendorType,$dinetime=null){
         $data;
         if($dinetime===null){
@@ -246,6 +437,16 @@ class VendorController extends Controller
             $matchThese = ['vendor_id' => $vendor_id];
             $items = MakeupItem::where($matchThese)->get();
             $data['items'] = $items;
+            return view('vendor.packages.package')->with('data',$data);
+        }elseif($vendorType==="photographer"){
+            $vendor_email = Session::get('vendor_email');
+            $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+            $matchThese = ['vendor_id' => $vendor_id];
+
+            $items = PhotographerService::where($matchThese)->get();
+            $data['items'] = $items;
+
             return view('vendor.packages.package')->with('data',$data);
         }else{
             return view('vendor.packages.package')->with('data',$data);
@@ -339,6 +540,50 @@ class VendorController extends Controller
                     $packageMakeupItem->item_id = $item;
 
                     if($packageMakeupItem->save()){
+                        $booleanStatus = true;
+                    }
+                }
+
+                if($booleanStatus){
+                    return json_encode($obj);
+                }else{
+                    return json_encode($objFailed);
+                }
+            }else{
+                return json_encode($objFailed);
+            }
+        }elseif($vendorType==="photographer"){
+            $packageName = $myObj['packageName'];
+            $packageDescription = $myObj['packageDescription'];
+            $packagePrice = $myObj['packagePrice'];
+            $itemArray = $myObj['items'];
+
+            $vendor_email = Session::get('vendor_email');
+            $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+            $packagePhotographer = new PackagePhotographer();
+            $packagePhotographer->vendor_id = $vendor_id;
+            $packagePhotographer->package_name = $packageName;
+            $packagePhotographer->package_description = $packageDescription;
+            $packagePhotographer->package_price = $packagePrice;
+
+            if($packagePhotographer->save()){
+                $obj =  new \stdClass();
+                $obj->status = "1";
+
+                $objFailed =  new \stdClass();
+                $objFailed->status = "0";
+
+                $booleanStatus = false;
+
+                $packageId = $packagePhotographer->id;   
+
+                foreach($itemArray as $item){
+                    $packagePhotographerItem = new PackagePhotographerItem();
+                    $packagePhotographerItem->package_id = $packageId;
+                    $packagePhotographerItem->item_id = $item;
+
+                    if($packagePhotographerItem->save()){
                         $booleanStatus = true;
                     }
                 }
