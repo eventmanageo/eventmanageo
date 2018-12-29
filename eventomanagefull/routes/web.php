@@ -80,11 +80,11 @@ Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManag
 Route::get('login/eventmanager','Auth\LoginController@showEventManagerLoginForm');
 Route::post('login/eventmanager', 'Auth\LoginController@eventmanagerLogin');
 
-Route::get('company/details/{vendorType}',function($vendorType){
-    if($vendorType==="caterer"){
-        return view('vendor.companydetails');
+Route::get('company/details/{vendorType?}',function($vendorType=null){
+    if($vendorType===null){
+        return redirect()->to('vendor');
     }else{
-        return view('vendor');
+        return view('vendor.companydetails');
     }
 });
 
