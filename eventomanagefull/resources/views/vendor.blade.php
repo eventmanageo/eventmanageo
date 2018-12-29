@@ -1,28 +1,7 @@
-@extends('layouts.auth')
+@extends('layouts.header_v')
 
 @section('content')
 <div class="container-fluid">
-
-            <li>
-                <a href="/company/details/{{Session::get('vendor_category')}}">Add Company Details</a>
-            </li>
-            <li>
-                <a href="/{{Session::get('vendor_category')}}/add/service">Add services</a>
-            </li>
-            <li>
-                @if(Session::get('vendor_category')==="caterer")
-                    <a href="/{{Session::get('vendor_category')}}/make/package/breakfast">Make package Breakfast</a>
-                    <a href="/{{Session::get('vendor_category')}}/make/package/lunch">Make package Lunch</a>
-                    <a href="/{{Session::get('vendor_category')}}/make/package/dinner">Make package Dinner</a>
-                @endif
-                @if(Session::get('vendor_category')==="makeup")
-                    <a href="/{{Session::get('vendor_category')}}/make/package">Make Package Makeup</a>
-                @endif
-                @if(Session::get('vendor_category')==="photographer")
-                    <a href="/{{Session::get('vendor_category')}}/make/package">Make Package Photographer</a>
-                @endif
-            </li>
-
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
