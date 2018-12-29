@@ -84,7 +84,7 @@
               <a href="/company/details/{{Session::get('vendor_category')}}">Add Company Details</a>
           </li>
           <li>
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Service Management</a>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Service Management</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
                   <a href="/{{Session::get('vendor_category')}}/add/service">Add services</a>
