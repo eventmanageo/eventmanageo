@@ -108,8 +108,14 @@
     </nav>
 
 <!-- page description-->
-<div class="container">
-<form id="regForm" action="">
+<div class="container" style="margin-top:10%;width:70%">
+  <div class="row">
+    <div class="col-4 border"> 
+      <h1>hii</h1>
+    </div>
+    <div class="col border">
+    <div class="container-fluid">
+    <form id="regForm" action="">
 
 <h1>Register:</h1>
 
@@ -151,6 +157,13 @@
 </div>
 
 </form>
+</div>
+
+    </div>
+  </div>
+
+</div>
+<div class="container">
 
 
 </div>
