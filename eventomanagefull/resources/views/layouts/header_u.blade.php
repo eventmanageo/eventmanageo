@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
             <!-- Scrollbar Custom CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
@@ -18,8 +18,14 @@
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 
         <link href="{{ asset('css/style_a.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
     </head>
     <body>
+<div>
     <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -37,22 +43,14 @@
         </li>
 
         <li>
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Event Manager</a>
-          <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-          <a href="#">Profile</a>
-        </li>
-
-        <li>
-          <a href="#">Events</a>
+          <a href="#">My orders</a>
         </li>
         <li>
-          <a href="#">Add Services</a>
+          <a href="#">add services</a>
         </li>
         <li>
-          <a href="#">Add Packages</a>
+          <a href="#">24*2 Help</a>
         </li>
-
         <li>
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
@@ -60,13 +58,18 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
         </form>
+        
+
       </ul>
 
+
+
     </nav>
+
     <!-- Page Content  -->
     <div id="">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container-fluid">
 
           <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -94,42 +97,20 @@
                             </li>
             </ul>
           </div>
-        
-                  
-          </div>
+          
+        </div>
+
 
     </div>
     </nav>
 
+<!-- page description-->
 
+ <main class="py-2">
+    @yield('content')
+</main>
 
-
-
-
-
-
-<!-- Write description -->
-
-
-            <main class="py-2">
-                @yield('content')
-            </main>
-
-
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
+    </div>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- Popper.JS -->
@@ -158,7 +139,6 @@
       });
     });
   </script>
-
-
+</div>
 </body>
 </html>

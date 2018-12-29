@@ -60,8 +60,11 @@ Route::get('contact',function(){
 Route::get('service',function(){
     return view("end_user.serv_wedding");
 });
-Route::get('register_step',function(){
-    return view("end_user.register_step");
+Route::get('registermulti',function(){
+    return view("end_user.registra_step");
+});
+Route::get('multi',function(){
+    return view("end_user.multi");
 });
 
 ///wedding services add and redirected

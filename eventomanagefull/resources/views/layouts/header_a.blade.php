@@ -62,12 +62,15 @@
           <a href="#">Events</a>
         </li>
         <li>
-          <a href="#">Log Out</a>
+          <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
         </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+        </form>
       </ul>
 
     </nav>
-
     <!-- Page Content  -->
     <div id="">
 
@@ -78,17 +81,62 @@
             <i class="fas fa-align-left"></i>
             <span>eventOmanage</span>
           </button>
-        </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto" style="margin-right:3%">
+            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+            </ul>
+          </div>
+        
+                  
+          </div>
+
     </div>
     </nav>
 
 
- <!-- Page description -->
+
+
+
+
+
+
+<!-- Write description -->
+
+
+            <main class="py-2">
+                @yield('content')
+            </main>
+
+
 
 
   </div>
 
-  <div class="overlay"></div>
+
+
+
+
+
+
+
+
+
 
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -118,6 +166,7 @@
       });
     });
   </script>
+
 
 </body>
 </html>

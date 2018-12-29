@@ -9,17 +9,26 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
             <!-- Scrollbar Custom CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
             <!-- Font Awesome JS -->
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+            <script defer src="{{ asset('js/multi.js') }}"></script>
 
         <link href="{{ asset('css/style_a.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/multi.css') }}" rel="stylesheet">
+
+
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
     </head>
     <body>
+<div>
     <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -37,22 +46,14 @@
         </li>
 
         <li>
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Event Manager</a>
-          <ul class="collapse list-unstyled" id="homeSubmenu">
-          <li>
-          <a href="#">Profile</a>
-        </li>
-
-        <li>
-          <a href="#">Events</a>
+          <a href="#">My orders</a>
         </li>
         <li>
-          <a href="#">Add Services</a>
+          <a href="#">add services</a>
         </li>
         <li>
-          <a href="#">Add Packages</a>
+          <a href="#">Help</a>
         </li>
-
         <li>
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
@@ -60,13 +61,18 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
         </form>
+        
+
       </ul>
 
+
+
     </nav>
+
     <!-- Page Content  -->
     <div id="">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container-fluid">
 
           <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -94,42 +100,62 @@
                             </li>
             </ul>
           </div>
-        
-                  
-          </div>
+          
+        </div>
+
 
     </div>
     </nav>
 
+<!-- page description-->
+<div class="container">
+<form id="regForm" action="">
 
+<h1>Register:</h1>
 
+<!-- One "tab" for each step in the form: -->
+<div class="tab">Name:
+  <p><input placeholder="First name..." oninput="this.className = ''"></p>
+  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+</div>
 
+<div class="tab">Contact Info:
+  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+</div>
 
+<div class="tab">Birthday:
+  <p><input placeholder="dd" oninput="this.className = ''"></p>
+  <p><input placeholder="mm" oninput="this.className = ''"></p>
+  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+</div>
 
+<div class="tab">Login Info:
+  <p><input placeholder="Username..." oninput="this.className = ''"></p>
+  <p><input placeholder="Password..." oninput="this.className = ''"></p>
+</div>
 
-
-<!-- Write description -->
-
-
-            <main class="py-2">
-                @yield('content')
-            </main>
-
-
-
-
+<div style="overflow:auto;">
+  <div style="float:right;">
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
   </div>
+</div>
+
+<!-- Circles which indicates the steps of the form: -->
+<div style="text-align:center;margin-top:40px;">
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+</div>
+
+</form>
 
 
+</div>
 
-
-
-
-
-
-
-
-
+    </div>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- Popper.JS -->
@@ -158,7 +184,6 @@
       });
     });
   </script>
-
-
+</div>
 </body>
 </html>
