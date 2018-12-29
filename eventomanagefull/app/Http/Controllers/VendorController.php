@@ -20,6 +20,7 @@ use App\PackagePhotographerItem;
 use App\MakeupItem;
 use App\CompanyDetails;
 use App\SoundService;
+use Image;
 
 class VendorController extends Controller
 {
@@ -276,6 +277,21 @@ class VendorController extends Controller
     }
 
     public function saveIntoCatererItemTable($inputtedData){
+
+        $image = $inputtedData->file('item_picture');
+        /* $new_name_file = rand().'.'.$image->getClientOriginalExtension(); */
+        /* $image->move(public_path("images"),$new_name_file); */
+        $rand = rand();
+        $thumbnailImage = Image::make($image);
+        $thumbnailPath = public_path().'/thumbnail/';
+        $originalPath = public_path().'/images/';
+
+        $thumbnailImage->save($originalPath.$rand.$image->getClientOriginalName());
+        $thumbnailImage->resize(150,150);
+        $thumbnailImage->resize($thumbnailPath.$rand.$image->getClientOriginalName());
+
+        $path = $rand.$image->getClientOriginalName();
+
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
@@ -288,7 +304,7 @@ class VendorController extends Controller
         $caterer_items->item_dine_time = $dineTimeId;
         $caterer_items->item_category = $inputtedData->item_category;
         $caterer_items->item_price = $inputtedData->item_price;
-        $caterer_items->item_picture = $inputtedData->item_picture;
+        $caterer_items->item_picture = $path;
         $caterer_items->vendor_id = $vendor_id;
 
         if($caterer_items->save()){
