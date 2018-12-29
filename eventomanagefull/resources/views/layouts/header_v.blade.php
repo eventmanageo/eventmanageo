@@ -76,22 +76,11 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                  <label id="navbarDropdown" class="nav-link" href="#" aria-expanded="false">
                                     {{ Auth::user()->name }}
-                                </a>
+                                  </label>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                </li>
             </ul>
           </div>
         
@@ -111,9 +100,9 @@
 <!-- Write description -->
 
 
-            <main class="py-2">
-                @yield('content')
-            </main>
+       <main class="py-2">
+          @yield('content')
+        </main>
 
 
 

@@ -62,6 +62,16 @@
             <i class="fas fa-align-left"></i>
             <span>eventOmanage</span>
           </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto" style="margin-right:3%">
+            <li class="nav-item dropdown">
+                                  <label id="navbarDropdown" class="nav-link" href="#" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                  </label>
+
+                                </li>
+            </ul>
+          </div>
                   </div>
 
     </div>
