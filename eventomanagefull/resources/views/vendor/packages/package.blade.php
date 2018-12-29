@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.header_v')
 
 @section('content')
 <div class="container-fluid">

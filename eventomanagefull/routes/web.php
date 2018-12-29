@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'end_user.homepage');
 
 Auth::routes();
 
@@ -43,9 +43,39 @@ Route::get('vendor/password/reset/{token}','Auth\VendorResetPasswordController@s
 Route::get('admin/eventmanager-reg','AdminController@goToEventManagerRegistration');
 Route::post('admin/eventmanager-reg','AdminController@registerEventManager');
 
+//end_user root path
 Route::get('homepage',function(){
-    return view("/End-user/homepage");
+    return view("end_user.homepage");
 });
+Route::get('about',function(){
+    return view("end_user.about_us");
+});
+Route::get('gallery',function(){
+    return view("end_user.gallery");
+});
+Route::get('contact',function(){
+    return view("end_user.contact");
+});
+
+Route::get('service',function(){
+    return view("end_user.serv_wedding");
+});
+Route::get('registermulti',function(){
+    return view("end_user.registra_step");
+});
+Route::get('multi',function(){
+    return view("end_user.multi");
+});
+
+///wedding services add and redirected
+/*Route::get('login', function () {
+    if(Auth::check()) {
+        return redirect('home');
+    } else {
+        return view('auth.login');
+    }
+});*/
+
 
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
 Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');

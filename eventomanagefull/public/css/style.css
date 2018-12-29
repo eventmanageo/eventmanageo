@@ -160,7 +160,7 @@ h2
    color: aliceblue;
    background-color: transparent;
 }
-input[type=submit]
+/* input[type=submit]
 {
   background-color: #4CAF50; 
   width: 100%;
@@ -171,7 +171,7 @@ input[type=submit]
 input[type=submit]:hover
 {
   background-color: transparent;
-}
+} */
 .forget{
   color: aliceblue;
   margin-top: 5%;
@@ -301,4 +301,17 @@ input[type=number] {
   {
       opacity: 0.5;
       filter: alpha(opacity=50);
+  }
+  .card-header
+  {
+     
+      font-size: 15px;
+      font-style: normal;
+      
+  }
+
+  #contact_head
+  {
+    text-align: center;
+    font-size: 25px;
   }

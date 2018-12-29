@@ -22,10 +22,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
        <!-- custom Styles -->
        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel sticky-top">
            
                 <a id="header1" class="navbar-band text-lowercase" href="{{ url('/') }}">
                     event<span class="text-uppercase">O</span>manage
@@ -45,24 +46,34 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Home') }}</a>
+                                <a class="nav-link" href="{{ url('homepage') }}">{{ __('Home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('About us') }}</a>
+                                <a class="nav-link" href="{{ url('about') }}">{{ __('About us') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Gellary') }}</a>
+                                <a class="nav-link" href="{{ url('gallery') }}">{{ __('Gellary') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Contact us') }}</a>
+                                <a class="nav-link" href="{{ url('contact') }}">{{ __('Contact us') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('login') }}</a>
+                                <a class="nav-link" href="
+                                @isset($url)
+                                    {{ url("login/$url") }}
+                                        @else
+                                                {{ route('login') }}
+                                            @endisset
+                                    ">{{ __('login') }}</a>
                             </li>
                             
                             @if (Route::has('register'))
                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('sign up') }}</a>
+                                    <a class="nav-link" href=" @isset($url)
+                                    {{ url("register/$url") }}
+                                        @else
+                                                {{ route('register') }}
+                                            @endisset">{{ __('sign up') }}</a>
                                 </li>
                             @endif
                         @else
@@ -86,10 +97,8 @@
                         @endguest
                     </ul>
                 </div>
-        
         </nav>
-
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

@@ -412,9 +412,9 @@ class VendorController extends Controller
     public function goToMakePackageWithData($vendorType,$dinetime=null){
         $data;
         if($dinetime===null){
-            $data = array("dinetime" => $dinetime, 'vendortype' => $vendorType);
-        }else{
             $data = array('vendortype' => $vendorType);
+        }else{
+            $data = array("dinetime" => $dinetime, 'vendortype' => $vendorType);
         }
         if($vendorType === "caterer"){
             if($dinetime!=null){
