@@ -20,6 +20,7 @@ use App\PackagePhotographerItem;
 use App\MakeupItem;
 use App\CompanyDetails;
 use App\SoundService;
+use Image;
 
 class VendorController extends Controller
 {
@@ -276,6 +277,12 @@ class VendorController extends Controller
     }
 
     public function saveIntoCatererItemTable($inputtedData){
+
+        $image = $inputtedData->file('item_picture');
+        /* $new_name_file = rand().'.'.$image->getClientOriginalExtension(); */
+        /* $image->move(public_path("images"),$new_name_file); */
+        $path = $this->resizeImage($image);
+
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
@@ -288,7 +295,7 @@ class VendorController extends Controller
         $caterer_items->item_dine_time = $dineTimeId;
         $caterer_items->item_category = $inputtedData->item_category;
         $caterer_items->item_price = $inputtedData->item_price;
-        $caterer_items->item_picture = $inputtedData->item_picture;
+        $caterer_items->item_picture = $path;
         $caterer_items->vendor_id = $vendor_id;
 
         if($caterer_items->save()){
@@ -302,10 +309,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('land_picture');
+        $path = $this->resizeImage($image);
+
         $land_service = new LandService();
         $land_service->land_name = $inputtedData->land_name;
         $land_service->land_description = $inputtedData->land_description;
-        $land_service->land_picture = $inputtedData->land_picture;
+        $land_service->land_picture = $path;
         $land_service->land_price = $inputtedData->land_price;
         $land_service->land_address = $inputtedData->land_address;
         $land_service->vendor_id = $vendor_id;
@@ -317,15 +327,33 @@ class VendorController extends Controller
         }
     }
 
+    public function resizeImage($image){
+        $rand = rand();
+        $thumbnailImage = Image::make($image);
+        $thumbnailPath = public_path().'/thumbnail/';
+        $originalPath = public_path().'/images/';
+
+        $thumbnailImage->save($originalPath.$rand.$image->getClientOriginalName());
+        $thumbnailImage->resize(150,150);
+        $thumbnailImage->resize($thumbnailPath.$rand.$image->getClientOriginalName());
+
+        $path = $rand.$image->getClientOriginalName();
+
+        return $path;
+    }
+
     public function saveIntoMakeupItemTable($inputtedData){
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
 
         $makeup_items = new MakeupItem();
         $makeup_items->item_name = $inputtedData->item_name;
         $makeup_items->item_description = $inputtedData->item_description;
         $makeup_items->item_price = $inputtedData->item_price;
-        $makeup_items->item_picture = $inputtedData->item_picture;
+        $makeup_items->item_picture = $path;
         $makeup_items->vendor_id = $vendor_id;
 
         if($makeup_items->save()){
@@ -336,13 +364,16 @@ class VendorController extends Controller
     }
 
     public function saveIntoTransportService($inputtedData){
-        $vendor_email = Session::get('vendor_email');
+        $vendor_email = Session::get('vehicle_picture');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+        
+        $image = $inputtedData->file('vehicle_picture');
+        $path = $this->resizeImage($image);
 
         $transport_service = new TransportService();
         $transport_service->vehicle_name = $inputtedData->vehicle_name;
         $transport_service->vehicle_description = $inputtedData->vehicle_description;
-        $transport_service->vehicle_picture = $inputtedData->vehicle_picture;
+        $transport_service->vehicle_picture = $path;
         $transport_service->vehicle_price = $inputtedData->vehicle_price;
         $transport_service->vehicle_type = $inputtedData->vehicle_type;
         $transport_service->vendor_id = $vendor_id;
@@ -358,10 +389,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
+
         $decorator_service = new DecoratorService();
         $decorator_service->item_name = $inputtedData->item_name;
         $decorator_service->item_description = $inputtedData->item_description;
-        $decorator_service->item_picture = $inputtedData->item_picture;
+        $decorator_service->item_picture = $path;
         $decorator_service->item_price = $inputtedData->item_price;
         $decorator_service->vendor_id = $vendor_id;
 
@@ -376,10 +410,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
+
         $photographer_service = new PhotographerService();
         $photographer_service->item_name = $inputtedData->item_name;
         $photographer_service->item_description = $inputtedData->item_description;
-        $photographer_service->item_picture = $inputtedData->item_picture;
+        $photographer_service->item_picture = $path;
         $photographer_service->item_price = $inputtedData->item_price;
         $photographer_service->vendor_id = $vendor_id;
 
@@ -394,10 +431,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('service_picture');
+        $path = $this->resizeImage($image);
+
         $sound_service = new SoundService();
         $sound_service->service_name = $inputtedData->service_name;
         $sound_service->service_description = $inputtedData->service_description;
-        $sound_service->service_picture = $inputtedData->service_picture;
+        $sound_service->service_picture = $path;
         $sound_service->service_price = $inputtedData->service_price;
         $sound_service->service_type = $inputtedData->service_type;
         $sound_service->vendor_id = $vendor_id;
