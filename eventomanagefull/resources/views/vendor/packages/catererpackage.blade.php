@@ -13,7 +13,7 @@
     <div class="col-md-12 text-center">
         @if($data['items']->isEmpty())
             <label>It seems like you haven't added any items/services yet.</label>
-            <a href="/{{Session::get('vendor_category')}}/add/service">Add your services</a>
+            <strong><a href="/{{Session::get('vendor_category')}}/add/service">Add your services</a></strong>
         @else
             <input type="hidden" value="{{Session::get('vendor_category')}}" name="vendorType" id="vendorType"/>
             <div class="form-group row">

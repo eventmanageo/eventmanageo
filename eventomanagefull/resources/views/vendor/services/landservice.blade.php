@@ -20,8 +20,12 @@
                 alert('Failed');
             </script>
         @endif
-
+        
+        @if(isset($edit))
         <form action="" method="POST" class="form" enctype="multipart/form-data">
+        @else
+        <form action="" method="POST" class="form" enctype="multipart/form-data">
+        @endif
             @csrf
             <div class="card mt-2">
                 <div class="card-body">
@@ -30,7 +34,7 @@
                             <label>Land Name</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="land_name" name="land_name" required/>
+                            <input type="text" class="form-control" id="land_name" name="land_name" required @if(isset($edit)) value="{{$serviceData[0]->land_name}} @endif"/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -38,7 +42,7 @@
                             <label>Land Description</label>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" cols="5" rows="5" id="land_description" name="land_description" required></textarea>
+                            <textarea class="form-control" cols="5" rows="5" id="land_description" name="land_description" required>@if(isset($edit)){{$serviceData[0]->land_description}}@endif</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -46,7 +50,7 @@
                             <label>Land Picture</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <input type="file" accept="image/jpg" id="land_picture" name="land_picture" required/>
+                            <input type="file" accept="image/jpg" id="land_picture" name="land_picture" @if(!isset($edit)) required @endif/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -54,7 +58,7 @@
                             <label>Land Price</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <input class="form-control" type="text" id="land_price" name="land_price" required/>
+                            <input class="form-control" type="text" id="land_price" name="land_price" required @if($edit) value="{{$serviceData[0]->land_price}}" @endif/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -62,7 +66,7 @@
                             <label>Land Location/Address</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <textarea class="form-control" cols="5" rows="5" id="land_address" name="land_address" required></textarea>
+                            <textarea class="form-control" cols="5" rows="5" id="land_address" name="land_address" required>@if(isset($edit)){{$serviceData[0]->land_address}}@endif</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
