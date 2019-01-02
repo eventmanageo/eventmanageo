@@ -652,9 +652,9 @@ class VendorController extends Controller
             ->where('caterer_items.vendor_id','=',$vendor_id);
             if($catererItemWithDineTime->get()->count() > 0){
                 $returnData = $catererItemWithDineTime->get();
-                return view('vendor.services.listservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+                return view('vendor.services.listcatererservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
             }else{
-                return view('vendor.services.listservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+                return view('vendor.services.listcatererservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
             }
         }elseif($vendorType==="transport"){
             $transportServices = DB::table('transport_services')
