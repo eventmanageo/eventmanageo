@@ -21,7 +21,11 @@
                 </script>
             @endif
     
+            @if(isset($edit))
             <form action="" method="POST" class="form" enctype="multipart/form-data">
+            @else
+            <form action="" method="POST" class="form" enctype="multipart/form-data">
+            @endif
                 @csrf
                 <div class="card mt-2">
                     <div class="card-body">
@@ -30,7 +34,7 @@
                                 <label>Item Name</label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="item_name" name="item_name" required/>
+                                <input type="text" class="form-control" id="item_name" name="item_name" required @if(isset($edit)) value="{{$serviceData[0]->item_name}}" @endif/>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -38,7 +42,7 @@
                                 <label>Item Description</label>
                             </div>
                             <div class="col-md-6">
-                                <textarea class="form-control" cols="5" rows="5" id="item_description" name="item_description" required></textarea>
+                                <textarea class="form-control" cols="5" rows="5" id="item_description" name="item_description" required>@if(isset($edit)){{$serviceData[0]->item_description}}@endif</textarea>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -46,7 +50,7 @@
                                 <label>Item Picture</label>
                             </div>
                             <div class="col-md-6 text-left">
-                                <input type="file" accept="image/jpg" id="item_picture" name="item_picture" required/>
+                                <input type="file" accept="image/jpg" id="item_picture" name="item_picture" @if(!isset($edit)) required @endif/>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -54,7 +58,7 @@
                                 <label>Item Price</label>
                             </div>
                             <div class="col-md-6 text-left">
-                                <input class="form-control" type="text" id="item_price" name="item_price" required/>
+                                <input class="form-control" type="text" id="item_price" name="item_price" required @if(isset($edit)) value="{{$serviceData[0]->item_price}}" @endif/>
                             </div>
                         </div>
                         <div class="row form-group">

@@ -11,6 +11,11 @@
         alert('Failed');
     </script>
 @endif
+@if(Session::has('status-edit-success'))
+    <script>
+        alert('Successfully Edited');
+    </script>
+@endif
 <div class="container">
     @if($serviceBunch === "Empty")
         <label>Looks like you are empty with services. <a href="/{{$vendorType}}/add/service"><i class="fas fa-plus-circle"></i></a></label>
@@ -35,7 +40,7 @@
                                 });
                             </script>
                             <div class="col-xs-12 col-md-6">
-                                {{-- <a href="/edit/service/{{$service->id}}/{{$vendorType}}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a> --}}
+                                <a href="/edit/service/{{$service->id}}/{{$vendorType}}" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                 <span>&nbsp; &nbsp;</span>
                                 <form id="deleteForm{{$service->id}}" name="deleteForm{{$service->id}}" action="/delete/service" method="POST" style="display:inline;">
                                     @csrf
