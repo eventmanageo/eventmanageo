@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Vendor;
+use DineTime;
 class CatererItem extends Model
 {
     protected $fillable = [

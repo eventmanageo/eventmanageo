@@ -1,6 +1,12 @@
 <div class="row justify-content-center">
         <div class="col-md-12 text-center">
-            <label><strong>{{$data['dinetime']}} package making</strong></label>
+            <label><strong>
+                @if($data['vendortype'] === "caterer")
+                    {{$data['dinetime']}} package making
+                @else
+                    package making
+                @endif
+                </strong></label>
             <br/>
             <label><strong>*</strong> Do not refresh page while adding into pacakge.</label>
             <br/>

@@ -19,8 +19,8 @@
   <!-- jQuery Custom Scroller CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   <!-- Font Awesome JS -->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -71,6 +71,19 @@
           </li>
           <li>
               <a href="/company/details/{{Session::get('vendor_category')}}">Add Company Details</a>
+          </li>
+          <li>
+            <a href="#showmeSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Show me</a>
+            <ul class="collapse list-unstyled" id="showmeSubMenu">
+              <li>
+                <a href="/list/service/{{Session::get('vendor_category')}}">My services</a>
+              </li>
+              @if(Session::get('vendor_category')==="caterer" || Session::get('vendor_category')==="makeup" || Session::get('vendor_category')==="photographer")
+                <li>
+                  <a href="">My packages</a>
+                </li>
+              @endif
+            </ul>
           </li>
           <li>
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Service Management</a>
