@@ -106,7 +106,7 @@
     <div class="container-fluid">
           
     
-          <form id="regForm" action="/cart">
+          <form id="regForm" action="insert" method="POST">
 
           <h1 id="multi_name">eventOmanage</h1>
           <p>service make easy life...</p>
@@ -171,9 +171,9 @@
                     </label>
                   </div>
             </div>
-
+            
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           
-
           <div style="overflow:auto;">
             <div style="float:right;">
               <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>

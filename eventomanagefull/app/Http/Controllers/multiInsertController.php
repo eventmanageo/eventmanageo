@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
 use DB;
-use App\Http\Requests;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class multiInsertController extends Controller
 {
     public function insertform()
     {
-        return view('multi');
+        return view('end_user.multi');
     }
     public function insert(Request $request)
     {
+        
+       /* $post = new multistep;
+        $post->type = Input::get('optradio');
+        $post->location = Input::get('location');
+        $post->date = Input::get('date');
+        $post->guest = Input::get('optradio1');
+        $post->save();*/
+        
+        
+        
         $type = $request->input('optradio');
         $loc = $request->input('location');
         
