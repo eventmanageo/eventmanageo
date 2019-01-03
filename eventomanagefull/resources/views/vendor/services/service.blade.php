@@ -1,10 +1,17 @@
-@extends('layouts.auth')
+@extends('layouts.header_v')
 
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 text-center">
-            <label><strong>Add Service</strong></label>
+            <label><strong>
+                @if(isset($edit))
+                    Edit
+                @else
+                    Add
+                @endif
+                Service
+            </strong></label>
         </div>
     </div>
     @if($vendortype === "caterer")

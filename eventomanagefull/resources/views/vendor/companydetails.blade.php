@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.header_v')
 
 @section('content')
 <div class="container">
@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header"><label><b>{{Session::get('vendor_category')}}'s Company Details</b></label></div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="" id="company-form" method="POST">
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-3 col-form-label text-md-right">

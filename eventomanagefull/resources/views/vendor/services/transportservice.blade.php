@@ -21,7 +21,11 @@
             </script>
         @endif
 
+        @if(isset($edit))
         <form action="" method="POST" class="form" enctype="multipart/form-data">
+        @else
+        <form action="" method="POST" class="form" enctype="multipart/form-data">
+        @endif
             @csrf
             <div class="card mt-2">
                 <div class="card-body">
@@ -30,7 +34,7 @@
                             <label>Vehicle Name</label>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="vehicle_name" name="vehicle_name" required/>
+                            <input type="text" class="form-control" id="vehicle_name" name="vehicle_name" required @if(isset($edit)) value="{{$serviceData[0]->vehicle_name}}"@endif/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -38,7 +42,7 @@
                             <label>Vehicle Description</label>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" cols="5" rows="5" id="vehicle_description" name="vehicle_description" required></textarea>
+                            <textarea class="form-control" cols="5" rows="5" id="vehicle_description" name="vehicle_description" required>@if(isset($edit)){{$serviceData[0]->vehicle_description}}@endif</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -46,7 +50,7 @@
                             <label>Vehicle Picture</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <input type="file" accept="image/jpg" id="vehicle_picture" name="vehicle_picture" required/>
+                            <input type="file" accept="image/jpg" id="vehicle_picture" name="vehicle_picture" @if(!isset($edit)) required @endif/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -54,7 +58,7 @@
                             <label>Vehicle Price</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <input class="form-control" type="text" id="vehicle_price" name="vehicle_price" required/>
+                            <input class="form-control" type="text" id="vehicle_price" name="vehicle_price" required @if(isset($edit)) value="{{$serviceData[0]->vehicle_price}}"@endif/>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -63,11 +67,11 @@
                         </div>
                         <div class="col-md-6 text-left">
                             <label class="radio radio-control">
-                                <input type="radio" name="vehicle_type" value="ac" checked required> AC
+                                <input type="radio" name="vehicle_type" value="ac" @if(isset($edit)) @if($serviceData[0]->vehicle_type === "ac") checked @endif @else checked @endif required> AC
                             </label>
                             &nbsp;
                             <label class="radio radio-control">
-                                <input type="radio" name="vehicle_type" value="nonac" required> Non AC
+                                <input type="radio" name="vehicle_type" value="nonac" @if(isset($edit)) @if($serviceData[0]->vehicle_type === "nonac") checked @endif @endif required> Non AC
                             </label>
                         </div>
                     </div>

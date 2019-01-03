@@ -20,6 +20,8 @@ use App\PackagePhotographerItem;
 use App\MakeupItem;
 use App\CompanyDetails;
 use App\SoundService;
+use Image;
+use DB;
 
 class VendorController extends Controller
 {
@@ -276,6 +278,12 @@ class VendorController extends Controller
     }
 
     public function saveIntoCatererItemTable($inputtedData){
+
+        $image = $inputtedData->file('item_picture');
+        /* $new_name_file = rand().'.'.$image->getClientOriginalExtension(); */
+        /* $image->move(public_path("images"),$new_name_file); */
+        $path = $this->resizeImage($image);
+
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
@@ -288,7 +296,7 @@ class VendorController extends Controller
         $caterer_items->item_dine_time = $dineTimeId;
         $caterer_items->item_category = $inputtedData->item_category;
         $caterer_items->item_price = $inputtedData->item_price;
-        $caterer_items->item_picture = $inputtedData->item_picture;
+        $caterer_items->item_picture = $path;
         $caterer_items->vendor_id = $vendor_id;
 
         if($caterer_items->save()){
@@ -302,10 +310,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('land_picture');
+        $path = $this->resizeImage($image);
+
         $land_service = new LandService();
         $land_service->land_name = $inputtedData->land_name;
         $land_service->land_description = $inputtedData->land_description;
-        $land_service->land_picture = $inputtedData->land_picture;
+        $land_service->land_picture = $path;
         $land_service->land_price = $inputtedData->land_price;
         $land_service->land_address = $inputtedData->land_address;
         $land_service->vendor_id = $vendor_id;
@@ -317,15 +328,33 @@ class VendorController extends Controller
         }
     }
 
+    public function resizeImage($image){
+        $rand = rand();
+        $thumbnailImage = Image::make($image);
+        $thumbnailPath = public_path().'/thumbnail/';
+        $originalPath = public_path().'/images/';
+
+        $thumbnailImage->save($originalPath.$rand.$image->getClientOriginalName());
+        $thumbnailImage->resize(150,150);
+        $thumbnailImage->resize($thumbnailPath.$rand.$image->getClientOriginalName());
+
+        $path = $rand.$image->getClientOriginalName();
+
+        return $path;
+    }
+
     public function saveIntoMakeupItemTable($inputtedData){
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
 
         $makeup_items = new MakeupItem();
         $makeup_items->item_name = $inputtedData->item_name;
         $makeup_items->item_description = $inputtedData->item_description;
         $makeup_items->item_price = $inputtedData->item_price;
-        $makeup_items->item_picture = $inputtedData->item_picture;
+        $makeup_items->item_picture = $path;
         $makeup_items->vendor_id = $vendor_id;
 
         if($makeup_items->save()){
@@ -338,11 +367,14 @@ class VendorController extends Controller
     public function saveIntoTransportService($inputtedData){
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+        
+        $image = $inputtedData->file('vehicle_picture');
+        $path = $this->resizeImage($image);
 
         $transport_service = new TransportService();
         $transport_service->vehicle_name = $inputtedData->vehicle_name;
         $transport_service->vehicle_description = $inputtedData->vehicle_description;
-        $transport_service->vehicle_picture = $inputtedData->vehicle_picture;
+        $transport_service->vehicle_picture = $path;
         $transport_service->vehicle_price = $inputtedData->vehicle_price;
         $transport_service->vehicle_type = $inputtedData->vehicle_type;
         $transport_service->vendor_id = $vendor_id;
@@ -358,10 +390,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
+
         $decorator_service = new DecoratorService();
         $decorator_service->item_name = $inputtedData->item_name;
         $decorator_service->item_description = $inputtedData->item_description;
-        $decorator_service->item_picture = $inputtedData->item_picture;
+        $decorator_service->item_picture = $path;
         $decorator_service->item_price = $inputtedData->item_price;
         $decorator_service->vendor_id = $vendor_id;
 
@@ -376,10 +411,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('item_picture');
+        $path = $this->resizeImage($image);
+
         $photographer_service = new PhotographerService();
         $photographer_service->item_name = $inputtedData->item_name;
         $photographer_service->item_description = $inputtedData->item_description;
-        $photographer_service->item_picture = $inputtedData->item_picture;
+        $photographer_service->item_picture = $path;
         $photographer_service->item_price = $inputtedData->item_price;
         $photographer_service->vendor_id = $vendor_id;
 
@@ -394,10 +432,13 @@ class VendorController extends Controller
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
 
+        $image = $inputtedData->file('service_picture');
+        $path = $this->resizeImage($image);
+
         $sound_service = new SoundService();
         $sound_service->service_name = $inputtedData->service_name;
         $sound_service->service_description = $inputtedData->service_description;
-        $sound_service->service_picture = $inputtedData->service_picture;
+        $sound_service->service_picture = $path;
         $sound_service->service_price = $inputtedData->service_price;
         $sound_service->service_type = $inputtedData->service_type;
         $sound_service->vendor_id = $vendor_id;
@@ -412,9 +453,9 @@ class VendorController extends Controller
     public function goToMakePackageWithData($vendorType,$dinetime=null){
         $data;
         if($dinetime===null){
-            $data = array("dinetime" => $dinetime, 'vendortype' => $vendorType);
-        }else{
             $data = array('vendortype' => $vendorType);
+        }else{
+            $data = array("dinetime" => $dinetime, 'vendortype' => $vendorType);
         }
         if($vendorType === "caterer"){
             if($dinetime!=null){
@@ -596,6 +637,370 @@ class VendorController extends Controller
             }else{
                 return json_encode($objFailed);
             }
+        }
+    }
+
+    public function showListServicePage(Request $request,$vendorType){
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+        $returnData;
+        if($vendorType==="caterer"){
+            $catererItemWithDineTime = DB::table('caterer_items')
+            ->select('caterer_items.id','caterer_items.item_name','caterer_items.item_description',
+            'caterer_items.item_category','caterer_items.item_price','caterer_items.item_picture','dine_times.dine_name')
+            ->join('dine_times','dine_times.id','=','caterer_items.item_dine_time')
+            ->where('caterer_items.vendor_id','=',$vendor_id);
+            if($catererItemWithDineTime->get()->count() > 0){
+                $returnData = $catererItemWithDineTime->get();
+                return view('vendor.services.listcatererservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listcatererservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType==="transport"){
+            $transportServices = DB::table('transport_services')
+            ->select('transport_services.id','transport_services.vehicle_name','transport_services.vehicle_description',
+            'transport_services.vehicle_price','transport_services.vehicle_type')
+            ->where('transport_services.vendor_id','=',$vendor_id);
+            if($transportServices->get()->count() > 0){
+                $returnData = $transportServices->get();
+                return view('vendor.services.listtransportservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listtransportservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType==="makeup"){
+            $makeupItem = DB::table('makeup_items')
+            ->select('id','item_name','item_description','item_price','item_picture')
+            ->where('vendor_id','=',$vendor_id);
+            if($makeupItem->get()->count() > 0 ){
+                $returnData = $makeupItem->get();
+                return view('vendor.services.listmakeupservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listmakeupservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType==="sound"){
+            $soundItem = DB::table('sound_services')
+            ->select('id','service_name','service_description','service_price','service_picture','service_type')
+            ->where('vendor_id','=',$vendor_id);
+            if($soundItem->get()->count() > 0){
+                $returnData = $soundItem->get();
+                return view('vendor.services.listsoundservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listsoundservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType==="decorator"){
+            $decoratorItem = DB::table('decorator_services')
+            ->select('id','item_name','item_description','item_price','item_picture')
+            ->where('vendor_id','=',$vendor_id);
+            if($decoratorItem->get()->count() > 0){
+                $returnData = $decoratorItem->get();
+                return view('vendor.services.listdecoratorservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listdecoratorservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType==="land"){
+            $landItem = DB::table('land_services')
+            ->select('id','land_name','land_description','land_price','land_picture')
+            ->where('vendor_id','=',$vendor_id);
+            if($landItem->get()->count() > 0){
+                $returnData = $landItem->get();
+                return view('vendor.services.listlandservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listlandservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }elseif($vendorType === "photographer"){
+            $photographerItem = DB::table('photographer_services')
+            ->select('id','item_name','item_description','item_picture','item_price')
+            ->where('vendor_id','=',$vendor_id);
+            if($photographerItem->get()->count() > 0){
+                $returnData = $photographerItem->get();
+                return view('vendor.services.listphotographerservices')->with('serviceBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.services.listphotographerservices')->with('serviceBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }
+    }
+
+    public function deleteService(Request $request){
+        if($request->vendorType === "caterer"){
+            if(CatererItem::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "transport"){
+            if(TransportService::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "makeup"){
+            if(MakeupItem::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "sound"){
+            if(SoundService::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "decorator"){
+            if(DecoratorService::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "land"){
+            if(LandService::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }elseif($request->vendorType === "photographer"){
+            if(PhotographerService::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }
+    }
+
+    public function editServiceShowFormwithData(Request $request,$id,$vendorType){
+        
+        if($vendorType === "caterer"){
+            $catererItemWithDineTime = DB::table('caterer_items')
+            ->select('id','item_name','item_description','item_dine_time',
+            'item_category','item_price','item_picture')
+            ->where('id','=',$id);
+            if($catererItemWithDineTime->get()->count() > 0){
+                $returnData = $catererItemWithDineTime->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType==="photographer"){
+            $photographerItem = DB::table('photographer_services')
+            ->select('id','item_name','item_description','item_picture','item_price')
+            ->where('id','=',$id);
+            if($photographerItem->get()->count() > 0){
+                $returnData = $photographerItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType === "sound"){
+            $soundItem = DB::table('sound_services')
+            ->select('id','service_name','service_description','service_picture','service_price','service_type')
+            ->where('id','=',$id);
+            if($soundItem->get()->count() > 0){
+                $returnData = $soundItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType === "land"){
+            $landItem = DB::table('land_services')
+            ->select('id','land_name','land_description','land_picture','land_price','land_address')
+            ->where('id','=',$id);
+            if($landItem->get()->count() > 0){
+                $returnData = $landItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType === "decorator"){
+            $decoratorItem = DB::table('decorator_services')
+            ->select('id','item_name','item_description','item_picture','item_price')
+            ->where('id','=',$id);
+            if($decoratorItem->get()->count() > 0){
+                $returnData = $decoratorItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType === "makeup"){
+            $makeupItem = DB::table('makeup_items')
+            ->select('id','item_name','item_description','item_picture','item_price')
+            ->where('id','=',$id);
+            if($makeupItem->get()->count() > 0){
+                $returnData = $makeupItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }elseif($vendorType === "transport"){
+            $makeupItem = DB::table('transport_services')
+            ->select('id','vehicle_name','vehicle_description','vehicle_picture','vehicle_price','vehicle_type')
+            ->where('id','=',$id);
+            if($makeupItem->get()->count() > 0){
+                $returnData = $makeupItem->get();
+                return view('vendor.services.service')->with('vendortype',$vendorType)->with('serviceData',$returnData)->with('edit','yes');
+            }
+        }
+    }
+
+    public function editService(Request $request,$id,$vendorType){
+        if($vendorType === "caterer"){
+            $dinetime = $request->item_dine_time;
+            $dineTimeId = DineTime::where('dine_name','=',$dinetime)->first()->id;
+            if($request->hasFile('item_picture')){
+                $image = $request->file('item_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('caterer_items')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_dine_time' => $dineTimeId,
+                    'item_category' => $request->item_category,
+                    'item_price' => $request->item_price,
+                    'item_picture' => $path
+                    ]);
+            }else{
+                $queryUpdate = DB::table('caterer_items')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_dine_time' => $dineTimeId,
+                    'item_category' => $request->item_category,
+                    'item_price' => $request->item_price
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "photographer"){
+
+            if($request->hasFile('item_picture')){
+                $image = $request->file('item_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('photographer_services')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price,
+                    'item_picture' => $path
+                    ]);
+            }else{
+                $queryUpdate = DB::table('photographer_services')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "sound"){
+
+            if($request->hasFile('service_picture')){
+                $image = $request->file('service_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('sound_services')->where('id','=',$id)
+                    ->update(['service_name' => $request->service_name ,
+                    'service_description' => $request->service_description,
+                    'service_price' => $request->service_price,
+                    'service_picture' => $path,
+                    'service_type' => $request->service_type
+                    ]);
+            }else{
+                $queryUpdate = DB::table('sound_services')->where('id','=',$id)
+                    ->update(['service_name' => $request->service_name ,
+                    'service_description' => $request->service_description,
+                    'service_price' => $request->service_price,
+                    'service_type' => $request->service_type
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "land"){
+
+            if($request->hasFile('land_picture')){
+                $image = $request->file('land_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('land_services')->where('id','=',$id)
+                    ->update(['land_name' => $request->land_name ,
+                    'land_description' => $request->land_description,
+                    'land_price' => $request->land_price,
+                    'land_picture' => $path,
+                    'land_address' => $request->land_address
+                    ]);
+            }else{
+                $queryUpdate = DB::table('land_services')->where('id','=',$id)
+                    ->update(['land_name' => $request->land_name ,
+                    'land_description' => $request->land_description,
+                    'land_price' => $request->land_price,
+                    'land_address' => $request->land_address
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "decorator"){
+
+            if($request->hasFile('item_picture')){
+                $image = $request->file('item_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('decorator_services')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price,
+                    'item_picture' => $path
+                    ]);
+            }else{
+                $queryUpdate = DB::table('decorator_services')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "makeup"){
+
+            if($request->hasFile('item_picture')){
+                $image = $request->file('item_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('makeup_items')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price,
+                    'item_picture' => $path
+                    ]);
+            }else{
+                $queryUpdate = DB::table('makeup_items')->where('id','=',$id)
+                    ->update(['item_name' => $request->item_name ,
+                    'item_description' => $request->item_description,
+                    'item_price' => $request->item_price
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
+        }elseif($vendorType === "transport"){
+
+            if($request->hasFile('vehicle_picture')){
+                $image = $request->file('vehicle_picture');
+                $path = $this->resizeImage($image);
+
+                $queryUpdate = DB::table('transport_services')->where('id','=',$id)
+                    ->update(['vehicle_name' => $request->vehicle_name ,
+                    'vehicle_description' => $request->vehicle_description,
+                    'vehicle_price' => $request->vehicle_price,
+                    'vehicle_picture' => $path,
+                    'vehicle_type' => $request->vehicle_type
+                    ]);
+            }else{
+                $queryUpdate = DB::table('transport_services')->where('id','=',$id)
+                    ->update(['vehicle_name' => $request->vehicle_name ,
+                    'vehicle_description' => $request->vehicle_description,
+                    'vehicle_price' => $request->vehicle_price,
+                    'vehicle_type' => $request->vehicle_type
+                    ]);
+            }
+            $request->session()->flash('status-edit-success','Success');
+            return redirect()->route('listservice',['vendorType' => $vendorType]);
         }
     }
 }

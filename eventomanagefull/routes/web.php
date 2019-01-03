@@ -102,3 +102,10 @@ Route::post('{vendorType}/add/service',['uses' => 'VendorController@saveVendorSe
 
 Route::get('{vendorType}/make/package/{dinetime?}','VendorController@goToMakePackageWithData');
 Route::post('/saveToPacakage','VendorController@savePackage');
+
+Route::get('/list/service/{vendorType}','VendorController@showListServicePage')->name('listservice');
+
+Route::post('delete/service','VendorController@deleteService');
+
+Route::get('/edit/service/{id}/{vendorType}','VendorController@editServiceShowFormwithData');
+Route::post('edit/service/{id}/{vendorType}','VendorController@editService');

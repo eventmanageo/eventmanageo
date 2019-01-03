@@ -12,6 +12,7 @@
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -107,6 +108,8 @@
 =======
 =======
 >>>>>>> b25ea3fdab0cefacce6d0ec715696bad14824ebd
+=======
+>>>>>>> master
   <!-- Popper.JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 
@@ -119,6 +122,17 @@
 >>>>>>> b25ea3fdab0cefacce6d0ec715696bad14824ebd
   <!-- jQuery Custom Scroller CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- Font Awesome JS -->
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+  <!-- Fonts -->
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- Styles -->
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{{ asset('css/style_a.css') }}" rel="stylesheet">
 
   <!-- Font Awesome JS -->
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
@@ -177,6 +191,22 @@
               <a href="/company/details/{{Session::get('vendor_category')}}">Add Company Details</a>
           </li>
           <li>
+<<<<<<< HEAD
+=======
+            <a href="#showmeSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Show me</a>
+            <ul class="collapse list-unstyled" id="showmeSubMenu">
+              <li>
+                <a href="/list/service/{{Session::get('vendor_category')}}">My services</a>
+              </li>
+              @if(Session::get('vendor_category')==="caterer" || Session::get('vendor_category')==="makeup" || Session::get('vendor_category')==="photographer")
+                <li>
+                  <a href="">My packages</a>
+                </li>
+              @endif
+            </ul>
+          </li>
+          <li>
+>>>>>>> master
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Service Management</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li>
@@ -198,8 +228,13 @@
             </ul>
           </li>
           <li>
+<<<<<<< HEAD
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+=======
+              <a href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+>>>>>>> master
           </li>
         </ul>
       </nav>
@@ -211,6 +246,7 @@
               <i class="fas fa-align-left"></i>
               <span>eventOmanage</span>
             </button>
+<<<<<<< HEAD
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto" style="margin-right:3%">
                 <li class="nav-item dropdown">
@@ -232,6 +268,20 @@
                 </li>
               </ul>
             </div>
+=======
+            {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto" style="margin-right:3%">
+                <li class="nav-item">
+                  <a id="navbarDropdown" class="nav-link" href="#" role="button">
+                      {{ Auth::user()->name }}
+                  </a>
+                </li>
+              </ul>
+            </div> --}}
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+>>>>>>> master
           </div>
         </nav>
       </div>
