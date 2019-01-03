@@ -106,7 +106,7 @@
     <div class="container-fluid">
           
     
-          <form id="regForm" action="">
+          <form id="regForm" action="/cart">
 
           <h1 id="multi_name">eventOmanage</h1>
           <p>service make easy life...</p>
@@ -131,7 +131,7 @@
                   <div class="form-group row">
                       <label for="example-date-input" class="col-2 col-form-label">Choose A location</label>
                       <div class="col-10">
-                      <select class="form-control" id="exampleSelect1">
+                      <select class="form-control" id="exampleSelect1" name="location">
                         <option>Ahmedabad</option>
                         <option>Bhavnagar</option>
                         <option>Surat</option>
@@ -143,7 +143,7 @@
                       <div class="form-group row">
                       <label for="example-date-input" class="col-2 col-form-label">Date</label>
                       <div class="col-10">
-                      <input class="form-control" type="date" value="2018-12-29" id="example-date-input">
+                      <input class="form-control" type="date" value="2018-12-29" id="example-date-input" name="date">
                     </div>
               </div>
               </div>
@@ -152,22 +152,22 @@
             <label for="txt">Number of guest</label>
             <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio">less than 100
+                      <input type="radio" class="form-check-input" name="optradio1">less than 100
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio">100-300
+                      <input type="radio" class="form-check-input" name="optradio1">100-300
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio">300-600
+                      <input type="radio" class="form-check-input" name="optradio1">300-600
                     </label>
                   </div>
                   <div class="form-check disabled">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio">600-900
+                      <input type="radio" class="form-check-input" name="optradio1">600-900
                     </label>
                   </div>
             </div>
@@ -200,11 +200,11 @@
 
     </div>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <!-- Popper.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <!-- jQuery Custom Scroller CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 

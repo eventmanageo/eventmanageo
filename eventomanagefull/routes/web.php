@@ -66,6 +66,9 @@ Route::get('registermulti',function(){
 Route::get('multi',function(){
     return view("end_user.multi");
 });
+Route::get('cart',function(){
+    return view("end_user.cart");
+});
 
 ///wedding services add and redirected
 /*Route::get('login', function () {
@@ -75,7 +78,8 @@ Route::get('multi',function(){
         return view('auth.login');
     }
 });*/
-
+Route::get('insert','multiInsertController@insertform');
+Route::post('create','multiInsertController@insert'); 
 
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
 Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');
