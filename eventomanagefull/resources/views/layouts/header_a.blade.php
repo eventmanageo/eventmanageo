@@ -37,18 +37,18 @@
         </li>
 
         <li>
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Event Manager</a>
+          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Event Manager</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="#">New Registration</a>
+              <a href="/admin/eventmanager-reg">New Registration</a>
             </li>
             <li>
-              <a href="#">Remove</a>
+              <a href="/admin/eventmanager-remove">Remove</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Event Allocation</a>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Event Allocation</a>
           <ul class="collapse list-unstyled" id="pageSubmenu">
             <li>
               <a href="#">Allocate Event</a>
@@ -63,10 +63,10 @@
         </li>
         <li>
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+          document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
         </li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
+          @csrf
         </form>
       </ul>
 
@@ -83,23 +83,23 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
-            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
+              <li class="nav-item dropdown">
+                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </a> --}}
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div> --}}
+              </li>
             </ul>
           </div>
         
