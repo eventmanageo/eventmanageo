@@ -64,8 +64,4 @@ class AdminController extends Controller
         }
         return redirect()->to('admin/eventmanager-remove');
     }
-
-    public function allocateEventManagerShowPage(){
-        return view('admin.allocateeventtomanager');
-    }
 }

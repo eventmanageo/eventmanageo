@@ -112,7 +112,3 @@ Route::post('delete/service','VendorController@deleteService');
 
 Route::get('/edit/service/{id}/{vendorType}','VendorController@editServiceShowFormwithData');
 Route::post('edit/service/{id}/{vendorType}','VendorController@editService');
-
-Route::get('event/allocated','EventManagerController@showAllocatedEventPage');
-
-Route::get('allocate/event/manager','AdminController@allocateEventManagerShowPage');
