@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.header_a')
 
 @section('content')
 <div class="container">
@@ -27,7 +27,7 @@
                 <td>{{ $eventmanager->name }}</td>
                 <td>{{ $eventmanager->email }}</td>
                 <td>
-                    <form action="{{url('admin/eventmanager-remove',['id' => $eventmanager->id])}}" method="POST">
+                    <form action="{{url('admin/eventmanager-remove',['id' => $eventmanager->id])}}" method="POST" onsubmit="return confirm('Are you sure to delete');">
                         <input class="btn btn-danger" type="submit" value="Delete"/>
                         <input type="hidden" name="_method" value="Delete"/>
                         @csrf
