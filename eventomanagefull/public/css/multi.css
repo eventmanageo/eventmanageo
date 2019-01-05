@@ -1,7 +1,8 @@
 /* Style the form */
 #regForm {
     
-  
+  padding-top: 10%;
+
     
 
     
@@ -20,6 +21,7 @@
   /* Hide all steps by default: */
   .tab {
     display: none;
+    padding-top: 7%;
   }
   
   /* Make circles that indicate the steps of the form: */
@@ -33,4 +35,17 @@
     display: inline-block;
     opacity: 0.5;
   }
-  
+  #multi_name
+  {
+    color: #17a2b8;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  #multi-col1
+  {
+    padding-right: 0%;
+  }
+  #multi-txt
+  {
+    font-size: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+  }

@@ -82,21 +82,9 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <label id="navbarDropdown" class="nav-link" href="#" aria-expanded="false">
                                     {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                  </label>
                             </li>
             </ul>
           </div>
@@ -108,73 +96,115 @@
     </nav>
 
 <!-- page description-->
-<div class="container" style="margin-top:10%;width:70%">
+<div class="container" style="margin-top:7%;width:70%">
   <div class="row">
-    <div class="col-4 border"> 
-      <h1>hii</h1>
+    <div class="col-4" id="multi-col1"> 
+    <img src="images/m-11.jpg" alt="New York" width="100%" height="500">
+    
     </div>
     <div class="col border">
     <div class="container-fluid">
-    <form id="regForm" action="">
+          
+    
+          <form id="regForm" action="insert" method="POST">
 
-<h1>Register:</h1>
+          <h1 id="multi_name">eventOmanage</h1>
+          <p>service make easy life...</p>
 
-<!-- One "tab" for each step in the form: -->
-<div class="tab">Name:
-  <p><input placeholder="First name..." oninput="this.className = ''"></p>
-  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
-</div>
+          <!-- One "tab" for each step in the form: -->
+          <div class="tab">
+            <label for="txt" id="multi-txt">Who is getting married?</label>
+          <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="optradio">Groom
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" name="optradio">Bride
+              </label>
+            </div>
+            
+          </div>
 
-<div class="tab">Contact Info:
-  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
-</div>
+          <div class="tab">
+                  <div class="form-group row">
+                      <label for="example-date-input" class="col-2 col-form-label">Choose A location</label>
+                      <div class="col-10">
+                      <select class="form-control" id="exampleSelect1" name="location">
+                        <option>Ahmedabad</option>
+                        <option>Bhavnagar</option>
+                        <option>Surat</option>
+                        <option>Baroda</option>
+                        <option>Rajkot</option>
+                      </select>
+                      </div>
+                  </div>
+                      <div class="form-group row">
+                      <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                      <div class="col-10">
+                      <input class="form-control" type="date" value="2018-12-29" id="example-date-input" name="date">
+                    </div>
+              </div>
+              </div>
 
-<div class="tab">Birthday:
-  <p><input placeholder="dd" oninput="this.className = ''"></p>
-  <p><input placeholder="mm" oninput="this.className = ''"></p>
-  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
-</div>
+          <div class="tab">
+            <label for="txt">Number of guest</label>
+            <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="optradio1">less than 100
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="optradio1">100-300
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="optradio1">300-600
+                    </label>
+                  </div>
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="optradio1">600-900
+                    </label>
+                  </div>
+            </div>
+            
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
+          <div style="overflow:auto;">
+            <div style="float:right;">
+              <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+              <button type="button"  class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            </div>
+          </div>
 
-<div class="tab">Login Info:
-  <p><input placeholder="Username..." oninput="this.className = ''"></p>
-  <p><input placeholder="Password..." oninput="this.className = ''"></p>
-</div>
+          <!-- Circles which indicates the steps of the form: -->
+          <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+          </div>
 
-<div style="overflow:auto;">
-  <div style="float:right;">
-    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-  </div>
-</div>
-
-<!-- Circles which indicates the steps of the form: -->
-<div style="text-align:center;margin-top:40px;">
-  <span class="step"></span>
-  <span class="step"></span>
-  <span class="step"></span>
-  <span class="step"></span>
-</div>
-
-</form>
+          </form>
 </div>
 
     </div>
   </div>
 
 </div>
-<div class="container">
 
-
-</div>
 
     </div>
   <!-- jQuery CDN - Slim version (=without AJAX) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <!-- Popper.JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <!-- jQuery Custom Scroller CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
