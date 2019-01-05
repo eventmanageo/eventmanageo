@@ -23,16 +23,18 @@ class multiInsertController extends Controller
         $post->guest = Input::get('optradio1');
         $post->save();*/
         
-        
-        
-        $type = $request->input('optradio');
+        $type = $request->input('Groom');
+        $type2 = $request->input('Bride');
+      
         $loc = $request->input('location');
         
-        $date = $request->input('date');
-        $guest = $request->input('optradio1');
-        $data=array('type'=>$type,"location"=>$loc,"date"=>$date,"guest"=>$guest);
+        $check_in = $request->input('check_in');
+        $check_out = $request->input('check_out');
+        $guest = $request->input('numberofg');
+        
+        $data=array('type'=>$type,"location"=>$loc, "check_in"=>$check_in, "check_out"=>$check_out, "guest"=>$guest, "type2"=>$type2);
         DB::table('multistep')->insert($data);
         echo "Record inserted successfully.<br/>";
-        echo '<a href = "/cart">Click Here</a> to go back.';
+        echo '<a href = "/multi">Click Here</a> to go back.';
         }
 }

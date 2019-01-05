@@ -116,14 +116,20 @@
             <label for="txt" id="multi-txt">Who is getting married?</label>
           <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="optradio">Groom
+                <input type="checkbox" class="form-check-input" value="Groom" name="Groom">Groom
               </label>
+
             </div>
+
+
             <div class="form-check">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" name="optradio">Bride
+                <input type="checkbox" class="form-check-input" value="Bride" name="Bride">Bride
               </label>
             </div>
+            <div>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          </div>
             
           </div>
 
@@ -140,39 +146,45 @@
                       </select>
                       </div>
                   </div>
-                      <div class="form-group row">
-                      <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                    <div class="form-group row">
+                      <label for="example-date-input" class="col-2 col-form-label">Check in</label>
                       <div class="col-10">
-                      <input class="form-control" type="date" value="2018-12-29" id="example-date-input" name="date">
+                      <input class="form-control" type="date" id="example-date-input" name="check_in">
                     </div>
-              </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-date-input" class="col-2 col-form-label">Check out</label>
+                      <div class="col-10">
+                      <input class="form-control" type="date" id="example-date-input" name="check_out">
+                    </div>
+                  </div>
               </div>
 
           <div class="tab">
             <label for="txt">Number of guest</label>
             <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio1">less than 100
+                      <input type="radio" class="form-check-input" value="<100" name="numberofg">less than 100
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio1">100-300
+                      <input type="radio" class="form-check-input" value="100-300" name="numberofg">100-300
                     </label>
                   </div>
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio1">300-600
+                      <input type="radio" class="form-check-input" value="300-600" name="numberofg">300-600
                     </label>
                   </div>
                   <div class="form-check disabled">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradio1">600-900
+                      <input type="radio" class="form-check-input" value="600-900" name="numberofg">600-900
                     </label>
                   </div>
             </div>
             
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          
           
           <div style="overflow:auto;">
             <div style="float:right;">
