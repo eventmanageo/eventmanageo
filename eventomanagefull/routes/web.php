@@ -107,3 +107,5 @@ Route::get('/edit/service/{id}/{vendorType}','VendorController@editServiceShowFo
 Route::post('edit/service/{id}/{vendorType}','VendorController@editService');
 
 Route::get('event/allocated','EventManagerController@showAllocatedEventPage');
+
+Route::get('allocate/event/manager','AdminController@allocateEventManagerShowPage');
