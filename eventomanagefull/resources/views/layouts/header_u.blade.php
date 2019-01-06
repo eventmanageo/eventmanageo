@@ -23,6 +23,7 @@
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+
     </head>
     <body>
 <div>
@@ -46,7 +47,7 @@
           <a href="#">My orders</a>
         </li>
         <li>
-          <a href="#">add services</a>
+          <a href="/cart">add services</a>
         </li>
         <li>
           <a href="#">24*2 Help</a>
@@ -79,9 +80,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
+                                
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"

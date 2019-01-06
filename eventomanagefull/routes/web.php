@@ -102,3 +102,7 @@ Route::post('/saveToPacakage','VendorController@savePackage');
 Route::get('user_profile',function(){
     return view("user.user_profile");
 });
+
+Route::get('cart',function(){
+    return view("cart.cart");
+});
