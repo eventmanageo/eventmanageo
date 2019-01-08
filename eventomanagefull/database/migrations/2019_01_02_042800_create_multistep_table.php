@@ -15,12 +15,12 @@ class CreateMultistepTable extends Migration
     {
         Schema::create('multistep', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('type');
-            $table->String('type2');
-            $table->String('location');
+            $table->string('type')->nullable();
+            $table->string('type2')->nullable();
+            $table->string('location');
             $table->date('check_in');
             $table->date('check_out');
-            $table->String('guest');
+            $table->string('guest');
             $table->timestamps();
         });
     }

@@ -32,7 +32,7 @@ class multiInsertController extends Controller
         $check_out = $request->input('check_out');
         $guest = $request->input('numberofg');
         
-        $data=array('type'=>$type,"location"=>$loc, "check_in"=>$check_in, "check_out"=>$check_out, "guest"=>$guest, "type2"=>$type2);
+        $data=array('type'=>$type,"type2"=>$type2,"location"=>$loc, "check_in"=>$check_in, "check_out"=>$check_out, "guest"=>$guest);
         DB::table('multistep')->insert($data);
         echo "Record inserted successfully.<br/>";
         echo '<a href = "/multi">Click Here</a> to go back.';

@@ -78,10 +78,10 @@
                             </div>
                             <div class="col-md-3 col-form-label">
                                 @if(Session::has('alert-success'))
-                                    <label class="text-success">{{Session::get('alert-success')}} | {{Session::get('alert')}} </label>
+                                    <label class="text-success">{{Session::get('alert-success')}}</label>
                                 @endif
                                 @if(Session::has('alert-danger'))
-                                    <label class="text-danger">{{Session::get('alert-danger')}} | {{Session::get('alert')}} </label>
+                                    <label class="text-danger">{{Session::get('alert-danger')}}</label>
                                 @endif
                             </div>
                         </div>
