@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\EventManager;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class AdminController extends Controller
 {
@@ -64,4 +65,15 @@ class AdminController extends Controller
         }
         return redirect()->to('admin/eventmanager-remove');
     }
+
+    public function showEventManagerAllocatePage(){
+        $eventDetails = DB::table('multistep')->get();
+        return view('admin.allocateEventManager')->with('eventDetails',$eventDetails);
+    }
+
+    public function returnEventMangerList(Request $request){
+        $eventMangerList = DB::table('eventmanager')->select('id','name')->get();
+        return json_encode($eventMangerList);
+    }
+
 }
