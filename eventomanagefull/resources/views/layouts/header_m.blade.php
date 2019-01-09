@@ -35,18 +35,15 @@
         <li>
           <a href="#">Profile</a>
         </li>
-
         <li>
-          <a href="#">Allocation Event</a>
+          <a href="#">Allocated Event</a>
         </li>
         <li>
           <a href="#">Total Event</a>
         </li>
         <li>
-          <a href="#">Pending Event</a>
-        </li>
-        <li>
-          <a href="#">Log Out</a>
+          <a href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
         </li>
       </ul>
 
@@ -62,6 +59,9 @@
             <i class="fas fa-align-left"></i>
             <span>eventOmanage</span>
           </button>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item dropdown">
