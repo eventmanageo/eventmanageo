@@ -67,7 +67,7 @@ class AdminController extends Controller
     }
 
     public function showEventManagerAllocatePage(){
-        $eventDetails = DB::table('multistep')->get();
+        $eventDetails = DB::table('event_basic_details')->where('event_status','=','published')->get();
         return view('admin.allocateEventManager')->with('eventDetails',$eventDetails);
     }
 

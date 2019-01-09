@@ -6,8 +6,8 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Name</th>
                 <th>Type</th>
-                <th>Location</th>
                 <th>Checkin</th>
                 <th>Chekout</th>
                 <th>Action</th>
@@ -17,10 +17,10 @@
             @foreach ($eventDetails as $key => $event)
                 <tr>
                     <td><label>{{$eventDetails[$key]->id}}</label></td>
-                    <td><label>{{$eventDetails[$key]->type}}</label></td>
-                    <td><label>{{$eventDetails[$key]->location}}</label></td>
-                    <td><label>{{$eventDetails[$key]->check_in}}<label></td>
-                    <td><label>{{$eventDetails[$key]->check_out}}<label></td>
+                    <td><label>{{$eventDetails[$key]->event_name}}</label></td>
+                    <td><label>{{$eventDetails[$key]->event_type}}</label></td>
+                    <td><label>{{$eventDetails[$key]->event_date_from}}<label></td>
+                    <td><label>{{$eventDetails[$key]->event_date_to}}<label></td>
                     <td><input class="btn btn-warning mb-1" type="button" id="allocatemanager" name="allocatemanager" value="Allocate Manager" data-toggle="modal" data-target="#myModal"></td>
                 </tr>
             @endforeach
@@ -56,6 +56,7 @@
     $(document).ready(function(){
         $("#allocatemanager").on('click',function(){
             item = $(this).closest('tr').find('td:nth-child(1)').text();
+            $("#eventmanagerlist").find('option').remove();
             $("#eventId").text('Id : '+item);
             $.ajax({
                 type : 'GET',
