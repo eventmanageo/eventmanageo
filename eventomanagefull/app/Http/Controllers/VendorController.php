@@ -553,6 +553,7 @@ class VendorController extends Controller
             $packageName = $myObj['packageName'];
             $packageDescription = $myObj['packageDescription'];
             $packagePrice = $myObj['packagePrice'];
+            $packageFor = $myObj['packageFor'];
             $itemArray = $myObj['items'];
 
             $vendor_email = Session::get('vendor_email');
@@ -563,6 +564,7 @@ class VendorController extends Controller
             $packageMakeup->package_name = $packageName;
             $packageMakeup->package_description = $packageDescription;
             $packageMakeup->package_price = $packagePrice;
+            $packageMakeup->package_for = $packageFor;
 
             if($packageMakeup->save()){
                 $obj =  new \stdClass();

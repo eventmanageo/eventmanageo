@@ -19,6 +19,7 @@ class CreatePackageMakeupsTable extends Migration
             $table->string('package_name');
             $table->string('package_description');
             $table->string('package_price');
+            $table->string('package_for');
             $table->timestamps();
 
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');

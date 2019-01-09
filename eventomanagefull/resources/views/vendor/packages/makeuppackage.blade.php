@@ -1,7 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-12 text-center">
-        <label><strong>{{$data['dinetime']}} package making</strong></label>
-        <input type="hidden" name="dinetime" id="dinetime" value="{{$data['dinetime']}}"/>
+        <label><strong>package making</strong></label>
         <br/>
         <label><strong>*</strong> Do not refresh page while adding into pacakge.</label>
         <br/>
@@ -30,6 +29,25 @@
                 </div>
                 <div class="col-md-4"> 
                     <input type="text" name="packageprice" id="packageprice" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4 text-right col-form-label">
+                    <label>Package for </label>
+                </div>
+                <div class="col-md-4"> 
+                    <label class="radio radio-control">
+                        <input type="radio" id="makeup_package_for" name="makeup_package_for" value="bride" checked required />Bride
+                    </label>
+                    <label class="radio radio-control">
+                        <input type="radio" id="makeup_package_for" name="makeup_package_for" value="groom" required/>Groom
+                    </label>
+                    <label class="radio radio-control">
+                        <input type="radio" id="makeup_package_for" name="makeup_package_for" value="othermale" required/>Other-Male
+                    </label>
+                    <label class="radio radio-control">
+                        <input type="radio" id="makeup_package_for" name="makeup_package_for" value="otherfemale" required/>Other-Female
+                    </label>
                 </div>
             </div>
             <div class="form-group row">
@@ -101,6 +119,7 @@
             var packagename = $("#packagename").val();
             var packagedescription = $("#packagedescription").val();
             var packageprice =$("#packageprice").val();
+            var packagefor = $("#makeup_package_for").val();
             if(packagename==="" || packagename===null || packagedescription==="" || packagedescription===null || packageprice==="" || packageprice===null){
                 alert('Package name or description should not be empty.');    
             }else{
@@ -110,6 +129,7 @@
                     jsonObj.packageName = packagename;
                     jsonObj.packageDescription = packagedescription;
                     jsonObj.packagePrice = packageprice;
+                    jsonObj.packageFor = packagefor;
                     var itemIdText = $("#itemlist").val();
                     var itemid = parseInt(itemIdText,10);
                     var inArrayPresent = $.inArray(itemid,itemidArray);
