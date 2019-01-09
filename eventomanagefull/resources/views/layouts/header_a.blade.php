@@ -59,7 +59,7 @@
               <a href="/allocate/event/manager">Allocate Event</a>
             </li>
             <li>
-              <a href="#">See Allocation</a>
+              <a href="/allocated/event/manager">See Allocation</a>
             </li>
           </ul>
         </li>
