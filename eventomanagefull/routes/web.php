@@ -120,3 +120,6 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 Route::get('/checkEventManagerAvailability','AdminController@checkEventManagerAvailability');
 Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
+
+Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
+Route::post('delete/package','VendorController@deletePackage');

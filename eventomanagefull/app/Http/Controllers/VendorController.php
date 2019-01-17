@@ -1005,4 +1005,35 @@ class VendorController extends Controller
             return redirect()->route('listservice',['vendorType' => $vendorType]);
         }
     }
+
+    public function showListPackage(Request $request,$vendorType) {
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+        $returnData;
+        if($vendorType==="caterer"){
+            $catererPackage = DB::table('package_caterers')
+            ->select('package_caterers.id','package_caterers.package_name','package_caterers.package_description',
+            'package_caterers.package_price','dine_times.dine_name')
+            ->join('dine_times','dine_times.id','=','package_caterers.package_dine_time')
+            ->where('package_caterers.vendor_id','=',$vendor_id);
+            if($catererPackage->get()->count() > 0){
+                $returnData = $catererPackage->get();
+                return view('vendor.packages.listcatererpackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listcatererpackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }        
+    }
+
+    public function deletePackage(Request $request){
+        if($request->vendorType === "caterer"){
+            if(PackageCaterer::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }        
+    }
 }

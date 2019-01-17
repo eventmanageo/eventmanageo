@@ -86,7 +86,7 @@
               </li>
               @if(Session::get('vendor_category')==="caterer" || Session::get('vendor_category')==="makeup" || Session::get('vendor_category')==="photographer")
                 <li>
-                  <a href="">My packages</a>
+                  <a href="/list/package/{{Session::get('vendor_category')}}">My packages</a>
                 </li>
               @endif
             </ul>
