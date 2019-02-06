@@ -1022,7 +1022,29 @@ class VendorController extends Controller
             }else{
                 return view('vendor.packages.listcatererpackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
             }
-        }        
+        }else if($vendorType==="photographer"){
+            $photographerPackage = DB::table('package_photographers')
+            ->select('package_photographers.id','package_photographers.package_name','package_photographers.package_description',
+            'package_photographers.package_price')
+            ->where('package_photographers.vendor_id','=',$vendor_id);
+            if($photographerPackage->get()->count() > 0){
+                $returnData = $photographerPackage->get();
+                return view('vendor.packages.listphotographerpackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listphotographerpackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }else if($vendorType==="makeup"){
+            $makeupPackage = DB::table('package_makeups')
+            ->select('package_makeups.id','package_makeups.package_name','package_makeups.package_description',
+            'package_makeups.package_price')
+            ->where('package_makeups.vendor_id','=',$vendor_id);
+            if($makeupPackage->get()->count() > 0){
+                $returnData = $makeupPackage->get();
+                return view('vendor.packages.listmakeuppackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listmakeuppackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }
     }
 
     public function deletePackage(Request $request){
@@ -1034,6 +1056,22 @@ class VendorController extends Controller
                 $request->session()->flash('status-failed','Failed');
                 return redirect()->back();
             }
-        }        
+        }else if($request->vendorType === "photographer"){
+            if(PackagePhotographer::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }else if($request->vendorType === "makeup"){
+            if(PackageMakeup::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }
     }
 }
