@@ -60,19 +60,15 @@ Route::get('contact',function(){
 Route::get('service',function(){
     return view("end_user.serv_wedding");
 });
-Route::get('registermulti',function(){
-    return view("end_user.registra_step");
-});
 Route::get('multi',function(){
     return view("end_user.multi");
 });
-Route::get('cart',function(){
-    return view("end_user.cart");
-});
+Route::get('pass_value','multiInserController@pass_value');
+
 
 Route::get("insertform","multiInsertController@insertform");
 Route::post("insert","multiInsertController@insert");
-
+Route::get('pass_value','multiInserController@pass_value');
 ///wedding services add and redirected
 /*Route::get('login', function () {
     if(Auth::check()) {
