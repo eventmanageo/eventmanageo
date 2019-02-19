@@ -106,3 +106,4 @@ Route::get('user_profile',function(){
 Route::get('cart',function(){
     return view("cart.cart");
 });
+
