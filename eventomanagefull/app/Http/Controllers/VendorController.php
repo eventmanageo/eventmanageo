@@ -75,7 +75,7 @@ class VendorController extends Controller
     }
 
     public function saveVendorService(Request $request,$vendorType){
-        if($vendorType==="caterer"){
+        if($vendorType === "caterer"){
 
             $this->validate($request,[
                 'item_name' => ['required','max:200','min:3'],

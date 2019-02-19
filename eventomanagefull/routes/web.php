@@ -63,12 +63,10 @@ Route::get('service',function(){
 Route::get('multi',function(){
     return view("end_user.multi");
 });
-Route::get('pass_value','multiInserController@pass_value');
 
 
 Route::get("insertform","multiInsertController@insertform");
 Route::post("insert","multiInsertController@insert");
-Route::get('pass_value','multiInserController@pass_value');
 ///wedding services add and redirected
 /*Route::get('login', function () {
     if(Auth::check()) {
@@ -77,6 +75,9 @@ Route::get('pass_value','multiInserController@pass_value');
         return view('auth.login');
     }
 });*/
+
+// cart
+Route::get('View_cart','EnduserViewController@makeup');
 
 
 
