@@ -33,26 +33,27 @@
 	        				<div class="col-sm-9">
 	        					<div class="row" style="padding:20px 20px;">
 	        						<div class="col-sm-3">
-	        							<h4>Name:</h4>
-	        							<h4>Email:</h4>
-	        							<h4>Contact Info:</h4>
-	        							<h4>Address:</h4>
-	        						
-	        						</div>
-	        						<div class="col-sm-9">
-	        							<h4><!-- retrive fname and last name -->PARTH CHUDASAMA
-	        								<span class="pull-right" style="margin-left:100px">
-                                            <a href="#edit" class="btn btn-success btn-flat btn-sm" data-toggle="modal"><i class="fa fa-edit"></i> Edit</a>
-	        								</span>
-                        
-                                        </h4>
-	        							<h4><!--retrive email--></h4>
-	        							<h4><!--retrive contact number--></h4>
-	        							<h4><!-- address --></h4>
-	        							
+                      <table border = 1>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Contact</td>
+                                    <td>Address</td>
+                                </tr>
+                                @foreach ($users as $value)
+                                <tr>
+                                    <td>{{ $value->id }}</td>
+                                    <td>{{ $value->name }}</td>
+                                    <td>{{ $Value->email}}</td>
+                                    <td>{{ $value->contact }}</td>
+                                    <td>{{ $value->address }}</td>
+                                </tr>
+                                @endforeach
+                              </table>
 	        						</div>
 	        					</div>
-	        				</div>
+	        				</div>  
 	        			</div>
 	        		</div>
 
@@ -74,42 +75,42 @@
                     <label for="firstname" class="col-sm-3 control-label ml-auto">Firstname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="firstname" name="firstname" value="Harry">
+                      <input type="text" class="form-control" id="firstname" name="firstname" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastname" class="col-sm-3 control-label">Lastname</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="lastname" name="lastname" value="Den">
+                      <input type="text" class="form-control" id="lastname" name="lastname" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-3 control-label">Email</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="email" name="email" value="harry@den.com">
+                      <input type="text" class="form-control" id="email" name="email" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="password" class="col-sm-3 control-label">Password</label>
 
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" id="password" name="password" value="$2y$10$Oongyx.Rv0Y/vbHGOxywl.qf18bXFiZOcEaI4ZpRRLzFNGKAhObSC">
+                      <input type="password" class="form-control" id="password" name="password" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="contact" class="col-sm-3 control-label">Contact Info</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="contact" name="contact" value="09092735719">
+                      <input type="text" class="form-control" id="contact" name="contact" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="address" class="col-sm-3 control-label">Address</label>
 
                     <div class="col-sm-9">
-                      <textarea class="form-control" id="address" name="address">Silay City, Negros Occidental</textarea>
+                      <textarea class="form-control" id="address" name="address"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">

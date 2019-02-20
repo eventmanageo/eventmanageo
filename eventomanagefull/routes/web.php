@@ -102,3 +102,6 @@ Route::post('/saveToPacakage','VendorController@savePackage');
 Route::get('user_profile',function(){
     return view("user.user_profile");
 });
+
+
+Route::get('view-records','UserViewController@index');
