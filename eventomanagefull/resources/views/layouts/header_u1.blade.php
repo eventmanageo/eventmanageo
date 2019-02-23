@@ -55,7 +55,7 @@
               <a href="{{ url('catering') }}">catering</a>
             </li>
             <li>
-              <a href="{{ url('location') }}">venues and location</a>
+              <a href="{{ url('decorator') }}">decorator</a>
             </li>
             <li>
               <a href="{{ url('transport') }}">wedding transportation</a>
@@ -64,10 +64,10 @@
               <a href="{{ url('makup') }}">makeup and hair</a>
             </li>
             <li>
-              <a href="{{ url('photo') }}">photography</a>
+              <a href="{{ url('photo') }}">photography & videography</a>
             </li>
             <li>
-              <a href="{{ url('videography') }}">videography & Cinematography</a>
+              <a href="{{ url('sound') }}">Sound / Dj </a>
             </li>
           </ul>
         </li>

@@ -83,8 +83,8 @@ Route::get('invites','EnduserViewController@invites');
 Route::get('catering','EnduserViewController@catering');
 Route::get('makup','EnduserViewController@makup');
 Route::get('photo','EnduserViewController@photo');
-Route::get('location','EnduserViewController@location');
-Route::get('videography','EnduserViewController@videography');
+Route::get('decorator','EnduserViewController@decorator');
+Route::get('sound','EnduserViewController@sound');
 Route::get('transport','EnduserViewController@transport');
 
 
