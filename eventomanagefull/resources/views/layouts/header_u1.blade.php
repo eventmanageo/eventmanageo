@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title')</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
             <!-- Scrollbar Custom CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -49,25 +49,25 @@
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Services</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <a href="#">wedding invites</a>
+              <a href="{{ url('invites') }}">wedding invites</a>
             </li>
             <li>
-              <a href="#">catering</a>
+              <a href="{{ url('catering') }}">catering</a>
             </li>
             <li>
-              <a href="#">venues and location</a>
+              <a href="{{ url('location') }}">venues and location</a>
             </li>
             <li>
-              <a href="#">wedding transportation</a>
+              <a href="{{ url('transport') }}">wedding transportation</a>
             </li>
             <li>
-              <a href="#">makeup and hair</a>
+              <a href="{{ url('makup') }}">makeup and hair</a>
             </li>
             <li>
-              <a href="#">photography</a>
+              <a href="{{ url('photo') }}">photography</a>
             </li>
             <li>
-              <a href="#">videography & Cinematography</a>
+              <a href="{{ url('videography') }}">videography & Cinematography</a>
             </li>
           </ul>
         </li>

@@ -76,8 +76,16 @@ Route::post("insert","multiInsertController@insert");
     }
 });*/
 
-// cart
-Route::get('View_cart','EnduserViewController@makeup');
+// services all url of end user
+
+
+Route::get('invites','EnduserViewController@invites');
+Route::get('catering','EnduserViewController@catering');
+Route::get('makup','EnduserViewController@makup');
+Route::get('photo','EnduserViewController@photo');
+Route::get('location','EnduserViewController@location');
+Route::get('videography','EnduserViewController@videography');
+Route::get('transport','EnduserViewController@transport');
 
 
 

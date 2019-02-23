@@ -35,7 +35,8 @@ class multiInsertController extends Controller
         $data=array('type'=>$type,"type2"=>$type2,"location"=>$loc, "check_in"=>$check_in, "check_out"=>$check_out, "guest"=>$guest);
         DB::table('multistep')->insert($data);
         
-        return view("end_user.main");
+        return redirect()->action('EnduserViewController@invites');
+
 
         
         }
