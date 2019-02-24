@@ -101,6 +101,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
+            <li class="nav-item">
+            <div class="nav-link">
+            <a href="{{ url('view_service') }}" class="btn btn-success" id="view_cart">Services cart</a>
+            </div>
+            </li>
             <li class="nav-item dropdown">
             <label id="navbarDropdown" class="nav-link" href="#" aria-expanded="false">
                                     {{ Auth::user()->name }}
@@ -108,6 +113,7 @@
 
                                 
                             </li>
+
             </ul>
           </div>
           

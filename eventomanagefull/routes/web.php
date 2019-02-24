@@ -80,12 +80,42 @@ Route::post("insert","multiInsertController@insert");
 
 
 Route::get('invites','EnduserViewController@invites');
+
 Route::get('catering','EnduserViewController@catering');
+Route::post('catering_store','EnduserViewController@catering_store');
+
+
 Route::get('makup','EnduserViewController@makup');
+Route::post('makup_store','EnduserViewController@makup_store');
+
+
 Route::get('photo','EnduserViewController@photo');
+Route::post('photographer','EnduserViewController@photographer');
+
+
+
 Route::get('decorator','EnduserViewController@decorator');
+Route::post('decoration','EnduserViewController@decoration');
+
+
 Route::get('sound','EnduserViewController@sound');
+Route::post('sound_DJ','EnduserViewController@sound_DJ');
+
+
 Route::get('transport','EnduserViewController@transport');
+Route::post('transport_store','EnduserViewController@transport_store');
+
+
+
+
+// cart added display
+Route::get('view_service','serviceCartController@ViewService');
+
+
+
+
+// delete added cart
+Route::get('deleted_caterer/{id}','serviceCartController@delete_caterer');
 
 
 
