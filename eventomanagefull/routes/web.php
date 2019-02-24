@@ -79,6 +79,8 @@ Route::post("insert","multiInsertController@insert");
 // services all url of end user
 
 
+
+
 Route::get('invites','EnduserViewController@invites');
 
 Route::get('catering','EnduserViewController@catering');
@@ -106,7 +108,9 @@ Route::get('transport','EnduserViewController@transport');
 Route::post('transport_store','EnduserViewController@transport_store');
 
 
-
+// user profile
+Route::get('profile','userProfileController@index');
+Route::post('profile_update','userProfileController@update');
 
 // cart added display
 Route::get('view_service','serviceCartController@ViewService');
