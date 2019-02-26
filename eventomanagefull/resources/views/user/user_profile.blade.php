@@ -45,7 +45,7 @@
                                 <tr>
                                     <td>{{ $value->id }}</td>
                                     <td>{{ $value->name }}</td>
-                                    <td>{{ $Value->email}}</td>
+                                    <td>{{ $value->email}}</td>
                                     <td>{{ $value->contact }}</td>
                                     <td>{{ $value->address }}</td>
                                 </tr>

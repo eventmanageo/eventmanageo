@@ -99,9 +99,7 @@ Route::post('{vendorType}/add/service',['uses' => 'VendorController@saveVendorSe
 Route::get('{vendorType}/make/package/{dinetime?}','VendorController@goToMakePackageWithData');
 Route::post('/saveToPacakage','VendorController@savePackage');
 
-Route::get('user_profile',function(){
-    return view("user.user_profile");
-});
+Route::get('user_profile','UserViewController@index');
 
 
 Route::get('view-records','UserViewController@index');
