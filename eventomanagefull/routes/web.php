@@ -120,7 +120,3 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 
 //eventmanager pages
-
-Route::get('cart',function(){
-    return view("eventmanager.cart");
-});
