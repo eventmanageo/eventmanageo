@@ -36,6 +36,12 @@
           <a href="#">Profile</a>
         </li>
         <li>
+          <a href="#">Cart</a>
+        </li>
+        <li>
+          <a href="#">Vendor</a>
+        </li>
+        <li>
           <a href="#">Allocated Event</a>
         </li>
         <li>
@@ -86,7 +92,9 @@
 
 <!-- Write description -->
 
-
+<main class="py-2">
+    @yield('content')
+</main>
 
 
 

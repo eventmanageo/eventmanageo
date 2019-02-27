@@ -116,3 +116,11 @@ Route::post('edit/service/{id}/{vendorType}','VendorController@editService');
 Route::get('/allocate/event/manager','AdminController@showEventManagerAllocatePage');
 
 Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
+
+
+
+//eventmanager pages
+
+Route::get('cart',function(){
+    return view("eventmanager.cart");
+});
