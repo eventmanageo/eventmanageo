@@ -41,14 +41,38 @@ class ManagerViewController extends Controller
         }
 
         //for delete vendor
-
-
-
         public function destroy($id) {
             DB::delete('delete from vendors where id = ?',[$id]);
             echo "Record deleted successfully.
             ";
             echo '<a href="/edit-records">Click Here to go back</a>';
             }
+
+        //for search vendor
+        public function search(Request $request){
+                if($request->ajax())
+            {
+            $output="";
+            $users=DB::table('vendors')->where('title','LIKE','%'.$request->search."%")->get();
+            if($users)
+            {
+            foreach ($users as $value) {
+            $output.='<tr>'.
+            '<td>'.$value->id.'</td>'.
+            '<td>'.$value->name.'</td>'.
+            '<td>'.$value->category.'</td>'.
+            '<td>'.$value->email.'</td>'.
+            '<td>'.$value->contact.'</td>'.
+            '<td>'.$value->address.'</td>'.
+            
+            '</tr>';
+            }
+            return Response($output);
+            }
+            }
+            }
+
+
+
 
 }

@@ -137,3 +137,7 @@ Route::post('edit/{id}','ManagerViewController@edit');
 Route::get('delete-records','ManagerViewController@index');
 Route::get('delete/{id}','ManagerViewController@destroy'); 
 
+#vendor search 
+Route::get('/','ManagerViewController@index');
+Route::get('/search','ManagerViewController@search');
+

@@ -27,7 +27,7 @@
 <div class="box box-solid container">
 <div class="box-body row">
 <div class="container">
-  <h2 style="text-align: center;"><b>Vendor Details</b></h2>
+  <h2 style="text-align: center;"><b>User Cart Details</b></h2>
  
   <div class="table-responsive">          
   <table class="table" style="margin-top:20px;">
