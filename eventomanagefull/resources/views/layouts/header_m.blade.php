@@ -36,7 +36,7 @@
           <a href="#">Profile</a>
         </li>
         <li>
-          <a href="#">Cart</a>
+          <a href="">Cart</a>
         </li>
         <li>
           <a href="#">Vendor</a>
