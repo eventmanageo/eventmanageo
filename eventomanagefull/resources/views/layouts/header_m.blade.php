@@ -39,7 +39,7 @@
           <a href="/cart">Cart</a>
         </li>
         <li>
-          <a href="#">Vendor</a>
+          <a href="/vendor">Vendor</a>
         </li>
         <li>
           <a href="#">Allocated Event</a>
