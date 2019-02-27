@@ -27,7 +27,7 @@
 <div class="box box-solid container">
 <div class="box-body row">
 <div class="container">
-  <h2 style="text-align: center;"><b>Vendor Details</b></h2>
+  <h2 style="text-align: center; margin-top:20px"><b>Vendors Details</b></h2>
  
   <div class="table-responsive">          
   <table class="table" style="margin-top:20px;">
@@ -53,7 +53,7 @@
             <td>{{ $value->contact }}</td>
             <td>{{ $value->address }}</td>
             <td><a href = 'edit/{{ $value->id }}'>Edit</a></a></td>
-            <td><a href = 'delete/{{ $value->id }}'><button class="btn btn-danger">Delete</button></a></td>
+            <td><a href = 'delete/{{ $value->id }}'><button class="btn btn-danger  btn-sm">Delete</button></a></td>
             </tr>
         @endforeach
     </tbody>
