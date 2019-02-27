@@ -36,7 +36,7 @@
           <a href="#">Profile</a>
         </li>
         <li>
-          <a href="#">Cart</a>
+          <a href="/cart">Cart</a>
         </li>
         <li>
           <a href="#">Vendor</a>
@@ -72,7 +72,7 @@
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item dropdown">
                                   <label id="navbarDropdown" class="nav-link" href="#" aria-expanded="false">
-                                    {{ Auth::user()->name }}
+                                 
                                   </label>
 
                                 </li>
