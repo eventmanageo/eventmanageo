@@ -121,5 +121,19 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 //eventmanager pages
 
+#cart show
 Route::get('/cart','ManagerViewController@cart');
-Route::get('/vendor','ManagerViewController@vendor');
+
+#vendoR show
+Route::get('vendor','ManagerViewController@index');
+Route::get('view-records','ManagerViewController@index');
+
+#vendor update
+Route::get('edit-records','ManagerViewController@index');
+Route::get('edit/{id}','ManagerViewController@show');
+Route::post('edit/{id}','ManagerViewController@edit'); 
+
+#vendor delete
+Route::get('delete-records','ManagerViewController@index');
+Route::get('delete/{id}','ManagerViewController@destroy'); 
+
