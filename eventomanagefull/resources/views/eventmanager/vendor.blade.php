@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
  
 <!-- Custom CSS -->
   <style type="text/css">
@@ -31,9 +31,7 @@
   <h2 style="text-align: center; margin-top:20px"><b>Vendors Details</b></h2>
  
 
-  <div class="form-group">
-    <input type="text" class="form-controller" id="search" name="search"/>
-  </div>
+ 
   <div class="table-responsive">          
   <table class="table" style="margin-top:20px;">
     <thead>
@@ -67,24 +65,6 @@
 </div>
 </div>
 </div>
-
-
-<script type="text/javascript">
-$('#search').on('keyup',function(){
-$value=$(this).val();
-$.ajax({
-type : 'get',
-url : '{{URL::to('search')}}',
-data:{'search':$value},
-success:function(data){
-$('tbody').html(data);
-}
-});
-})
-</script>
-<script type="text/javascript">
-$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-</script>
 
 
 
