@@ -8,7 +8,7 @@ class UserViewController extends Controller
 {
     public function index() {
         
-        $users = DB::select('select * from users WHERE id');
-        return view('user.user_profile',['users'=>$users]);
+        $value = DB::select('select * from users WHERE id');
+        return view('user.user_profile',['users'=>$value]);
      }
 }
