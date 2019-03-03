@@ -34,5 +34,5 @@ class serviceCartController extends Controller
 
     }
    
-    
+     
 }

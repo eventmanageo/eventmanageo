@@ -17,7 +17,7 @@
             
             <h5 class="card-title">{{ $data -> service_name }}</h5>
             <p class="card-text">{{ $data -> service_description }}</p>
-            <div><p style="">Price ${{ $data -> service_price }} </p></div>
+            <div><p style="">Price ₹{{ $data -> service_price }} </p></div>
             <div><p style="">Type {{ $data -> service_type }} </p></div>
             
 

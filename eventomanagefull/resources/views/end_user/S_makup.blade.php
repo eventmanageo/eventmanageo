@@ -17,7 +17,7 @@
             
             <h5 class="card-title">{{ $data -> item_name }}</h5>
             <p class="card-text">{{ $data -> item_description }}</p>
-            <div><p style="">Price ${{ $data -> item_price }} </p></div>
+            <div><p style="">Price ₹{{ $data -> item_price }} </p></div>
 
             <input type="text" name="makup" value="makup" hidden/>
             <input type="text" name="makup_id" value="{{ $data -> id }}" hidden/>
