@@ -12,7 +12,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
             <!-- Scrollbar Custom CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
+            <!-- link for font awesome icon -->
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
             <!-- Font Awesome JS -->
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
@@ -48,9 +49,7 @@
         <li>
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Services</a>
           <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li>
-              <a href="{{ url('invites') }}">wedding invites</a>
-            </li>
+            
             <li>
               <a href="{{ url('catering') }}">catering</a>
             </li>
@@ -103,7 +102,7 @@
             <ul class="navbar-nav ml-auto" style="margin-right:3%">
             <li class="nav-item">
             <div class="nav-link">
-            <a href="{{ url('view_service') }}" class="btn btn-success" id="view_cart">Services cart</a>
+            <a href="{{ url('view_service') }}" class="btn btn-success" id="view_cart"><i class="fas fa-shopping-cart"></i> Services cart</a>
             </div>
             </li>
             <li class="nav-item dropdown">

@@ -1,4 +1,4 @@
-@extends('layouts.header_u')
+@extends('layouts.header_u1')
 
 @section('content')
 @foreach($profile as $data)

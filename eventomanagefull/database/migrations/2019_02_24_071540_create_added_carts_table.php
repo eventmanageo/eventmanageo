@@ -17,6 +17,8 @@ class CreateAddedCartsTable extends Migration
             $table->increments('id');
             $table->String('name');
             $table->String('service_id');
+            $table->integer('user_id');
+            $table->String('username');
             $table->String('service_name');
             $table->String('Description');
             $table->String('price');

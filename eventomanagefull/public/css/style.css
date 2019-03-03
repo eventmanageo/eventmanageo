@@ -326,9 +326,13 @@ input[type=number] {
     height: 50px;
     font-weight: bold;
   }
-  #cartview_raw1{
+  #cart{
     padding-top: 3%;
     padding-bottom: 3%;
     text-align: center;
 
   }
+#total{
+  padding-top: 3%;
+  text-align: center;
+}

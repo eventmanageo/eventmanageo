@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use DB;
 use Image;
+
 use Illuminate\Http\Request;
+use Auth;
 
 
 
@@ -43,10 +45,13 @@ class EnduserViewController extends Controller
         $name = $request->input('service_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
 
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
+
         return redirect()->back();
     }
     public function makup_store(request $request)
@@ -56,9 +61,11 @@ class EnduserViewController extends Controller
         $name = $request->input('makup_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
         
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
         return redirect()->back();
     }
@@ -70,9 +77,11 @@ class EnduserViewController extends Controller
         $name = $request->input('transport_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
         
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
         return redirect()->back();
     }
@@ -84,9 +93,11 @@ class EnduserViewController extends Controller
         $name = $request->input('sound_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
         
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
         return redirect()->back();
     }
@@ -97,9 +108,11 @@ class EnduserViewController extends Controller
         $name = $request->input('photographer_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
         
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
         return redirect()->back();
     }
@@ -111,12 +124,16 @@ class EnduserViewController extends Controller
         $name = $request->input('decorator_name');
         $desc = $request->input('description');
         $price = $request->input('price');
+        $username= Auth::user()->name;
+        $userid = Auth::user()->id;
         
         DB::table('added_carts')->insert(
-        ['name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
+        ['user_id' => $userid, 'username' => $username, 'name' => $service_name, 'service_id' => $service_id, 'service_name' => $name, 'Description' => $desc,'price'=>$price]
         );
         return redirect()->back();
     }
+
+
     
     
 }

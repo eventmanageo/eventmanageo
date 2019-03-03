@@ -115,9 +115,6 @@ Route::post('profile_update','userProfileController@update');
 // cart added display
 Route::get('view_service','serviceCartController@ViewService');
 
-
-
-
 // delete added cart
 Route::get('deleted_caterer/{id}','serviceCartController@delete_caterer');
 
