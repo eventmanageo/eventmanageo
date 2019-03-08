@@ -70,6 +70,34 @@
             </li>
           </ul>
         </li>
+
+        <!-- pakages service -->
+
+        <li>
+        <a href="#homesub" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">pakages</a>
+          <ul class="collapse list-unstyled" id="homesub">
+            
+            <li>
+              <a href="{{ url('pakages_caterer') }}">catering</a>
+            </li>
+            <li>
+              <a href="#">decorator</a>
+            </li>
+            <li>
+              <a href="#">wedding transportation</a>
+            </li>
+            <li>
+              <a href="#">makeup and hair</a>
+            </li>
+            <li>
+              <a href="#">photography & videography</a>
+            </li>
+            <li>
+              <a href="#">Sound / Dj </a>
+            </li>
+          </ul>
+        </li>
+        <!-- end -->
         <li>
           <a href="#">Help</a>
         </li>

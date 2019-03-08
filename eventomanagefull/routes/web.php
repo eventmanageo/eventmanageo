@@ -120,6 +120,11 @@ Route::get('deleted_caterer/{id}','serviceCartController@delete_caterer');
 
 
 
+// pakages route
+Route::get('pakages_caterer','serviceCartController@pakages_caterer');
+
+
+
 Route::get('admin/eventmanager-remove','AdminController@goToEventManagerRemove');
 Route::delete('admin/eventmanager-remove/{id}','AdminController@removeEventManager');
 
