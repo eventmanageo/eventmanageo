@@ -7,9 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 class ManagerViewController extends Controller
 {
-    public function cart(){
-        return view('eventmanager.cart');
-    }
+
 
     public function index() {        
         $users = DB::select('select * from vendors WHERE id');
@@ -49,7 +47,16 @@ class ManagerViewController extends Controller
             }
 
         //for search vendor
-        
+
+
+
+
+
+
+
+
+
+
 
 
 

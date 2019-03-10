@@ -121,9 +121,6 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 //eventmanager pages
 
-#cart show
-Route::get('/cart','ManagerViewController@cart');
-
 #vendoR show
 Route::get('vendor','ManagerViewController@index');
 Route::get('view-records','ManagerViewController@index');
@@ -137,6 +134,16 @@ Route::post('edit/{id}','ManagerViewController@edit');
 Route::get('delete-records','ManagerViewController@index');
 Route::get('delete/{id}','ManagerViewController@destroy'); 
 
-#vendor search 
 
+#cart display
+Route::get('cart','ManagerCartController@cart');
+Route::get('view-records','ManagerCartController@cart');
 
+#cart edit
+Route::get('edit-record','ManagerCartController@cart');
+Route::get('edits/{id}','ManagerCartController@display');
+Route::post('edits/{id}','ManagerCartController@edits'); 
+
+#cart delete
+Route::get('delete-record','ManagerCartController@cart');
+Route::get('deletes/{id}','ManagerCartController@destroys'); 

@@ -18,6 +18,7 @@
             <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
 
         <link href="{{ asset('css/style_a.css') }}" rel="stylesheet">
+        
     </head>
     <body>
     <div class="wrapper">
@@ -33,13 +34,13 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="#">Profile</a>
+          <a href="#"><span class="glyphicon glyphicon-search">Profile</span></a>
         </li>
         <li>
           <a href="/cart">Cart</a>
         </li>
         <li>
-          <a href="/vendor">Vendor</a>
+          <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
         </li>
         <li>
           <a href="#">Allocated Event</a>
@@ -48,6 +49,7 @@
           <a href="#">Total Event</a>
         </li>
         <li>
+        
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
         </li>
