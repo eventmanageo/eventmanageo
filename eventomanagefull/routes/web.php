@@ -119,7 +119,7 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 
 
-//eventmanager pages
+// EVENTMANAGER PAGES
 
 #vendoR show
 Route::get('vendor','ManagerViewController@index');
@@ -147,3 +147,10 @@ Route::post('edits/{id}','ManagerCartController@edits');
 #cart delete
 Route::get('delete-record','ManagerCartController@cart');
 Route::get('deletes/{id}','ManagerCartController@destroys'); 
+
+# allocate events page 
+
+Route::get('allocate_event','ManagerViewController@allocate');
+ 
+#event details show
+Route::get('event_details','ManagerViewController@details');

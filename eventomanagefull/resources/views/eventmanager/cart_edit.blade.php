@@ -5,19 +5,11 @@
 <!-- Custom CSS -->
 <style type="text/css">
 
-.word-wrap{
-  overflow-wrap: break-word;
-}
-.prod-body{
-  height:300px;
-}
 
 .box:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.register-box{
-  margin-top:20px;
-}
+
 
 </style>
 

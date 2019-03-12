@@ -9,13 +9,14 @@ class ManagerViewController extends Controller
 {
 
 
-    public function index() {        
+    public function index() {    
+        
+        #vendor view    
         $users = DB::select('select * from vendors WHERE id');
         return view('eventmanager.vendor',['users'=>$users]);
-        
 
         //for edit vendors details
-
+        
         $users = DB::select('select * from vendors');
         return view('eventmanager.vendor_update',['users'=>$users]);
         }
@@ -46,10 +47,18 @@ class ManagerViewController extends Controller
             echo '<a href="/edit-records">Click Here to go back</a>';
             }
 
-        //for search vendor
+        
 
 
+        #allocate event view   
+        
+        public function allocate(){        
+        return view('eventmanager.allocate_event');
+        }
 
+        public function details(){
+            return view('eventmanager.event_details');
+        }
 
 
 

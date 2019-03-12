@@ -43,7 +43,7 @@
           <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
         </li>
         <li>
-          <a href="#">Allocated Event</a>
+          <a href="/allocate_event">Allocated Event</a>
         </li>
         <li>
           <a href="#">Total Event</a>
