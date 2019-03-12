@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    @if($eventDetails->isEmpty())
+        <label>No events requested</label>
+    @else
     <table class="table table-striped">
         <thead>
             <tr>
@@ -25,6 +28,8 @@
                 </tr>
             @endforeach
         </tbody>
+    </table>
+    @endif
 </div>
 <!-- The Modal -->
 <div class="modal" id="myModal">
@@ -41,12 +46,14 @@
         <div class="modal-body">
             *Please select appropriate event manager
             <br/>
+            <strong id="loading-message">Loading Data...</strong>
             <select id="eventmanagerlist" name="eventmanagerlist"></select>
         </div>
     
         <!-- Modal footer -->
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" id="btnSubmit" class="btn btn-success" data-dismiss="modal">Submit</button>
         </div>
     
         </div>
@@ -58,21 +65,51 @@
             item = $(this).closest('tr').find('td:nth-child(1)').text();
             $("#eventmanagerlist").find('option').remove();
             $("#eventId").text('Id : '+item);
+            $body = $("body");
             $.ajax({
                 type : 'GET',
                 url : '/getEventManagerListAjax',
+                beforeSend : function(data){
+                    $("#eventmanagerlist").hide();
+                    $("#loading-message").show();
+                },
                 success : function(response){
                     json = JSON.parse(response);
                     for (var eachobject = 0 ; eachobject< json.length ; eachobject++){
                         var jsonObject = json[eachobject];
                         $("#eventmanagerlist").append($('<option></option>').attr("value",jsonObject.id).text(jsonObject.name));
                     }
+                },
+                complete : function(data){
+                    $("#eventmanagerlist").show();
+                    $("#loading-message").hide();
                 }
             });
         });
 
-        $("#eventmanagerlist").change(function(){
-            alert($(this).val()+" "+item);
+        $("#btnSubmit").on('click',function(){
+            var eventmanagerId = $("#eventmanagerlist").val();
+            var eventId = item;
+
+            $.ajax({
+                url : '/checkEventManagerAvailability',
+                type : 'GET',
+                data : {eId: eventmanagerId , eventId : eventId},
+                success : function(response){
+                    if(response === "notok"){
+                        alert('Event manager is busy on other event');
+                    }else if(response === "notokwentwrong"){
+                        alert('Looks like there is some problem : or event already assigned ');
+                    }else if(response === "ok"){
+                        alert("Assigned");
+                    }else{
+                        alert('Some thing went wrong');
+                    }
+
+                    location.reload();
+                }
+            });
+
         });
     });
 </script>

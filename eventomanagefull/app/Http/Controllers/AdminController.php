@@ -76,4 +76,38 @@ class AdminController extends Controller
         return json_encode($eventMangerList);
     }
 
+    public function checkEventManagerAvailability(Request $request){
+        $eventmanagerId = $request->eId;
+        $eventId = $request->eventId;
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date("Y-m-d H:i:s",time());
+        $eventManagerEvent = DB::table('event_basic_details')->where('event_manager_id','=',$eventmanagerId)->where('event_status','=','assigned');
+        if($eventManagerEvent->get()->count() == 0){
+            $assignEventManagerUpdateRow = DB::table('event_basic_details')->where('id','=',$eventId)->where('event_status','=','published')
+            ->update([
+                'event_manager_id' => $eventmanagerId ,
+                'time_when_assigned_to_manager' => $date,
+                'event_status' => 'assigned'
+            ]);
+
+            if($assignEventManagerUpdateRow == 0){
+                echo "notokwentwrong";
+            }else{
+                echo "ok";
+            }
+        }else{
+            echo 'notok';
+        }
+    }
+
+    public function showEventManagerAllocatedPage(){
+        $eventDetails = DB::table('event_basic_details')->where('event_status','=','assigned')->get();
+        return view('admin.allocatedEvents')->with('eventDetails',$eventDetails);
+    }
+
+    public function showEventManagerDetails(Request $request){
+        $managerDetails = DB::table('eventmanager')->where('id','=',$request->eid)->get();
+        return json_encode($managerDetails);
+    }
+
 }

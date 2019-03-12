@@ -114,5 +114,12 @@ Route::get('/edit/service/{id}/{vendorType}','VendorController@editServiceShowFo
 Route::post('edit/service/{id}/{vendorType}','VendorController@editService');
 
 Route::get('/allocate/event/manager','AdminController@showEventManagerAllocatePage');
+Route::get('/allocated/event/manager','AdminController@showEventManagerAllocatedPage');
 
 Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
+
+Route::get('/checkEventManagerAvailability','AdminController@checkEventManagerAvailability');
+Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
+
+Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
+Route::post('delete/package','VendorController@deletePackage');
