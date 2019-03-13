@@ -60,7 +60,9 @@ class ManagerViewController extends Controller
             return view('eventmanager.event_details');
         }
 
-
+        public function add_service(){
+            return view('eventmanager.add_service');
+        }
 
 
 

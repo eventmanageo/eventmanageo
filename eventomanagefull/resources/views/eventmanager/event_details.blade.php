@@ -15,8 +15,8 @@
     
         <h2 style="text-align: center;"><b>Event details</b></h2><br>
         <div class="">
-        <button class="btn btn-primary btn-sm ml-auto">Add Service</button><br><br>
-        </div> 
+        <a href = "add_service"><button class="btn btn-primary  btn-sm ml-auto">Add Services</button></a>
+        </div> <br>
 
                      <label for=""><b>Client Name :  </b>Parth Chudasama</label><br><br>
                     <label for=""><b>Event Name :  </b>Merrige </label><br><br>
@@ -31,6 +31,7 @@
         <th>Service</th>
         <th>Description</th>
         <th>Price</th>
+        <th>Action</th>
        </tr>
     </thead>
     <tbody>
@@ -39,6 +40,8 @@
     <td>cateres</td>
     <td>Gulab jamun</td>
     <td>15000</td>
+    <td><a href = ""><button class="btn btn-danger  btn-sm">Delete</button></a></td>
+
     </tr>
 
     <tr>
@@ -46,6 +49,8 @@
     <td>Photo</td>
     <td>3d camera</td>
     <td>5000</td>
+    <td><a href =""><button class="btn btn-danger  btn-sm">Delete</button></a></td>
+
     </tr>
     </tbody>
   </table>
