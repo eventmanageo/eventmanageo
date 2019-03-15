@@ -118,4 +118,8 @@ class AdminController extends Controller
         return json_encode($managerDetails);
     }
 
+    public function showprofile(){
+        $admin = DB::table('admins')->select('name')->get();
+        return view('admin.profile')->with('adminprofile',$admin);
+    }
 }
