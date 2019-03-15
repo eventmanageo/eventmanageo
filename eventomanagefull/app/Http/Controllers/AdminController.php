@@ -72,7 +72,15 @@ class AdminController extends Controller
     }
 
     public function returnEventMangerList(Request $request){
-        $eventMangerList = DB::table('eventmanager')->select('id','name')->get();
+        
+        // $eventMangerList = DB::table('eventmanager')->select('id','name')->get();
+        $eventMangerList = DB::table('eventmanager')->select('id','name')
+                                ->whereNotExists(function ($query) {
+                                    $query->select("event_basic_details.event_manager_id")
+                                        ->from('event_basic_details')
+                                        ->whereRaw('event_basic_details.event_manager_id = eventmanager.id');
+                                })
+                                ->get();
         return json_encode($eventMangerList);
     }
 
@@ -81,7 +89,7 @@ class AdminController extends Controller
         $eventId = $request->eventId;
         date_default_timezone_set('Asia/Kolkata');
         $date = date("Y-m-d H:i:s",time());
-        $eventManagerEvent = DB::table('event_basic_details')->where('event_manager_id','=',$eventmanagerId)->where('event_status','=','assigned');
+        $eventManagerEvent = DB::table('event_basic_details')->where('event_manager_id','=',$eventmanagerId)->where('event_status','=','assigned' );
         if($eventManagerEvent->get()->count() == 0){
             $assignEventManagerUpdateRow = DB::table('event_basic_details')->where('id','=',$eventId)->where('event_status','=','published')
             ->update([
