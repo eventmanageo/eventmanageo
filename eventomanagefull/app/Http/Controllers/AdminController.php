@@ -119,7 +119,7 @@ class AdminController extends Controller
     }
 
     public function showprofile(){
-        $admin = DB::table('admins')->select('name')->get();
-        return view('admin.profile')->with('adminprofile',$admin);
+        
+        return view('admin.profile');
     }
 }

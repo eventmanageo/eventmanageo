@@ -6,11 +6,6 @@
         <h4 class="text-justify text-secondary">My Profile</h4>
     </div>
 </div>
-@foreach ($adminprofile => $admin)
-    <div>
-        Name : <label for="name">{{ $admin -> name }}</label>
-           
-    </div>
-@endforeach
+
 
 @endsection
