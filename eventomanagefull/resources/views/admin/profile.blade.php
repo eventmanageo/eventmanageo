@@ -5,7 +5,12 @@
     <div>
         <h4 class="text-justify text-secondary">My Profile</h4>
     </div>
-</div>
 
+@foreach($admindata as $data)
+    <div>
+        Name : <label for="name">{{ $data -> name }}</label>
+    </div>
+@endforeach
+</div>
 
 @endsection

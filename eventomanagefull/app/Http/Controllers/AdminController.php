@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EventManager;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -119,7 +120,12 @@ class AdminController extends Controller
     }
 
     public function showprofile(){
-        
-        return view('admin.profile');
+        $userid = Auth::user()->id;
+        $username = Auth::user()->name;
+        print_r($userid);
+        print_r($username);
+
+        $admin = DB::select("SELECT * FROM admins WHERE id => $userid ");
+        return view('admin.profile')->with('admindata',$admin);
     }
 }
