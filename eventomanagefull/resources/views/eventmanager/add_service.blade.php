@@ -18,9 +18,7 @@
         <div class="">
         <button class="btn btn-primary  btn-sm ml-auto">Add Services</button>
         </div> <br>
-                    <label for=""><b>Client Name :  </b>Parth Chudasama</label><br><br>
-                    <label for=""><b>Event Name :  </b>Merrige </label><br><br>
-                    <label for=""><b>Date :  </b>15/03/2019</label>
+                
          </div>
     </div>       
 </div>
