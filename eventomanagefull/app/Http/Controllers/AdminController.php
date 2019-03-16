@@ -121,11 +121,22 @@ class AdminController extends Controller
 
     public function showprofile(){
         $userid = Auth::user()->id;
-        $username = Auth::user()->name;
-        print_r($userid);
-        print_r($username);
 
-        $admin = DB::select("SELECT * FROM admins WHERE id => $userid ");
+        $admin = DB::select("SELECT * FROM admins WHERE id = '$userid' ");
         return view('admin.profile')->with('admindata',$admin);
+    }
+    public function vendor_profile($id){
+
+        $id = Auth::user()->id;
+        // print_r($id);
+        // $vendor_id = Auth::user()->id;
+        // print_r($vendor_id);
+        // $vendor = DB::select("SELECT * FROM vendors WHERE id = '$vendor_id' ");
+        // return view('vendor.vendor_profile')->with('vendordata',$vendor);
+        // ->with('vendordata',$vendor);
+
+        $vendor = DB::select("SELECT * FROM vendors WHERE id = '$id' ");
+        return view('vendor.vendor_profile')->with('vendordata',$vendor);
+
     }
 }

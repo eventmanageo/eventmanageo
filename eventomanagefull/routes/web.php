@@ -124,4 +124,9 @@ Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
 Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
 Route::post('delete/package','VendorController@deletePackage');
 
+
+// admin profile
 Route::get('admin/profile','AdminController@showprofile');
+
+// vendor profile
+Route::get('vendor/profile','AdminController@vendor_profile');
