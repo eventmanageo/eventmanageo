@@ -17,7 +17,9 @@ class CreateUserLandTable extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->integer('land_service_id')->unsigned();
-            $table->string('datentime_when_to_serve');
+            $table->string('date_when_to_serve')->nullable();
+            $table->string('time_when_to_serve')->nullable();
+            $table->string('special_note')->nullable();
             $table->timestamps();
         });
     }

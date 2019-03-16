@@ -123,3 +123,13 @@ Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
 
 Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
 Route::post('delete/package','VendorController@deletePackage');
+
+Route::get('/ask-event-details/{eventType}', 'HomeController@redirectToAskEventDetails');
+Route::post('/insert-into-event-basic-details', 'HomeController@insertIntoEventBasicDetails');
+
+Route::get('/services/{vendorType}', 'HomeController@redirectToServices');
+Route::get('/services/{vendorType}/{itemId}/{vendorId}', 'HomeController@redirectToServiceDetails');
+
+Route::get('getevents','HomeController@returnEvents');
+
+Route::get('saveToEvent', 'HomeController@savetoEvent');
