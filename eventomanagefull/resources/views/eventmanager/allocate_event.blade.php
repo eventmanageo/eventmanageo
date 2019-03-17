@@ -4,6 +4,9 @@
 
 <!-- Custom CSS -->
 <style type="text/css">
+.container {
+    max-width: 1300px;
+}
 
 .box:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -12,16 +15,17 @@
 #logo {
   background-color: #8bffff;
   position:relative;
-  border-radius: 10px / 10px;
+  border-radius: 15px / 15px;
   float: left;
   padding: 10px;
+ 
     
 }
 
 #logo a span { 
 position:absolute; 
-  width:100%;
-  height:100%;
+  width:85%;
+  height:85%;
   top:0;
   left: 0;
   z-index: 1;
@@ -41,21 +45,21 @@ position:absolute;
     
         <h2 style="text-align: center;"><b>Allocated Events details</b></h2><br>
         <div class="row">
-        <div id="logo" class="w-25 p-3">
-                    <label for=""><b>Client Name :  </b>Parth Chudasama</label><br><br>
-                    <label for=""><b>Event Name :  </b>Merrige </label><br><br>
-                    <label for=""><b>Date :  </b>15/03/2019</label>
+
+        @foreach ($users as $value)
+        <div id="logo" class="w-25 p-3" style="margin-left:10px; margin-top:10px;">
+                    <label for=""><b>Client Id :  </b>{{ $value->id }}</label><br><br>
+                    <label for=""><b>Event Name :  </b>{{ $value->event_name}}</label><br><br>
+                    <label for=""><b>Date :  </b>{{ $value->event_date_to}} to {{ $value->event_date_from}}</label>
                     
                     <a href="event_details"><span></span></a>
         </div>
-        <div id="logo" class="w-25 p-3" style="margin-left:20px;">
-                    <label for=""><b>Client Name :  </b>Himanshu    </label><br><br>
-                    <label for=""><b>Event Name :  </b>Reception</label><br><br>
-                    <label for=""><b>Date :  </b>18/04/2019</label>
-                    
-                    <a href=""><span></span></a>
-        </div>
+        @endforeach
+     
+
+
         </div>   
+
         <br><br>
     </div>       
 </div>

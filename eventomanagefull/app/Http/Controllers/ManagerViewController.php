@@ -53,7 +53,17 @@ class ManagerViewController extends Controller
         #allocate event view   
         
         public function allocate(){        
-        return view('eventmanager.allocate_event');
+            $users = DB::select('select * from event_basic_details WHERE id');
+            return view('eventmanager.allocate_event',['users'=>$users]);
+        
+
+
+
+
+
+
+
+
         }
 
         public function details(){
