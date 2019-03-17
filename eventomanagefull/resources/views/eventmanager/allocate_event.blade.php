@@ -48,7 +48,7 @@ position:absolute;
 
         @foreach ($users as $value)
         <div id="logo" class="w-25 p-3" style="margin-left:10px; margin-top:10px;">
-                    <label for=""><b>Client Id :  </b>{{ $value->id }}</label><br><br>
+                    <label for=""><b>Client Id :  </b>{{ $value->name }}</label><br><br>
                     <label for=""><b>Event Name :  </b>{{ $value->event_name}}</label><br><br>
                     <label for=""><b>Date :  </b>{{ $value->event_date_to}} to {{ $value->event_date_from}}</label>
                     

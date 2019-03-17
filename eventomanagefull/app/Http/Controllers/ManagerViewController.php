@@ -53,7 +53,11 @@ class ManagerViewController extends Controller
         #allocate event view   
         
         public function allocate(){        
-            $users = DB::select('select * from event_basic_details WHERE id');
+
+            $users=DB::table('users')
+            ->join('event_basic_details','event_basic_details.users_id','=','users.id')
+            ->select('users.name','event_basic_details.event_name','event_basic_details.event_date_to','event_basic_details.event_date_from')
+            ->get();
             return view('eventmanager.allocate_event',['users'=>$users]);
         
 
