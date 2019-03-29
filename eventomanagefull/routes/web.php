@@ -60,19 +60,13 @@ Route::get('contact',function(){
 Route::get('service',function(){
     return view("end_user.serv_wedding");
 });
-Route::get('registermulti',function(){
-    return view("end_user.registra_step");
-});
 Route::get('multi',function(){
     return view("end_user.multi");
 });
-Route::get('cart',function(){
-    return view("end_user.cart");
-});
+
 
 Route::get("insertform","multiInsertController@insertform");
 Route::post("insert","multiInsertController@insert");
-
 ///wedding services add and redirected
 /*Route::get('login', function () {
     if(Auth::check()) {
@@ -81,6 +75,53 @@ Route::post("insert","multiInsertController@insert");
         return view('auth.login');
     }
 });*/
+
+// services all url of end user
+
+
+
+
+Route::get('invites','EnduserViewController@invites');
+
+Route::get('catering','EnduserViewController@catering');
+Route::post('catering_store','EnduserViewController@catering_store');
+
+
+Route::get('makup','EnduserViewController@makup');
+Route::post('makup_store','EnduserViewController@makup_store');
+
+
+Route::get('photo','EnduserViewController@photo');
+Route::post('photographer','EnduserViewController@photographer');
+
+
+
+Route::get('decorator','EnduserViewController@decorator');
+Route::post('decoration','EnduserViewController@decoration');
+
+
+Route::get('sound','EnduserViewController@sound');
+Route::post('sound_DJ','EnduserViewController@sound_DJ');
+
+
+Route::get('transport','EnduserViewController@transport');
+Route::post('transport_store','EnduserViewController@transport_store');
+
+
+// user profile
+Route::get('profile','userProfileController@index');
+Route::post('profile_update','userProfileController@update');
+
+// cart added display
+Route::get('view_service','serviceCartController@ViewService');
+
+// delete added cart
+Route::get('deleted_caterer/{id}','serviceCartController@delete_caterer');
+
+
+
+// pakages route
+Route::get('pakages_caterer','serviceCartController@pakages_caterer');
 
 
 

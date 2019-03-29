@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCatererItemsTable extends Migration
 {
-    /**
+    /**0
      * Run the migrations.
      *
      * @return void
@@ -23,7 +23,7 @@ class CreateCatererItemsTable extends Migration
             $table->string('item_picture');
             $table->integer('vendor_id')->unsigned();
             $table->timestamps();
-
+            
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->foreign('item_dine_time')->references('id')->on('dine_times')->onDelete('cascade');
         });
