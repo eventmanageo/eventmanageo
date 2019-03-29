@@ -56,7 +56,7 @@ class ManagerViewController extends Controller
 
             $users=DB::table('users')
             ->join('event_basic_details','event_basic_details.users_id','=','users.id')
-            ->select('users.name','event_basic_details.event_name','event_basic_details.event_date_to','event_basic_details.event_date_from')
+            ->select('event_basic_details.id AS eid','users.name','event_basic_details.event_name','event_basic_details.event_date_to','event_basic_details.event_date_from')
             ->get();
             return view('eventmanager.allocate_event',['users'=>$users]);
         
@@ -70,19 +70,12 @@ class ManagerViewController extends Controller
 
         }
 
-        public function details(){
-            return view('eventmanager.event_details');
-        }
-
         public function add_service(){
             return view('eventmanager.add_service');
         }
-
-
-
-
-
-
-
+        public function view_event_detail(){
+        
+            return view('eventmanager.View_event_detail');
+        }
 
 }

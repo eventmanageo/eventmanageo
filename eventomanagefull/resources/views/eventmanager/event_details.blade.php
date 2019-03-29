@@ -20,7 +20,7 @@
 
                      <label for=""><b>Client Name :  </b>Parth Chudasama</label><br><br>
                     <label for=""><b>Event Name :  </b>Merrige </label><br><br>
-                    <label for=""><b>Date :  </b>15/03/2019< to 17/03/19998</label>
+                    <label for=""><b>Date :  </b>15/03/2019< to 17/03/1998</label>
        
         <div class="table-responsive">   
 

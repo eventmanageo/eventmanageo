@@ -152,7 +152,8 @@ Route::get('deletes/{id}','ManagerCartController@destroys');
 Route::get('allocate_event','ManagerViewController@allocate');
  
 #event details show
-Route::get('event_details','ManagerViewController@details');
+
 
 #in event add more services
 Route::get('add_service','ManagerViewController@add_service');
+Route::get('/view_detail/{eventId}','ManagerViewController@view_event_detail');
