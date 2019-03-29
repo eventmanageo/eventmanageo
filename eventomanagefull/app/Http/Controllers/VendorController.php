@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use session;
 use App\Vendor;
 use App\DineTime;
 use App\CatererItem;
@@ -22,6 +22,8 @@ use App\CompanyDetails;
 use App\SoundService;
 use Image;
 use DB;
+use Auth;
+
 
 class VendorController extends Controller
 {
@@ -1074,4 +1076,6 @@ class VendorController extends Controller
             }
         }
     }
+
+  
 }

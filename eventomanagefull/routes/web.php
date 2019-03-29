@@ -124,6 +124,12 @@ Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
 Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
 Route::post('delete/package','VendorController@deletePackage');
 
+// admin profile
+Route::get('admin/profile','AdminController@showprofile');
+
+// vendor profile
+Route::get('vendor/profile','AdminController@vendor_profile');
+
 Route::get('/ask-event-details/{eventType}', 'HomeController@redirectToAskEventDetails');
 Route::post('/insert-into-event-basic-details', 'HomeController@insertIntoEventBasicDetails');
 
@@ -139,3 +145,4 @@ Route::get('/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
 
 Route::get('/myorder', 'HomeController@myOrder');
+

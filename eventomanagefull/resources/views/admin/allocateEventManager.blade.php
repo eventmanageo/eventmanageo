@@ -43,11 +43,11 @@
         </div>
     
         <!-- Modal body -->
-        <div class="modal-body">
+        <div class="modal-body container">
             *Please select appropriate event manager
-            <br/>
+            <br/><br>
             <strong id="loading-message">Loading Data...</strong>
-            <select id="eventmanagerlist" name="eventmanagerlist"></select>
+            <select id="eventmanagerlist" class="form-control w-50" name="eventmanagerlist"></select>
         </div>
     
         <!-- Modal footer -->
