@@ -133,3 +133,9 @@ Route::get('/services/{vendorType}/{itemId}/{vendorId}', 'HomeController@redirec
 Route::get('getevents','HomeController@returnEvents');
 
 Route::get('saveToEvent', 'HomeController@savetoEvent');
+Route::get('/mybag','HomeController@myBag');
+Route::get('/mybag/{eventId}','HomeController@showEventItems');
+Route::get('/getItem','HomeController@getEventItem');
+Route::get('/publishEvent', 'HomeController@publishEvent');
+
+Route::get('/myorder', 'HomeController@myOrder');
