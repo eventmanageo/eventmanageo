@@ -18,7 +18,9 @@ class CreateUserTransportsTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->integer('transport_service_id')->unsigned();
             $table->integer('no_of_vehicle');
-            $table->integer('datentime_when_to_serve');
+            $table->string('date_when_to_serve')->nullable();
+            $table->string('time_when_to_serve')->nullable();
+            $table->string('special_note')->nullable();
             $table->timestamps();
         });
     }

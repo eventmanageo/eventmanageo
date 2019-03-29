@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventmanagerTable extends Migration
+class CreateEventPaymentDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateEventmanagerTable extends Migration
      */
     public function up()
     {
-        Schema::create('eventmanager', function (Blueprint $table) {
+        Schema::create('event_payment_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->integer('event_id');
+            $table->string('payment_mode');
+            $table->string('payment_amount');
+            $table->string('full_or_partial');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateEventmanagerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventmanager');
+        Schema::dropIfExists('event_payment_details');
     }
 }

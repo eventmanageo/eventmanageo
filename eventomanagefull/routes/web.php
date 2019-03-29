@@ -155,5 +155,35 @@ Route::get('/edit/service/{id}/{vendorType}','VendorController@editServiceShowFo
 Route::post('edit/service/{id}/{vendorType}','VendorController@editService');
 
 Route::get('/allocate/event/manager','AdminController@showEventManagerAllocatePage');
+Route::get('/allocated/event/manager','AdminController@showEventManagerAllocatedPage');
 
 Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
+
+Route::get('/checkEventManagerAvailability','AdminController@checkEventManagerAvailability');
+Route::get('/getEventManagerName','AdminController@showEventManagerDetails');
+
+Route::get('/list/package/{vendorType}','VendorController@showListPackage')->name('listpackage');
+Route::post('delete/package','VendorController@deletePackage');
+
+// admin profile
+Route::get('admin/profile','AdminController@showprofile');
+
+// vendor profile
+Route::get('vendor/profile','AdminController@vendor_profile');
+
+Route::get('/ask-event-details/{eventType}', 'HomeController@redirectToAskEventDetails');
+Route::post('/insert-into-event-basic-details', 'HomeController@insertIntoEventBasicDetails');
+
+Route::get('/services/{vendorType}', 'HomeController@redirectToServices');
+Route::get('/services/{vendorType}/{itemId}/{vendorId}', 'HomeController@redirectToServiceDetails');
+
+Route::get('getevents','HomeController@returnEvents');
+
+Route::get('saveToEvent', 'HomeController@savetoEvent');
+Route::get('/mybag','HomeController@myBag');
+Route::get('/mybag/{eventId}','HomeController@showEventItems');
+Route::get('/getItem','HomeController@getEventItem');
+Route::get('/publishEvent', 'HomeController@publishEvent');
+
+Route::get('/myorder', 'HomeController@myOrder');
+

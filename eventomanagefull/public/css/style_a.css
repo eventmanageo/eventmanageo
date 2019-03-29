@@ -177,3 +177,19 @@ a.article:hover {
     top: 0;
     right: 0;
 }
+
+.active-service {
+    color: black;
+}
+
+a.active-service:hover, a.active-service:focus{
+    color: blue;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.active-tag {
+    color: blue;
+    text-decoration: none;
+    transition: all 0.3s;
+}

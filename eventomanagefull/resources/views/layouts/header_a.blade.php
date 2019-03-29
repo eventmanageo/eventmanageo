@@ -14,6 +14,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -38,7 +39,7 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="#">Profile</a>
+          <a href="/admin/profile">Profile</a>
         </li>
 
         <li>
@@ -59,7 +60,7 @@
               <a href="/allocate/event/manager">Allocate Event</a>
             </li>
             <li>
-              <a href="#">See Allocation</a>
+              <a href="/allocated/event/manager">See Allocation</a>
             </li>
           </ul>
         </li>

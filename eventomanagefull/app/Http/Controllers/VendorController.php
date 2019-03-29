@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use session;
 use App\Vendor;
 use App\DineTime;
 use App\CatererItem;
@@ -22,6 +22,8 @@ use App\CompanyDetails;
 use App\SoundService;
 use Image;
 use DB;
+use Auth;
+
 
 class VendorController extends Controller
 {
@@ -451,7 +453,7 @@ class VendorController extends Controller
     }
 
     public function goToMakePackageWithData($vendorType,$dinetime=null){
-        $data;
+        $data = "";
         if($dinetime===null){
             $data = array('vendortype' => $vendorType);
         }else{
@@ -645,7 +647,7 @@ class VendorController extends Controller
     public function showListServicePage(Request $request,$vendorType){
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
-        $returnData;
+        $returnData = "";
         if($vendorType==="caterer"){
             $catererItemWithDineTime = DB::table('caterer_items')
             ->select('caterer_items.id','caterer_items.item_name','caterer_items.item_description',
@@ -1005,4 +1007,75 @@ class VendorController extends Controller
             return redirect()->route('listservice',['vendorType' => $vendorType]);
         }
     }
+
+    public function showListPackage(Request $request,$vendorType) {
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+        $returnData = "";
+        if($vendorType==="caterer"){
+            $catererPackage = DB::table('package_caterers')
+            ->select('package_caterers.id','package_caterers.package_name','package_caterers.package_description',
+            'package_caterers.package_price','dine_times.dine_name')
+            ->join('dine_times','dine_times.id','=','package_caterers.package_dine_time')
+            ->where('package_caterers.vendor_id','=',$vendor_id);
+            if($catererPackage->get()->count() > 0){
+                $returnData = $catererPackage->get();
+                return view('vendor.packages.listcatererpackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listcatererpackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }else if($vendorType==="photographer"){
+            $photographerPackage = DB::table('package_photographers')
+            ->select('package_photographers.id','package_photographers.package_name','package_photographers.package_description',
+            'package_photographers.package_price')
+            ->where('package_photographers.vendor_id','=',$vendor_id);
+            if($photographerPackage->get()->count() > 0){
+                $returnData = $photographerPackage->get();
+                return view('vendor.packages.listphotographerpackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listphotographerpackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }else if($vendorType==="makeup"){
+            $makeupPackage = DB::table('package_makeups')
+            ->select('package_makeups.id','package_makeups.package_name','package_makeups.package_description',
+            'package_makeups.package_price')
+            ->where('package_makeups.vendor_id','=',$vendor_id);
+            if($makeupPackage->get()->count() > 0){
+                $returnData = $makeupPackage->get();
+                return view('vendor.packages.listmakeuppackage')->with('packageBunch',$returnData)->with('vendorType',$vendorType);
+            }else{
+                return view('vendor.packages.listmakeuppackage')->with('packageBunch','Empty')->with('vendorType',$vendorType);
+            }
+        }
+    }
+
+    public function deletePackage(Request $request){
+        if($request->vendorType === "caterer"){
+            if(PackageCaterer::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }else if($request->vendorType === "photographer"){
+            if(PackagePhotographer::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }else if($request->vendorType === "makeup"){
+            if(PackageMakeup::where('id',$request->id)->delete()){
+                $request->session()->flash('status-success','Success');
+                return redirect()->back();
+            }else{
+                $request->session()->flash('status-failed','Failed');
+                return redirect()->back();
+            }
+        }
+    }
+
+  
 }
