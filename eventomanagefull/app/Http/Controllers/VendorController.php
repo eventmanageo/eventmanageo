@@ -1077,5 +1077,22 @@ class VendorController extends Controller
         }
     }
 
+<<<<<<< HEAD
+    function vendorOrder(Request $request, $vendorType) {
+        $vendor_email = Session::get('vendor_email');
+        $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
+
+        if ($vendorType == "caterer") {
+            $result = DB::select('SELECT * FROM package_caterers INNER JOIN user_caterers ON user_caterers.package_id = package_caterers.id INNER JOIN event_basic_details ON user_caterers.event_id = event_basic_details.id WHERE package_caterers.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
+        }
+        return view('vendor.order')->with('data',$result);
+    }
+
+    public function returnEvents(Request $request){
+        $eventDetails = DB::table('event_basic_details')->where('id','=',$request['eventId'])->get();
+        echo json_encode($eventDetails);
+    }
+=======
   
+>>>>>>> 2c46740d17051fa0669630bfcb9bd293ea8c1431
 }

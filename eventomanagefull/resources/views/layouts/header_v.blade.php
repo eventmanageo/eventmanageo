@@ -75,7 +75,7 @@
             <a href="/vendor/profile">Profile</a>
           </li>
           <li>
-            <a href="#">Events</a>
+            <a href="/vendororder/{{Session::get('vendor_category')}}">Events</a>
           </li>
           <li>
               <a href="/company/details/{{Session::get('vendor_category')}}">Add Company Details</a>
