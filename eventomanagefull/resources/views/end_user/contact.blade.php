@@ -2,45 +2,7 @@
 
 @section('content')
 <div class="container>.row">
-  <!--Image Slider creates-->    
-  <div id="demo" class="carousel slide" data-ride="carousel" style="">
-      <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="images/2.jpg" alt="Los Angeles" width="100%" height="500">
-          <div class="carousel-caption">
-            <h3>Entertaintment</h3>
-            <p>Thank you!</p>
-          </div>   
-        </div>
-        <div class="carousel-item">
-          <img src="images/3.jpg" alt="Chicago" width="100%" height="500">
-          <div class="carousel-caption">
-            <h3>Wedding caremony</h3>
-            <p>Thank you!</p>
-          </div>   
-        </div>
-        <div class="carousel-item">
-          <img src="images/1.jpg" alt="New York" width="100%" height="500">
-          <div class="carousel-caption">
-            <h3>Wedding Services</h3>
-            <p>Thank you!</p>
-          </div>   
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-    <!--//close Image slider-->
-
+  
 <div>
   <div class="container">
         <div class="container" style="margin-top:5%">

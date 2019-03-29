@@ -15,9 +15,9 @@ class CreateEventmanagerTable extends Migration
     {
         Schema::create('eventmanager', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('eventmanagername');
-            $table->string('eventmanageremail')->unique();
-            $table->string('eventmanagerpassword');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

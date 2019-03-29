@@ -15,6 +15,7 @@ class CreateDineTimesTable extends Migration
     {
         Schema::create('dine_times', function (Blueprint $table) {
             $table->increments('id');
+          
             $table->string('dine_name');
             $table->timestamps();
         });

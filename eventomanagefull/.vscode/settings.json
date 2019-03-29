@@ -1,2 +1,4 @@
 {
+    "editor.find.autoFindInSelection": false,
+    "git.autofetch": true
 }

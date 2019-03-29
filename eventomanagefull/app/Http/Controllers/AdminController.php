@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EventManager;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -72,8 +73,70 @@ class AdminController extends Controller
     }
 
     public function returnEventMangerList(Request $request){
-        $eventMangerList = DB::table('eventmanager')->select('id','name')->get();
+        
+        // $eventMangerList = DB::table('eventmanager')->select('id','name')->get();
+        $eventMangerList = DB::table('eventmanager')->select('id','name')
+                                ->whereNotExists(function ($query) {
+                                    $query->select("event_basic_details.event_manager_id")
+                                        ->from('event_basic_details')
+                                        ->whereRaw('event_basic_details.event_manager_id = eventmanager.id');
+                                })
+                                ->get();
         return json_encode($eventMangerList);
     }
 
+    public function checkEventManagerAvailability(Request $request){
+        $eventmanagerId = $request->eId;
+        $eventId = $request->eventId;
+        date_default_timezone_set('Asia/Kolkata');
+        $date = date("Y-m-d H:i:s",time());
+        $eventManagerEvent = DB::table('event_basic_details')->where('event_manager_id','=',$eventmanagerId)->where('event_status','=','assigned' );
+        if($eventManagerEvent->get()->count() == 0){
+            $assignEventManagerUpdateRow = DB::table('event_basic_details')->where('id','=',$eventId)->where('event_status','=','published')
+            ->update([
+                'event_manager_id' => $eventmanagerId ,
+                'time_when_assigned_to_manager' => $date,
+                'event_status' => 'assigned'
+            ]);
+
+            if($assignEventManagerUpdateRow == 0){
+                echo "notokwentwrong";
+            }else{
+                echo "ok";
+            }
+        }else{
+            echo 'notok';
+        }
+    }
+
+    public function showEventManagerAllocatedPage(){
+        $eventDetails = DB::table('event_basic_details')->where('event_status','=','assigned')->get();
+        return view('admin.allocatedEvents')->with('eventDetails',$eventDetails);
+    }
+
+    public function showEventManagerDetails(Request $request){
+        $managerDetails = DB::table('eventmanager')->where('id','=',$request->eid)->get();
+        return json_encode($managerDetails);
+    }
+
+    public function showprofile(){
+        $userid = Auth::user()->id;
+
+        $admin = DB::select("SELECT * FROM admins WHERE id = '$userid' ");
+        return view('admin.profile')->with('admindata',$admin);
+    }
+    public function vendor_profile($id){
+
+        $id = Auth::user()->id;
+        // print_r($id);
+        // $vendor_id = Auth::user()->id;
+        // print_r($vendor_id);
+        // $vendor = DB::select("SELECT * FROM vendors WHERE id = '$vendor_id' ");
+        // return view('vendor.vendor_profile')->with('vendordata',$vendor);
+        // ->with('vendordata',$vendor);
+
+        $vendor = DB::select("SELECT * FROM vendors WHERE id = '$id' ");
+        return view('vendor.vendor_profile')->with('vendordata',$vendor);
+
+    }
 }
