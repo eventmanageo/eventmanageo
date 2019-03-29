@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
+use session;
 use App\Vendor;
 use App\DineTime;
 use App\CatererItem;
@@ -22,6 +22,8 @@ use App\CompanyDetails;
 use App\SoundService;
 use Image;
 use DB;
+use Auth;
+
 
 class VendorController extends Controller
 {
@@ -75,7 +77,7 @@ class VendorController extends Controller
     }
 
     public function saveVendorService(Request $request,$vendorType){
-        if($vendorType==="caterer"){
+        if($vendorType === "caterer"){
 
             $this->validate($request,[
                 'item_name' => ['required','max:200','min:3'],
@@ -1075,6 +1077,7 @@ class VendorController extends Controller
         }
     }
 
+<<<<<<< HEAD
     function vendorOrder(Request $request, $vendorType) {
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
@@ -1089,4 +1092,7 @@ class VendorController extends Controller
         $eventDetails = DB::table('event_basic_details')->where('id','=',$request['eventId'])->get();
         echo json_encode($eventDetails);
     }
+=======
+  
+>>>>>>> 2c46740d17051fa0669630bfcb9bd293ea8c1431
 }
