@@ -74,8 +74,74 @@ class ManagerViewController extends Controller
             return view('eventmanager.add_service');
         }
         public function view_event_detail(){
-        
             return view('eventmanager.View_event_detail');
         }
 
+        public function getEventItem(Request $request){
+            if ($request['vendorType'] == "caterer") {
+                $catererItemUser = DB::table('user_caterers')
+                ->join('package_caterers','user_caterers.package_id','=','package_caterers.id')
+                ->where('user_caterers.event_id','=',$request['eventId'])->get();
+                if (!empty($catererItemUser)) {
+                    echo json_encode($catererItemUser);   
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "makeup") {
+                $makeupItemUser = DB::table('user_makeups')
+                ->join('package_makeups','user_makeups.package_id','=','package_makeups.id')
+                ->where('user_makeups.event_id','=',$request['eventId'])->get();
+                if (!empty($makeupItemUser)) {
+                    echo json_encode($makeupItemUser);
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "photographer") {
+                $photographerItemUser = DB::table('user_photographers')
+                ->join('package_photographers','user_photographers.package_id','=','package_photographers.id')
+                ->where('user_photographers.event_id','=',$request['eventId'])->get();
+                if (!empty($photographerItemUser)) {
+                    echo json_encode($photographerItemUser);
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "decorator") {
+                $decoratorItemUser = DB::table('user_decorators')
+                ->select('user_decorators.id AS iId')
+                ->join('decorator_services','user_decorators.decorator_service_id','=','decorator_services.id')
+                ->where('user_decorators.event_id','=',$request['eventId'])->get();
+                if (!empty($decoratorItemUser)) {
+                    echo json_encode($decoratorItemUser);
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "sound") {
+                $soundItemUser = DB::table('user_sounds')
+                ->join('sound_services','user_sounds.sound_service_id','=','sound_services.id')
+                ->where('user_sounds.event_id','=',$request['eventId'])->get();
+                if (!empty($soundItemUser)) {
+                    echo json_encode($soundItemUser);
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "transport") {
+                $soundItemUser = DB::table('user_transports')
+                ->join('transport_services','user_transports.transport_service_id','=','transport_services.id')
+                ->where('user_transports.event_id','=',$request['eventId'])->get();
+                if (!empty($soundItemUser)) {
+                    echo json_encode($soundItemUser);
+                }else {
+                    echo "";
+                }
+            } else if ($request['vendorType'] == "land") {
+                $soundItemUser = DB::table('user_land')
+                ->join('land_services','user_land.land_service_id','=','land_services.id')
+                ->where('user_land.event_id','=',$request['eventId'])->get();
+                if (!empty($soundItemUser)) {
+                    echo json_encode($soundItemUser);
+                }else {
+                    echo "";
+                }
+            }
+        }
 }

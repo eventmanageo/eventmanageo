@@ -52,7 +52,7 @@ position:absolute;
                     <label for=""><b>Client Id :  </b>{{ $value->name }}</label><br><br>
                     <label for=""><b>Event Name :  </b>{{ $value->event_name}}</label><br><br>
                     <label for=""><b>Date :  </b>{{ $value->event_date_to}} to {{ $value->event_date_from}}</label>
-                    
+                    <br/>
                     <a href="/view_detail/{{$value->eid}}">View Detail</a>
         </div>
      

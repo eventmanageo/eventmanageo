@@ -157,3 +157,4 @@ Route::get('allocate_event','ManagerViewController@allocate');
 #in event add more services
 Route::get('add_service','ManagerViewController@add_service');
 Route::get('/view_detail/{eventId}','ManagerViewController@view_event_detail');
+Route::get('/getItem','ManagerViewController@getEventItem');
