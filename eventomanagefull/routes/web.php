@@ -139,3 +139,6 @@ Route::get('/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
 
 Route::get('/myorder', 'HomeController@myOrder');
+
+Route::get('/vendororder/{vendorType}','VendorController@vendorOrder');
+Route::get('/eventDetails', 'VendorController@returnEvents');
