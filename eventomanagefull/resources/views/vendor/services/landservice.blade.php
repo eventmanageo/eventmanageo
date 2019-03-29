@@ -58,7 +58,7 @@
                             <label>Land Price</label>
                         </div>
                         <div class="col-md-6 text-left">
-                            <input class="form-control" type="text" id="land_price" name="land_price" required @if($edit) value="{{$serviceData[0]->land_price}}" @endif/>
+                            <input class="form-control" type="text" id="land_price" name="land_price" required @if(isset($edit)) value="{{$serviceData[0]->land_price}}" @endif/>
                         </div>
                     </div>
                     <div class="row form-group">
