@@ -18,7 +18,9 @@ class CreateUserCaterersTable extends Migration
             $table->integer('event_id')->unsigned(); // it references to  id of event_basic_details
             $table->integer('package_id')->unsigned(); //it reference to id of pacakge_caterer
             $table->integer('no_of_people')->nullable();
-            $table->string('datentime_when_to_serve')->nullable();
+            $table->string('date_when_to_serve')->nullable();
+            $table->string('time_when_to_serve')->nullable();
+            $table->string('special_note')->nullable();
             $table->timestamps();
         });
     }

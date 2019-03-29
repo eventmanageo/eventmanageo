@@ -22,8 +22,11 @@ class CreateEventBasicDetailsTable extends Migration
             $table->string('event_manager_id')->nullable();
             $table->string('event_location')->nullable();
             $table->string('time_when_assigned_to_manager')->nullable();
+            $table->string('no_people')->nullable();
             $table->string('event_status')->nullable(); //it is published when user published it, then it is assigned when admin assigned to manager then when manager confirm it then it is changed to confirm.
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

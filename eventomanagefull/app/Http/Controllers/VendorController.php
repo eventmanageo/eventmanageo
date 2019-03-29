@@ -453,7 +453,7 @@ class VendorController extends Controller
     }
 
     public function goToMakePackageWithData($vendorType,$dinetime=null){
-        $data;
+        $data = "";
         if($dinetime===null){
             $data = array('vendortype' => $vendorType);
         }else{
@@ -647,7 +647,7 @@ class VendorController extends Controller
     public function showListServicePage(Request $request,$vendorType){
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
-        $returnData;
+        $returnData = "";
         if($vendorType==="caterer"){
             $catererItemWithDineTime = DB::table('caterer_items')
             ->select('caterer_items.id','caterer_items.item_name','caterer_items.item_description',
@@ -1011,7 +1011,7 @@ class VendorController extends Controller
     public function showListPackage(Request $request,$vendorType) {
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
-        $returnData;
+        $returnData = "";
         if($vendorType==="caterer"){
             $catererPackage = DB::table('package_caterers')
             ->select('package_caterers.id','package_caterers.package_name','package_caterers.package_description',
