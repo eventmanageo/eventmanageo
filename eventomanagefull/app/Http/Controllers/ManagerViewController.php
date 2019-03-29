@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 class ManagerViewController extends Controller
+
 {
 
 
     public function index() {    
         
         #vendor view    
-        $users = DB::select('select * from vendors WHERE id');
+        $users = DB::select('select * from vendors');
         return view('eventmanager.vendor',['users'=>$users]);
 
         //for edit vendors details
@@ -52,9 +54,27 @@ class ManagerViewController extends Controller
 
         #allocate event view   
         
-        public function allocate(){        
-            $users = DB::select('select * from event_basic_details WHERE id');
-            return view('eventmanager.allocate_event',['users'=>$users]);
+        public function allocate(){ 
+            
+
+/*
+        $result = User::join('event_basic_details', 'users.id',   '=', 'event_basic_details.event_manager_id')
+        ->join('users', 'event_basic_details.event_manager_id', '=', 'users.id')
+        ->select('users.id', 'users.name', 'event_basic_details.event_name')
+        ->get();*/
+
+
+            /*$users = DB::table('event_basic_details')
+                ->select('event_manager_id')
+                ->join('users', 'users.id', '=', 'event_basic_details.event_manager_id')
+                ->get();
+*/
+            $users = DB::table('SELECT event_basic_details.event_manager_id, users.id
+            FROM event_basic_details
+            FULL OUTER JOIN users ON event_basic_details.event_manager_id = users.id WHERE id=1');
+            
+        //  $users = DB::select('select * from event_basic_details');
+            return view('eventmanager.allocate_event')->with('user',$users);
         
 
 
