@@ -315,3 +315,32 @@ input[type=number] {
     text-align: center;
     font-size: 25px;
   }
+
+  /* cart view controller */
+
+  #cartview_raw
+  {
+    background: #ccc;
+    text-align: center;
+    padding-top: 1%;
+    height: 50px;
+    font-weight: bold;
+  }
+  #cart{
+    padding-top: 3%;
+    padding-bottom: 3%;
+    text-align: center;
+
+  }
+#total{
+  padding-top: 3%;
+  text-align: center;
+}
+
+
+#head_pakages
+{
+  color:red;
+  
+  
+}

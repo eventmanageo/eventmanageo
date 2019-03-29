@@ -72,7 +72,7 @@
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#">Profile</a>
+            <a href="/vendor/profile">Profile</a>
           </li>
           <li>
             <a href="#">Events</a>

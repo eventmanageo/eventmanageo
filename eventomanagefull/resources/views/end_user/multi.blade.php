@@ -183,9 +183,10 @@
                     </label>
                   </div>
             </div>
+            <div class="tab">
             
-          
-          
+              <label for="text">Are you sure want to submit??</label>
+            </div>  
           <div style="overflow:auto;">
             <div style="float:right;">
               <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
@@ -200,7 +201,7 @@
             <span class="step"></span>
             <span class="step"></span>
           </div>
-
+         
           </form>
 </div>
 
