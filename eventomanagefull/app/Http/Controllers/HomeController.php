@@ -212,6 +212,7 @@ class HomeController extends Controller
     public function getEventItem(Request $request){
         if ($request['vendorType'] == "caterer") {
             $catererItemUser = DB::table('user_caterers')
+            ->select('user_caterers.id AS ucid','user_caterers.event_id','package_caterers.package_name','package_caterers.package_description')
             ->join('package_caterers','user_caterers.package_id','=','package_caterers.id')
             ->where('user_caterers.event_id','=',$request['eventId'])->get();
             if (!empty($catererItemUser)) {
@@ -288,5 +289,15 @@ class HomeController extends Controller
         $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed'");
         // $eventDetails = DB::table('event_basic_details')->where('user_id','=',$uid)->where('event_status','=','completed')->get();
         return view('end_user.myorder')->with('eventDetails',$eventDetails);
+    }
+
+    function removeItem(Request $request) {
+        $itemId = (int)$request['itemId'];
+        $removeItem = DB::table('user_caterers')->where('id',$itemId)->delete();
+        if ($removeItem) {
+            return "ok";
+        } else {
+            return "notok";
+        }
     }
 }

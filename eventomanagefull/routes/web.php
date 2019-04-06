@@ -187,8 +187,7 @@ Route::get('/publishEvent', 'HomeController@publishEvent');
 
 Route::get('/myorder', 'HomeController@myOrder');
 
-<<<<<<< HEAD
 Route::get('/vendororder/{vendorType}','VendorController@vendorOrder');
 Route::get('/eventDetails', 'VendorController@returnEvents');
-=======
->>>>>>> 2c46740d17051fa0669630bfcb9bd293ea8c1431
+
+Route::get('/removeItem','HomeController@removeItem');

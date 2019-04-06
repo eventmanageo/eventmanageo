@@ -36,7 +36,7 @@
                     var jsonres = JSON.parse(res);
                     $.each(jsonres, function(key,value){
                         if (vendorType === "caterer" || vendorType === "photographer" || vendorType === "makeup") {
-                            $(".div-item").append('<div class="col-sm-3"><div class="card"><img class="card-img-top" src="{{asset("images/94447876EsTMra.jpg")}}" alt="Card image" style="width:100%; height:150px;"/><div class="card-body"><div class="card-tile"><label class="h4">'+value.package_name+'</label></div><p class="card-text">'+value.package_description+'</p></div></div></div>');
+                            $(".div-item").append('<div class="col-sm-3"><div class="card"><img class="card-img-top" src="{{asset("images/94447876EsTMra.jpg")}}" alt="Card image" style="width:100%; height:150px;"/><div class="card-body"><div class="card-tile"><label class="h4">'+value.package_name+'</label></div><p class="card-text">'+value.package_description+'</p><a class="delete" data-value="'+value.ucid+'" href="#" onclick="deleteItem('+value.ucid+')">Delete</a></div></div></div>');
                         } else {
                             
                         }
@@ -77,6 +77,25 @@
                 }
             });
         });
+
     });
+
+    function deleteItem(itemId) {
+        var vendorType = document.getElementById('vendorType').value;
+
+        $.ajax({
+            url: '/removeItem',
+            type: 'GET',
+            data: {vendorType: vendorType, itemId: itemId},
+            success: function(res) {
+                if (res === "ok" ) {
+                    alert('Success');
+                    location.reload(true);
+                } else if (res === "notok") {
+                    alert('Failed');
+                }
+            }
+        });
+    }
 </script>
 @endsection
