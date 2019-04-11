@@ -47,7 +47,7 @@ class HomeController extends Controller
         ]);
 
         if ($event_basic_details->wasRecentlyCreated == true) {
-            echo 'success';
+            return redirect()->to('/services/caterer');
         } else {
             return redirect()->to('/ask-event-details/marriage');
         }
@@ -288,5 +288,15 @@ class HomeController extends Controller
         $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed'");
         // $eventDetails = DB::table('event_basic_details')->where('user_id','=',$uid)->where('event_status','=','completed')->get();
         return view('end_user.myorder')->with('eventDetails',$eventDetails);
+    }
+
+    public function viewuserprofile()
+    {
+
+        
+        $user_id = Auth::id();
+        $userprofile = DB::select("SELECT * FROM users WHERE id = $user_id");
+
+        return view('end_user.profile')->with('profile',$userprofile);       
     }
 }
