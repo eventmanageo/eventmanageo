@@ -194,6 +194,10 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
 // EVENTMANAGER PAGES
 
+#profile show 
+Route::get('profile','ManagerViewController@profile');
+
+
 #vendoR show
 Route::get('vendor','ManagerViewController@index');
 Route::get('view-records','ManagerViewController@index');

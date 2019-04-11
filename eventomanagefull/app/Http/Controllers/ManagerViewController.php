@@ -47,8 +47,6 @@ class ManagerViewController extends Controller
             echo '<a href="/edit-records">Click Here to go back</a>';
             }
 
-        
-
 
         #allocate event view   
         
@@ -59,15 +57,13 @@ class ManagerViewController extends Controller
             ->select('event_basic_details.id AS eid','users.name','event_basic_details.event_name','event_basic_details.event_date_to','event_basic_details.event_date_from')
             ->get();
             return view('eventmanager.allocate_event',['users'=>$users]);
+    
+
+
+        }
         
-
-
-
-
-
-
-
-
+        public function profile(){
+            return view('eventmanager.profile');
         }
 
         public function add_service(){
@@ -145,3 +141,5 @@ class ManagerViewController extends Controller
             }
         }
 }
+
+

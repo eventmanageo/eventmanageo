@@ -39,20 +39,16 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="#"><span class="glyphicon glyphicon-search">Profile</span></a>
+          <a href="/profile"><span class="glyphicon glyphicon-search">Profile</span></a>
         </li>
-        <li>
-          <a href="#">Cart</a>
-        </li>
+      
         <li>
           <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
         </li>
         <li>
           <a href="/allocate_event">Allocated Event</a>
         </li>
-        <li>
-          <a href="#">Total Event</a>
-        </li>
+       
         <li>
         
           <a href="{{ route('logout') }}" onclick="event.preventDefault();
