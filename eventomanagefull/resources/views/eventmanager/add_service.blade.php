@@ -17,8 +17,7 @@
         <h2 style="text-align: center;"><b>Add service </b></h2><br>
         <div class="">
         <button class="btn btn-primary  btn-sm ml-auto">Add Services</button>
-        </div> <br>
-                
+        </div> <br>     
          </div>
     </div>       
 </div>

@@ -15,12 +15,12 @@
     
         <h2 style="text-align: center;"><b>Event details</b></h2><br>
         <div class="">
-        <a href = "add_service"><button class="btn btn-primary  btn-sm ml-auto">Add Services</button></a>
+        
         </div> <br>
 
                      <label for=""><b>Client Name :  </b>Parth Chudasama</label><br><br>
                     <label for=""><b>Event Name :  </b>Merrige </label><br><br>
-                    <label for=""><b>Date :  </b>15/03/2019</label>
+                    <label for=""><b>Date :  </b>15/03/2019< to 17/03/1998</label>
        
         <div class="table-responsive">   
 

@@ -31,7 +31,9 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
   <!-- Styles -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -71,7 +73,7 @@
 
         <ul class="list-unstyled components">
           <li>
-            <a href="#">Profile</a>
+            <a href="/vendor/profile">Profile</a>
           </li>
           <li>
             <a href="#">Events</a>
@@ -87,7 +89,7 @@
               </li>
               @if(Session::get('vendor_category')==="caterer" || Session::get('vendor_category')==="makeup" || Session::get('vendor_category')==="photographer")
                 <li>
-                  <a href="">My packages</a>
+                  <a href="/list/package/{{Session::get('vendor_category')}}">My packages</a>
                 </li>
               @endif
             </ul>

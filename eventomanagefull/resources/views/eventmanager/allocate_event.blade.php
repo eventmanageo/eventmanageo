@@ -46,12 +46,25 @@ position:absolute;
         <h2 style="text-align: center;"><b>Allocated Events details</b></h2><br>
         <div class="row">
 
+<<<<<<< HEAD
         @foreach($user as $value)
         <div id="logo" class="w-25 p-3" style="margin-left:10px; margin-top:10px;">
                     <label for=""><b>Client Id :  </b>{{ $value ->id }}</label><br><br>
                     <label for=""><b>Event Name :  </b>{{ $value-> event_name}}</label><br><br>
                     
                     </div>
+=======
+        @foreach ($users as $value)
+        
+        <div id="logo" class="w-25 p-3" style="margin-left:10px; margin-top:10px;">
+                    <label for=""><b>Client Id :  </b>{{ $value->name }}</label><br><br>
+                    <label for=""><b>Event Name :  </b>{{ $value->event_name}}</label><br><br>
+                    <label for=""><b>Date :  </b>{{ $value->event_date_to}} to {{ $value->event_date_from}}</label>
+                    <br/>
+                    <a href="/view_detail/{{$value->eid}}">View Detail</a>
+        </div>
+     
+>>>>>>> 1e52c8f45462c6052453b78ee1075fb7a0628849
         @endforeach
      
 
