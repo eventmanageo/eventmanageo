@@ -63,7 +63,13 @@ class ManagerViewController extends Controller
         }
         
         public function profile(){
-            return view('eventmanager.profile');
+            
+            $manager_id = Auth::id();
+            $managerprofile = DB::select("SELECT * FROM eventmanager WHERE id = $manager_id");
+    
+            return view('eventmanager.profile')->with('profile',$managerprofile);  
+
+
         }
 
         public function add_service(){
