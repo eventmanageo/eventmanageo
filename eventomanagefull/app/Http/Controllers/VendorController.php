@@ -23,6 +23,8 @@ use App\SoundService;
 use Image;
 use DB;
 use Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class VendorController extends Controller
@@ -284,6 +286,10 @@ class VendorController extends Controller
         $image = $inputtedData->file('item_picture');
        
         $path = $this->resizeImage($image);
+        $cover = $inputtedData->file('item_picture');
+        $extension = $cover->getClientOriginalExtension();
+
+        Storage::disk('public')->put($cover->getFilename().'.'.$extension,  File::get($cover));
 
         $vendor_email = Session::get('vendor_email');
         $vendor_id = Vendor::where('email','=',$vendor_email)->first()->id;
@@ -298,6 +304,9 @@ class VendorController extends Controller
         $caterer_items->item_category = $inputtedData->item_category;
         $caterer_items->item_price = $inputtedData->item_price;
         $caterer_items->item_picture = $path;
+
+        $caterer_items->original_filename = $cover->getClientOriginalName();
+        $caterer_items->filename = $cover->getFilename().'.'.$extension;
         $caterer_items->vendor_id = $vendor_id;
 
         if($caterer_items->save()){
