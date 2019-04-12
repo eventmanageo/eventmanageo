@@ -193,3 +193,50 @@ Route::get('/eventDetails', 'VendorController@returnEvents');
 Route::get('/removeItem','HomeController@removeItem');
 // profile of end user
 Route::get('/user/profile','HomeController@viewuserprofile');
+
+Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
+
+
+
+// EVENTMANAGER PAGES
+
+#profile show 
+Route::get('profile','ManagerViewController@profile');
+
+
+#vendoR show
+Route::get('vendor','ManagerViewController@index');
+Route::get('view-records','ManagerViewController@index');
+
+#vendor update
+Route::get('edit-records','ManagerViewController@index');
+Route::get('edit/{id}','ManagerViewController@show');
+Route::post('edit/{id}','ManagerViewController@edit'); 
+
+#vendor delete
+Route::get('delete-records','ManagerViewController@index');
+Route::get('delete/{id}','ManagerViewController@destroy'); 
+
+
+#cart display
+Route::get('cart','ManagerCartController@cart');
+Route::get('view-records','ManagerCartController@cart');
+
+#cart edit
+Route::get('edit-record','ManagerCartController@cart');
+Route::get('edits/{id}','ManagerCartController@display');
+Route::post('edits/{id}','ManagerCartController@edits'); 
+
+#cart delete
+Route::get('delete-record','ManagerCartController@cart');
+Route::get('deletes/{id}','ManagerCartController@destroys'); 
+
+# allocate events page 
+Route::get('allocate_event','ManagerViewController@allocate');
+ 
+#event details show
+
+#in event add more services
+Route::get('/view_detail/{eventId}','ManagerViewController@view_event_detail');
+Route::get('/getItem','ManagerViewController@getEventItem');
+
