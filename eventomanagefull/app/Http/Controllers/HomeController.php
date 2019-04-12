@@ -103,7 +103,7 @@ class HomeController extends Controller
     }
 
     public function returnEvents(Request $request){
-        $eventDetails = DB::table('event_basic_details')->where('user_id','=',$request['userid'])->get();
+        $eventDetails = DB::table('event_basic_details')->where('user_id','=',$request['userid'])->where('event_status','=','created')->get();
         echo json_encode($eventDetails);
     }
 

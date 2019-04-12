@@ -9,6 +9,7 @@
                     <th>Event Name</th>
                     <th>Event Type</th>
                     <th>Event Status</th>
+                    <th>Date created</th>
                     <!-- <th></th> -->
                     <!-- <th></th> -->
                 </tr>
@@ -24,6 +25,7 @@
                             <!-- <a href="#" class="confirm-event" data-value="{{$value->id}}" data-toggle="modal" data-target="#myModal"><i class="fa fa-check-circle"></i></a> -->
                         <!-- @endif -->
                     <!-- </td> -->
+                    <td>{{$value->created_at}}</td>
                 </tr>
             @endforeach
             </tbody>
