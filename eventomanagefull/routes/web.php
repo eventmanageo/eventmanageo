@@ -240,3 +240,5 @@ Route::get('allocate_event','ManagerViewController@allocate');
 Route::get('/view_detail/{eventId}','ManagerViewController@view_event_detail');
 Route::get('/getItem','ManagerViewController@getEventItem');
 
+Route::get('/confirm/{eventId}','ManagerViewController@confirmEvent');
+

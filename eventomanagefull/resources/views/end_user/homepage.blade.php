@@ -280,7 +280,7 @@
         
           <div class="col">
               <div class="container">
-                  <p class="footer_des">GELLARY</p>
+                  <p class="footer_des">GALLARY</p>
                   <div class="row" id="footer_des2">
               <div class="col" id="footer_gallery">
                     <img id="foot_img" src="images/b4.jpg" alt="">

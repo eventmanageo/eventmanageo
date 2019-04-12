@@ -52,41 +52,12 @@ class ManagerViewController extends Controller
 
         #allocate event view   
         
-<<<<<<< HEAD
-        public function allocate(){ 
-            
-
-/*
-        $result = User::join('event_basic_details', 'users.id',   '=', 'event_basic_details.event_manager_id')
-        ->join('users', 'event_basic_details.event_manager_id', '=', 'users.id')
-        ->select('users.id', 'users.name', 'event_basic_details.event_name')
-        ->get();*/
-
-
-            /*$users = DB::table('event_basic_details')
-                ->select('event_manager_id')
-                ->join('users', 'users.id', '=', 'event_basic_details.event_manager_id')
-                ->get();
-*/
-            $users = DB::table('SELECT event_basic_details.event_manager_id, users.id
-            FROM event_basic_details
-            FULL OUTER JOIN users ON event_basic_details.event_manager_id = users.id WHERE id=1');
-            
-        //  $users = DB::select('select * from event_basic_details');
-            return view('eventmanager.allocate_event')->with('user',$users);
-        
-
-
-
-
-
-=======
         public function allocate(){        
->>>>>>> 1e52c8f45462c6052453b78ee1075fb7a0628849
 
             $users=DB::table('users')
-            ->join('event_basic_details','event_basic_details.users_id','=','users.id')
+            ->join('event_basic_details','event_basic_details.user_id','=','users.id')
             ->select('event_basic_details.id AS eid','users.name','event_basic_details.event_name','event_basic_details.event_date_to','event_basic_details.event_date_from')
+            ->where('event_basic_details.event_status','=','assigned')
             ->get();
             return view('eventmanager.allocate_event',['users'=>$users]);
     
@@ -178,6 +149,14 @@ class ManagerViewController extends Controller
                 }
             }
         }
+    
+    function confirmEvent(Request $request) {
+        $eventId = $request['eventId'];
+
+        $result = DB::table('event_basic_details')->where('id','=',$eventId)->update(['event_status'=> 'completed']);
+        $request->session()->flash('status','Success');
+        return redirect()->back();
+    }
 }
 
 
