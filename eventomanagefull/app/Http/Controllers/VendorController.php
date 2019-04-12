@@ -22,6 +22,7 @@ use App\CompanyDetails;
 use App\SoundService;
 use Image;
 use DB;
+
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;

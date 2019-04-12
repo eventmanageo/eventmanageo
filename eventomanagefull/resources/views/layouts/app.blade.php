@@ -52,7 +52,7 @@
                                 <a class="nav-link" href="{{ url('about') }}">{{ __('About us') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('gallery') }}">{{ __('Gellary') }}</a>
+                                <a class="nav-link" href="{{ url('gallery') }}">{{ __('Gallary') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('contact') }}">{{ __('Contact us') }}</a>
