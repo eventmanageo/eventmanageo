@@ -191,3 +191,5 @@ Route::get('/vendororder/{vendorType}','VendorController@vendorOrder');
 Route::get('/eventDetails', 'VendorController@returnEvents');
 
 Route::get('/removeItem','HomeController@removeItem');
+// profile of end user
+Route::get('/user/profile','HomeController@viewuserprofile');

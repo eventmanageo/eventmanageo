@@ -47,7 +47,7 @@ class HomeController extends Controller
         ]);
 
         if ($event_basic_details->wasRecentlyCreated == true) {
-            echo 'success';
+            return redirect()->to('/services/caterer');
         } else {
             return redirect()->to('/ask-event-details/marriage');
         }
@@ -81,6 +81,7 @@ class HomeController extends Controller
             ->join('package_caterer_items','package_caterer_items.item_id','=','caterer_items.id')
             ->where('package_caterer_items.package_id','=',$itemId)
             ->get();
+            
             return view('end_user.service_details')->with('packageDetails',$packageDetails)->with('catererItem',$catererItem);
         } else if ($vendorType == "makeup") {
             $packageDetails = DB::table('package_makeups')->where('vendor_id', '=', $vendorId)->where('id','=',$itemId)->get();
@@ -299,5 +300,14 @@ class HomeController extends Controller
         } else {
             return "notok";
         }
+    }
+    public function viewuserprofile()
+    {
+
+        
+        $user_id = Auth::id();
+        $userprofile = DB::select("SELECT * FROM users WHERE id = $user_id");
+
+        return view('end_user.profile')->with('profile',$userprofile);       
     }
 }

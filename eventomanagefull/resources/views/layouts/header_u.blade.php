@@ -53,7 +53,7 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="{{ url('profile') }}">Profile</a>
+          <a href="/user/profile">Profile</a>
         </li>
 
         <li>
