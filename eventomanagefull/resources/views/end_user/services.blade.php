@@ -1,6 +1,11 @@
 @extends('layouts.header_u')
 
 @section('content')
+@if(session()->has('alert-success'))
+    <script>
+        alert('Event Successfully Created. Please Add services');
+    </script>
+@endif
     <div class="container-fluid">
         <input type="hidden" id="userid" value="{{Auth::user()->id}}"/>
         <input type="hidden" id="vendorType" value="{{Request::route('vendorType')}}"/>

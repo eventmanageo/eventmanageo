@@ -21,6 +21,7 @@
                     <td><a href="/mybag/{{$value->id}}" id="view-event" data-toggle="tooltip" title="View Details"><i class="fa fa-eye"></i></a>
                         @if($value->event_status == "created")
                             <a href="#" class="confirm-event" data-value="{{$value->id}}" data-toggle="modal" data-target="#myModal"><i class="fa fa-check-circle"></i></a>
+                            <a href="#" class="delete-event" data-value="{{$value->id}}"><i class="fa fa-trash"></i></a>
                         @endif
                     </td>
                 </tr>
@@ -64,6 +65,28 @@
     $(document).ready(function(){
         $('.confirm-event').on('click',function() {
             eId = $(this).attr('data-value');
+        });
+
+        $('.delete-event').on('click', function() {
+            eId = $(this).attr('data-value');
+            console.log(eId);
+            var dStatus = confirm('Are you sure ?');
+            if (dStatus) {
+                $.ajax({
+                    url: 'user/deleteEvent',
+                    type: 'GET',
+                    data: {eventId: eId},
+                    success: function(res){
+                        if (res == "ok") {
+                            alert('Successfully Deleted');
+                            window.location.href = '/mybag'
+                        } else {
+                            alert('Failed');
+                        }
+                    }
+                });
+            }
+            
         });
 
         $('#btnSubmit').on('click', function() {

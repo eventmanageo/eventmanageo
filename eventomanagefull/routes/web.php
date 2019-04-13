@@ -182,7 +182,7 @@ Route::get('getevents','HomeController@returnEvents');
 Route::get('saveToEvent', 'HomeController@savetoEvent');
 Route::get('/mybag','HomeController@myBag');
 Route::get('/mybag/{eventId}','HomeController@showEventItems');
-Route::get('/getItem','HomeController@getEventItem');
+Route::get('user/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
 
 Route::get('/myorder', 'HomeController@myOrder');
@@ -242,3 +242,6 @@ Route::get('/getItem','ManagerViewController@getEventItem');
 
 Route::get('/confirm/{eventId}','ManagerViewController@confirmEvent');
 
+Route::get('/myorder/viewevent/{eventId}','HomeController@viewEvent');
+
+Route::get('user/deleteEvent','HomeController@deleteEvent');
