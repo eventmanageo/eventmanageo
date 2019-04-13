@@ -377,5 +377,22 @@ class HomeController extends Controller
         } else {
             echo "notok";
         }
+
+    public function insertform(){
+        return view('admin.viewContact');
+    } 
+    public function insert(Request $request){
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $subject = $request->input('subject');
+        $des = $request->input('description');
+        $data=array('name'=>$name,"email"=>$email,"subject"=>$subject,"Description"=>$des);
+        DB::table('users_contactus')->insert($data);
+        return redirect()->back();
+    }
+
+    public function viewRequest()
+    {
+        return view('admin.viewContact');
     }
 }
