@@ -293,7 +293,7 @@ class HomeController extends Controller
 
     function myOrder(Request $request) {
         $uid = Auth::id();
-        $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed'");
+        $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed' OR event_status = 'assigned'");
         return view('end_user.myorder')->with('eventDetails',$eventDetails);
     }
 

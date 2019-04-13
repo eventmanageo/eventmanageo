@@ -31,9 +31,10 @@
                 data: {eventId: eventId},
                 success: function(res) {
                     var json = JSON.parse(res);
-                    alert('Event Name : '+json[0].event_name+"\n"+"Event Type : "+json[0].event_type+"\n"+"Event Location : "+json[0].event_location);
+                    alert('Event Name : '+json[0].event_name+"\n"+"Event Type : "+json[0].event_type+"\n"+"Event Location : "+json[0].event_location+
+                    "\nContact Person : "+json[0].name+"\nContact Number : "+json[0].contact+"\n Address : "+json[0].address);
                 }
-            })
+            });
         });
     });
 </script>

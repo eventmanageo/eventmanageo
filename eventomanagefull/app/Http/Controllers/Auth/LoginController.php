@@ -99,7 +99,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('eventmanager')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
+            Session::put('eventmanager_email',$request->email);
             return redirect()->intended('/eventmanager');
         }
         return back()->withInput([$request->only('email', 'remember'),'status-failed'=>'Please check email/password.']);

@@ -43,7 +43,8 @@
         </li>
       
         <li>
-          <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
+          <!-- <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a> -->
+          <a href="/eventmanager/pastorder">Completed Events</a>
         </li>
         <li>
           <a href="/allocate_event">Allocated Event</a>
