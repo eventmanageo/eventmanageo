@@ -39,14 +39,14 @@
 
       <ul class="list-unstyled components">
         <li>
-          <a href="/profile"><span class="glyphicon glyphicon-search">Profile</span></a>
+          <a href="eventmanager/profile"><span class="glyphicon glyphicon-search">Profile</span></a>
         </li>
       
         <li>
-          <a href="/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
+          <a href="eventmanager/vendor"><ion-icon name="people"></ion-icon>Vendor</a>
         </li>
         <li>
-          <a href="/allocate_event">Allocated Event</a>
+          <a href="eventmanager/allocate_event">Allocated Event</a>
         </li>
        
         <li>

@@ -97,7 +97,7 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-
+        Session::put('eventmanager_email',$request['email']);
         if (Auth::guard('eventmanager')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/eventmanager');

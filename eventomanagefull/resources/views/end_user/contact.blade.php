@@ -15,7 +15,6 @@
     </div>
 </div>
 <!--close-->
-
 <div style="margin-top:10%">
     <div class="container">
         <div class="row">
@@ -23,25 +22,26 @@
                   
                   <label id="contact_head" for="header">Contact us</label>
                   
-              <form>
+              <form action="/contact-to-admin" method="post">
+              <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
               <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Enter name">
+                    <input type="text" class="form-control" placeholder="Enter name" name="name">
             </div>
                 
               <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Subject</label>
-                    <input type="text" class="form-control" placeholder="Enter Subject">
+                    <input type="text" name="subject" class="form-control" placeholder="Enter Subject">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form> 

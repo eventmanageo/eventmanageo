@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Session;
+use App\EventManager;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 class ManagerViewController extends Controller
@@ -67,9 +69,8 @@ class ManagerViewController extends Controller
         
         public function profile(){
             
-            $manager_id = Auth::id();
-            $managerprofile = DB::select("SELECT * FROM eventmanager WHERE id = $manager_id");
-    
+            $eventmanager_email = Session::get('eventmanager_email');
+            $managerprofile = DB::table('eventmanager')->where('email','=',$eventmanager_email)->get();
             return view('eventmanager.profile')->with('profile',$managerprofile);  
 
 

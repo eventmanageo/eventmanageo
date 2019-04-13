@@ -1093,7 +1093,9 @@ class VendorController extends Controller
 
         if ($vendorType == "caterer") {
             $result = DB::select('SELECT * FROM package_caterers INNER JOIN user_caterers ON user_caterers.package_id = package_caterers.id INNER JOIN event_basic_details ON user_caterers.event_id = event_basic_details.id WHERE package_caterers.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
-        }
+        // } else if($vendorType == "makeup"){
+        //     $result = DB::select('SELECT * FROM package_makeups INNER JOIN user_makeups ON user_makepss.package_id = package_caterers.id INNER JOIN event_basic_details ON user_caterers.event_id = event_basic_details.id WHERE package_caterers.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
+        // }
         return view('vendor.order')->with('data',$result);
     }
 

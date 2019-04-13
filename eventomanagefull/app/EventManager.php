@@ -10,6 +10,6 @@ class EventManager extends Model
     protected $guard = 'eventmanager';
 
     protected $table = 'eventmanager';
-    protected $fillable = ['name','email','password'];
+    protected $fillable = ['id','name','email','password'];
     protected $hidden = ['password','remember_token'];
 }
