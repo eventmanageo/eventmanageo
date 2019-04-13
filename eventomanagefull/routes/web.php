@@ -248,3 +248,19 @@ Route::get('/confirm/{eventId}','ManagerViewController@confirmEvent');
 Route::get('insert','HomeController@insertform');
 Route::post('contact-to-admin','HomeController@insert');
 
+
+
+
+// user update 
+
+#user show
+Route::get('end_user/profile','HomeController@viewuserprofile');
+Route::get('view-records','HomeController@viewuserprofile');
+
+
+
+
+#user update
+Route::get('edit-records','HomeController@index');
+Route::get('edit/{id}','HomeViewController@show');
+Route::post('edit/{id}','HomeController@edit'); 

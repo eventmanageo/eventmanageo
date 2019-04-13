@@ -310,6 +310,16 @@ class HomeController extends Controller
 
         return view('end_user.profile')->with('profile',$userprofile);       
     }
+   
+
+   
+
+
+
+
+
+
+
 
     public function insertform(){
         return view('admin.viewContact');
