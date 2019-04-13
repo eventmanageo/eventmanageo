@@ -344,3 +344,22 @@ input[type=number] {
   
   
 }
+#payment_event
+{
+  text-align: left;
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+}
+#eventname
+{
+  font-weight: bold;
+  font-size: 20px;
+}
+#payment-services
+{
+  text-align: left;
+  font-weight: bold;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}

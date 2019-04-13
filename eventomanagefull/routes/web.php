@@ -108,6 +108,9 @@ Route::get('transport','EnduserViewController@transport');
 Route::post('transport_store','EnduserViewController@transport_store');
 
 
+
+
+
 // user profile
 Route::get('profile','userProfileController@index');
 Route::post('profile_update','userProfileController@update');
@@ -247,4 +250,10 @@ Route::get('/confirm/{eventId}','ManagerViewController@confirmEvent');
 // contact us
 Route::get('insert','HomeController@insertform');
 Route::post('contact-to-admin','HomeController@insert');
+
+
+// user payment bill generation
+
+Route::get('/user/bill_genaration','HomeController@ViewPayment');
+
 

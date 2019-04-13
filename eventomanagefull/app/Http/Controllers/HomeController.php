@@ -328,4 +328,9 @@ class HomeController extends Controller
     {
         return view('admin.viewContact');
     }
+
+    public function ViewPayment()
+    {
+        return view('end_user.view_payment');
+    }
 }
