@@ -181,10 +181,10 @@ Route::get('/services/{vendorType}/{itemId}/{vendorId}', 'HomeController@redirec
 
 Route::get('getevents','HomeController@returnEvents');
 
-Route::get('saveToEvent', 'HomeController@savetoEvent');
+Route::get('saveToEvent', 'HomeController@saveToEvent');
 Route::get('/mybag','HomeController@myBag');
 Route::get('/mybag/{eventId}','HomeController@showEventItems');
-Route::get('/getItem','HomeController@getEventItem');
+Route::get('user/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
 
 Route::get('/myorder', 'HomeController@myOrder');
@@ -207,31 +207,32 @@ Route::get('eventmanager/profile','ManagerViewController@profile');
 
 
 #vendoR show
-Route::get('eventmanager/vendor','ManagerViewController@index');
-Route::get('view-records','ManagerViewController@index');
+
+// Route::get('vendor','ManagerViewController@index');
+// Route::get('view-records','ManagerViewController@index');
 
 #vendor update
-Route::get('edit-records','ManagerViewController@index');
-Route::get('edit/{id}','ManagerViewController@show');
-Route::post('edit/{id}','ManagerViewController@edit'); 
+// Route::get('edit-records','ManagerViewController@index');
+// Route::get('edit/{id}','ManagerViewController@show');
+// Route::post('edit/{id}','ManagerViewController@edit'); 
 
 #vendor delete
-Route::get('delete-records','ManagerViewController@index');
-Route::get('delete/{id}','ManagerViewController@destroy'); 
+// Route::get('delete-records','ManagerViewController@index');
+// Route::get('delete/{id}','ManagerViewController@destroy'); 
 
 
 #cart display
-Route::get('cart','ManagerCartController@cart');
-Route::get('view-records','ManagerCartController@cart');
+// Route::get('cart','ManagerCartController@cart');
+// Route::get('view-records','ManagerCartController@cart');
 
 #cart edit
-Route::get('edit-record','ManagerCartController@cart');
-Route::get('edits/{id}','ManagerCartController@display');
-Route::post('edits/{id}','ManagerCartController@edits'); 
+// Route::get('edit-record','ManagerCartController@cart');
+// Route::get('edits/{id}','ManagerCartController@display');
+// Route::post('edits/{id}','ManagerCartController@edits'); 
 
 #cart delete
-Route::get('delete-record','ManagerCartController@cart');
-Route::get('deletes/{id}','ManagerCartController@destroys'); 
+// Route::get('delete-record','ManagerCartController@cart');
+// Route::get('deletes/{id}','ManagerCartController@destroys'); 
 
 # allocate events page 
 Route::get('eventmanager/allocate_event','ManagerViewController@allocate');
@@ -240,9 +241,21 @@ Route::get('eventmanager/allocate_event','ManagerViewController@allocate');
 
 #in event add more services
 Route::get('/view_detail/{eventId}','ManagerViewController@view_event_detail');
-Route::get('/getItem','ManagerViewController@getEventItem');
-
+Route::get('/em/getItem','ManagerViewController@getEventItem');
+Route::get('/em/removeItem','ManagerViewController@removeItem');
 Route::get('/confirm/{eventId}','ManagerViewController@confirmEvent');
+
+Route::get('/myorder/viewevent/{eventId}','HomeController@viewEvent');
+
+Route::get('/user/deleteEvent','HomeController@deleteEvent');
+
+Route::get('/eventmanager/service/{vendorType}/{eventId}','ManagerViewController@returnToAddItem');
+Route::get('/eventmanager/service/{vendorType}/{itemId}/{vendorId}/{eventId}','ManagerViewController@returnToServiceDetails');
+Route::get('/em/saveToEvent', 'ManagerViewController@saveToEvent');
+
+Route::get('/eventmanager/view/event/{eventId}','ManagerViewController@eventDetails');
+
+Route::get('/eventmanager/pastorder','ManagerViewController@pastEventDetails');
 
 // contact us
 Route::get('insert','HomeController@insertform');

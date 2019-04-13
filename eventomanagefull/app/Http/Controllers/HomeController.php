@@ -47,6 +47,7 @@ class HomeController extends Controller
         ]);
 
         if ($event_basic_details->wasRecentlyCreated == true) {
+            $request->session()->flash('alert-success','Event Created, Please Add service.');
             return redirect()->to('/services/caterer');
         } else {
             return redirect()->to('/ask-event-details/marriage');
@@ -223,6 +224,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "makeup") {
             $makeupItemUser = DB::table('user_makeups')
+            ->select('user_makeups.id','user_makeups.event_id','package_makeups.package_name','package_makeups.package_description')
             ->join('package_makeups','user_makeups.package_id','=','package_makeups.id')
             ->where('user_makeups.event_id','=',$request['eventId'])->get();
             if (!empty($makeupItemUser)) {
@@ -232,6 +234,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "photographer") {
             $photographerItemUser = DB::table('user_photographers')
+            ->select('user_photographers.id','user_photographers.event_id','package_photographers.package_name','package_photographers.package_description')
             ->join('package_photographers','user_photographers.package_id','=','package_photographers.id')
             ->where('user_photographers.event_id','=',$request['eventId'])->get();
             if (!empty($photographerItemUser)) {
@@ -241,7 +244,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "decorator") {
             $decoratorItemUser = DB::table('user_decorators')
-            ->select('user_decorators.id AS iId')
+            ->select('user_decorators.id','decorator_services.item_name','decorator_services.item_description')
             ->join('decorator_services','user_decorators.decorator_service_id','=','decorator_services.id')
             ->where('user_decorators.event_id','=',$request['eventId'])->get();
             if (!empty($decoratorItemUser)) {
@@ -251,6 +254,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "sound") {
             $soundItemUser = DB::table('user_sounds')
+            ->select('user_sounds.id','sound_services.service_name','sound_services.service_description')
             ->join('sound_services','user_sounds.sound_service_id','=','sound_services.id')
             ->where('user_sounds.event_id','=',$request['eventId'])->get();
             if (!empty($soundItemUser)) {
@@ -260,6 +264,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "transport") {
             $soundItemUser = DB::table('user_transports')
+            ->select('user_transports.id','transport_services.vehicle_name','transport_services.vehicle_description')
             ->join('transport_services','user_transports.transport_service_id','=','transport_services.id')
             ->where('user_transports.event_id','=',$request['eventId'])->get();
             if (!empty($soundItemUser)) {
@@ -269,6 +274,7 @@ class HomeController extends Controller
             }
         } else if ($request['vendorType'] == "land") {
             $soundItemUser = DB::table('user_land')
+            ->select('user_land.id','land_services.land_name','land_services.land_description')
             ->join('land_services','user_land.land_service_id','=','land_services.id')
             ->where('user_land.event_id','=',$request['eventId'])->get();
             if (!empty($soundItemUser)) {
@@ -287,14 +293,28 @@ class HomeController extends Controller
 
     function myOrder(Request $request) {
         $uid = Auth::id();
-        $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed'");
-        // $eventDetails = DB::table('event_basic_details')->where('user_id','=',$uid)->where('event_status','=','completed')->get();
+        $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE user_id = $uid AND event_status = 'completed' OR event_status = 'published' OR event_status = 'confirmed' OR event_status = 'assigned'");
         return view('end_user.myorder')->with('eventDetails',$eventDetails);
     }
 
     function removeItem(Request $request) {
         $itemId = (int)$request['itemId'];
-        $removeItem = DB::table('user_caterers')->where('id',$itemId)->delete();
+        if ($request['vendorType'] == "caterer") {
+            $removeItem = DB::table('user_caterers')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "photographer") {
+            $removeItem = DB::table('user_photographers')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "makeup") {
+            $removeItem = DB::table('user_makeups')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "decorator") {
+            $removeItem = DB::table('user_decorators')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "transport") {
+            $removeItem = DB::table('user_transports')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "sound") {
+            $removeItem = DB::table('user_sounds')->where('id',$itemId)->delete();
+        } else if ($request['vendorType'] == "land") {
+            $removeItem = DB::table('user_land')->where('id',$itemId)->delete();
+        }
+        
         if ($removeItem) {
             return "ok";
         } else {
@@ -303,13 +323,60 @@ class HomeController extends Controller
     }
     public function viewuserprofile()
     {
-
         
         $user_id = Auth::id();
         $userprofile = DB::select("SELECT * FROM users WHERE id = $user_id");
 
         return view('end_user.profile')->with('profile',$userprofile);       
     }
+
+    function viewEvent(Request $request) {
+        $eId = $request['eventId'];
+        $eventDetails = DB::select("SELECT * FROM event_basic_details WHERE id = $eId");
+        
+        $usercaterer = DB::select("SELECT pc.package_name, pc.package_description, pc.package_price, pc.package_dine_time,
+        uc.no_of_people, uc.date_when_to_serve, uc.time_when_to_serve, uc.special_note 
+        FROM user_caterers AS uc INNER JOIN package_caterers AS pc ON pc.id = uc.package_id WHERE uc.event_id = ?",[$eId]);
+
+        $usermakeup = DB::select("SELECT pm.package_name, pm.package_description, pm.package_price, pm.package_for,
+        um.no_of_people, um.date_when_to_serve, um.time_when_to_serve, um.special_note 
+        FROM user_makeups AS um INNER JOIN package_makeups AS pm ON pm.id = um.package_id WHERE um.event_id = ?",[$eId]);
+
+        $userphotographer = DB::select("SELECT pp.package_name, pp.package_description, pp.package_price, 
+        up.date_when_to_serve, up.time_when_to_serve, up.special_note 
+        FROM user_photographers AS up INNER JOIN package_photographers AS pp ON pp.id = up.package_id WHERE up.event_id = ?",[$eId]);
+        
+        $userdecorator = DB::select("SELECT ds.item_name, ds.item_description, ds.item_price, 
+        ud.date_when_to_serve, ud.time_when_to_serve, ud.special_note 
+        FROM user_decorators AS ud INNER JOIN decorator_services AS ds ON ds.id = ud.decorator_service_id WHERE ud.event_id = ?",[$eId]);
+
+        $usersound = DB::select("SELECT ss.service_name, ss.service_description, ss.service_price, 
+        us.date_when_to_serve, us.time_when_to_serve, us.special_note 
+        FROM user_sounds AS us INNER JOIN sound_services AS ss ON ss.id = us.sound_service_id WHERE us.event_id = ?",[$eId]);
+
+        $usertransport = DB::select("SELECT ts.vehicle_name, ts.vehicle_description, ts.vehicle_price, ts.vehicle_type,
+        ut.date_when_to_serve, ut.time_when_to_serve, ut.special_note, ut.no_of_vehicle 
+        FROM user_transports AS ut INNER JOIN transport_services AS ts ON ts.id = ut.transport_service_id WHERE ut.event_id = ?",[$eId]);
+
+        $userland = DB::select("SELECT ls.land_name, ls.land_description, ls.land_price, ls.land_address,
+        ul.date_when_to_serve, ul.time_when_to_serve, ul.special_note 
+        FROM user_land AS ul INNER JOIN land_services AS ls ON ls.id = ul.land_service_id WHERE ul.event_id = ?",[$eId]);
+
+        
+        return view('end_user.myorder_event_item_details')->with('eventDetails',$eventDetails)
+        ->with('userCaterer',$usercaterer)->with('userMakeup',$usermakeup)->with('userPhotographer',$userphotographer)
+        ->with('userDecorator',$userdecorator)->with('userSound',$usersound)->with('userTransport',$usertransport)
+        ->with('userLand',$userland);
+    }
+
+    function deleteEvent(Request $request) {
+        $eId = $request['eventId'];
+        $result = DB::table('event_basic_details')->where('id','=',$eId)->delete();
+        if ($result) {
+            echo "ok";
+        } else {
+            echo "notok";
+        }
 
     public function insertform(){
         return view('admin.viewContact');
