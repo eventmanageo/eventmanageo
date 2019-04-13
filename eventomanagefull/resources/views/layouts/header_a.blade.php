@@ -65,7 +65,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">Events</a>
+          <a href="/admin/view-request">View Request</a>
         </li>
         <li>
           <a href="{{ route('logout') }}" onclick="event.preventDefault();

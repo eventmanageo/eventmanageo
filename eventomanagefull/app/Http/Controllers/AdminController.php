@@ -139,4 +139,11 @@ class AdminController extends Controller
         return view('vendor.vendor_profile')->with('vendordata',$vendor);
 
     }
+
+    public function showrequest()
+    {
+        $contact = DB::select("SELECT * FROM users_contactus ORDER BY id ASC");
+
+        return view('admin.viewContact')->with('contact',$contact);
+    }
 }

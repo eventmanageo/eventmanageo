@@ -67,6 +67,7 @@ Route::get('multi',function(){
 
 Route::get("insertform","multiInsertController@insertform");
 Route::post("insert","multiInsertController@insert");
+
 ///wedding services add and redirected
 /*Route::get('login', function () {
     if(Auth::check()) {
@@ -75,7 +76,6 @@ Route::post("insert","multiInsertController@insert");
         return view('auth.login');
     }
 });*/
-
 // services all url of end user
 
 
@@ -167,6 +167,8 @@ Route::post('delete/package','VendorController@deletePackage');
 
 // admin profile
 Route::get('admin/profile','AdminController@showprofile');
+Route::get('admin/view-request','AdminController@showrequest');
+
 
 // vendor profile
 Route::get('vendor/profile','AdminController@vendor_profile');
@@ -201,10 +203,11 @@ Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 // EVENTMANAGER PAGES
 
 #profile show 
-Route::get('profile','ManagerViewController@profile');
+Route::get('eventmanager/profile','ManagerViewController@profile');
 
 
 #vendoR show
+
 // Route::get('vendor','ManagerViewController@index');
 // Route::get('view-records','ManagerViewController@index');
 
@@ -232,7 +235,7 @@ Route::get('profile','ManagerViewController@profile');
 // Route::get('deletes/{id}','ManagerCartController@destroys'); 
 
 # allocate events page 
-Route::get('allocate_event','ManagerViewController@allocate');
+Route::get('eventmanager/allocate_event','ManagerViewController@allocate');
  
 #event details show
 
@@ -253,3 +256,8 @@ Route::get('/em/saveToEvent', 'ManagerViewController@saveToEvent');
 Route::get('/eventmanager/view/event/{eventId}','ManagerViewController@eventDetails');
 
 Route::get('/eventmanager/pastorder','ManagerViewController@pastEventDetails');
+
+// contact us
+Route::get('insert','HomeController@insertform');
+Route::post('contact-to-admin','HomeController@insert');
+
