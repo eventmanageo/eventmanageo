@@ -96,8 +96,8 @@
         <thead>
             <tr>
             <th scope="col">id</th>
-            <th scope="col">Services</th>
-            <th scope="col">Quantity</th>
+            <th scope="col">Vendors</th>
+            <th scope="col">services</th>
             <th scope="col">Price</th>
             </tr>
         </thead>
