@@ -326,11 +326,43 @@ class HomeController extends Controller
 
     public function viewRequest()
     {
+
+
         return view('admin.viewContact');
     }
 
     public function ViewPayment()
     {
-        return view('end_user.view_payment');
+
+        $user_id = Auth::id();
+        $View_payment = DB::table('users')
+            ->join('event_basic_details', 'users.id', '=', 'event_basic_details.user_id')
+            ->select('users.*', 'event_basic_details.*')
+            ->where('users.id','=',$user_id)
+            ->get();
+
+        // view user caterer
+       $payment_caterer = DB::table('user_caterers')
+            ->join('package_caterers','user_caterers.package_id','=','package_caterers.id')
+            ->select('user_caterers.*','package_caterers.*')
+            ->where('event_id','=',$user_id)
+            ->get();
+        //  user makups
+        $payment_makups = DB::table('user_makeups')
+            ->join('package_makeups','user_makeups.package_id','=','package_makeups.id')
+            ->select('user_makeups.*','package_makeups.*')
+            ->where('event_id','=',$user_id)
+            ->get();
+
+        // user payment photographers
+        $payment_photographer = DB::table('user_photographers')
+            ->join('package_photographers','user_photographers.package_id','=','package_photographers.id')
+            ->select('user_photographers.*','package_photographers.*')
+            ->where('event_id','=',$user_id)
+            ->get();
+
+        
+        return view('end_user.view_payment')->with('viewPayment',$View_payment)->with('payment_caterer',$payment_caterer)
+        ->with('makups',$payment_makups)->with('photographer',$payment_photographer);
     }
 }

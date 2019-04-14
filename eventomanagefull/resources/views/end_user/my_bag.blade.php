@@ -74,7 +74,7 @@
                 success: function(res){
                     if (res == "ok") {
                         alert('Successfully Published');
-                        window.location.href = '/mybag'
+                        window.location.href = '/user/bill_genaration'
                     } else {
                         alert('Failed');
                     }
