@@ -1093,19 +1093,18 @@ class VendorController extends Controller
 
         if ($vendorType == "caterer") {
             $result = DB::select('SELECT * FROM package_caterers INNER JOIN user_caterers ON user_caterers.package_id = package_caterers.id INNER JOIN event_basic_details ON user_caterers.event_id = event_basic_details.id WHERE package_caterers.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
-
         } else if ($vendorType == "makeup") {
             $result = DB::select('SELECT * FROM package_makeups INNER JOIN user_makeups ON user_makeups.package_id = package_makeups.id INNER JOIN event_basic_details ON user_makeups.event_id = event_basic_details.id WHERE package_makeups.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         } else if ($vendorType == "photographer") {
-
+            $result = DB::select('SELECT * FROM package_photographers INNER JOIN user_photographers ON user_photographers.package_id = package_photographers.id INNER JOIN event_basic_details ON user_photographers.event_id = event_basic_details.id WHERE package_photographers.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         } else if ($vendorType == "decorator") {
-            
+            $result = DB::select('SELECT * FROM decorator_services INNER JOIN user_decorators ON user_decorators.decorator_service_id = decorator_services.id INNER JOIN event_basic_details ON user_decorators.event_id = event_basic_details.id WHERE decorator_services.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         } else if ($vendorType == "land") {
-            
+            $result = DB::select('SELECT * FROM land_services INNER JOIN user_land ON user_land.land_service_id = land_services.id INNER JOIN event_basic_details ON user_land.event_id = event_basic_details.id WHERE land_services.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         } else if ($vendorType == "sound") {
-            
+            $result = DB::select('SELECT * FROM sound_services INNER JOIN user_sounds ON user_sounds.sound_service_id = sound_services.id INNER JOIN event_basic_details ON user_sound.event_id = event_basic_details.id WHERE sound_services.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         } else if ($vendorType == "transport") {
-            
+            $result = DB::select('SELECT * FROM transport_services INNER JOIN user_transports ON user_transports.transport_service_id = transport_services.id INNER JOIN event_basic_details ON user_transports.event_id = event_basic_details.id WHERE transport_services.vendor_id = ? AND event_basic_details.event_status = ?',[$vendor_id,'assigned']);
         }
         return view('vendor.order')->with('data',$result);
     }
@@ -1114,5 +1113,24 @@ class VendorController extends Controller
         $eventDetails = DB::select('SELECT * FROM event_basic_details INNER JOIN users ON users.id = event_basic_details.user_id WHERE event_basic_details.id = ?',[$request['eventId']]);
         // $eventDetails = DB::table('event_basic_details')->where('id','=',$request['eventId'])->get();
         echo json_encode($eventDetails);
+    }
+
+    function returnPackageDetails(Request $request) {
+        $packageDetails = "";
+        $packageId = $request['packageId'];
+        if ($request['vendorType'] == "caterer") {
+            $packageDetails = DB::select('SELECT * FROM package_caterers WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "makeup") {
+            $packageDetails = DB::select('SELECT * FROM package_makeups WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "photographer") {
+            $packageDetails = DB::select('SELECT * FROM package_photographers WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "decorator") {
+            $packageDetails = DB::select('SELECT * FROM decorator_services WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "land") {
+            $packageDetails = DB::select('SELECT * FROM land_services WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "sound") {
+            $packageDetails = DB::select('SELECT * FROM sound_services WHERE id = ?',[$packageId]);
+        }
+        echo json_encode($packageDetails);
     }
 }

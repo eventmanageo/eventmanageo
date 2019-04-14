@@ -377,7 +377,7 @@ class HomeController extends Controller
         } else {
             echo "notok";
         }
-
+    }
     public function insertform(){
         return view('admin.viewContact');
     } 
@@ -395,4 +395,5 @@ class HomeController extends Controller
     {
         return view('admin.viewContact');
     }
+
 }

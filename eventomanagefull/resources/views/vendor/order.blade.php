@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <input type="hidden" id="vendorType" value="{{Request::route('vendorType')}}"/>
     <table class="table">
         <tr>
             <th>Event Id</th>
@@ -13,9 +14,9 @@
         @foreach($data as $item)
             <tr>
                 <td class="event-id" style="cursor:pointer;">{{$item->event_id}}</td>
-                <td>{{$item->package_id}}</td>
+                <td class="package-id" style="cursor:pointer;">{{$item->package_id}}</td>
                 <td>{{$item->no_of_people}}</td>
-                <td>{{$item->date_when_to_serve}}</td>
+                <td>{{$item->date_when_to_serve}}</td>  
                 <td>{{$item->time_when_to_serve}}</td>
             </tr>
         @endforeach
@@ -33,6 +34,20 @@
                     var json = JSON.parse(res);
                     alert('Event Name : '+json[0].event_name+"\n"+"Event Type : "+json[0].event_type+"\n"+"Event Location : "+json[0].event_location+
                     "\nContact Person : "+json[0].name+"\nContact Number : "+json[0].contact+"\n Address : "+json[0].address);
+                }
+            });
+        });
+
+        $('.package-id').on('click',function (){
+            packageId = $(this).text();
+            var vendorType = $('#vendorType').val();
+            $.ajax({
+                url: '/vendor/packageDetails',
+                type: 'GET',
+                data: {packageId: packageId, vendorType: vendorType},
+                success: function(res) {
+                    var json = JSON.parse(res);
+                    alert(JSON.stringify(json));
                 }
             });
         });
