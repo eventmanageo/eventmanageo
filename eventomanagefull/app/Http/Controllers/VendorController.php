@@ -1114,4 +1114,23 @@ class VendorController extends Controller
         // $eventDetails = DB::table('event_basic_details')->where('id','=',$request['eventId'])->get();
         echo json_encode($eventDetails);
     }
+
+    function returnPackageDetails(Request $request) {
+        $packageDetails = "";
+        $packageId = $request['packageId'];
+        if ($request['vendorType'] == "caterer") {
+            $packageDetails = DB::select('SELECT * FROM package_caterers WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "makeup") {
+            $packageDetails = DB::select('SELECT * FROM package_makeups WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "photographer") {
+            $packageDetails = DB::select('SELECT * FROM package_photographers WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "decorator") {
+            $packageDetails = DB::select('SELECT * FROM decorator_services WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "land") {
+            $packageDetails = DB::select('SELECT * FROM land_services WHERE id = ?',[$packageId]);
+        } else if ($request['vendorType'] == "sound") {
+            $packageDetails = DB::select('SELECT * FROM sound_services WHERE id = ?',[$packageId]);
+        }
+        echo json_encode($packageDetails);
+    }
 }

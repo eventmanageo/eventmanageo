@@ -261,3 +261,4 @@ Route::get('/eventmanager/pastorder','ManagerViewController@pastEventDetails');
 Route::get('insert','HomeController@insertform');
 Route::post('contact-to-admin','HomeController@insert');
 
+Route::get('/vendor/packageDetails','VendorController@returnPackageDetails');
