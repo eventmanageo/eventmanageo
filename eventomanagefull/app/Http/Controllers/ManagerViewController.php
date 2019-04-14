@@ -72,8 +72,7 @@ class ManagerViewController extends Controller
             $eventmanager_email = Session::get('eventmanager_email');
             $managerprofile = DB::table('eventmanager')->where('email','=',$eventmanager_email)->get();
             return view('eventmanager.profile')->with('profile',$managerprofile);  
-
-
+  
         }
 
         public function add_service(){

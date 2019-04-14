@@ -46,7 +46,7 @@
             <td>{{ $value->email }}</td>
             <td>{{ $value->contact }}</td>
             <td>{{ $value->address }}</td>
-            <td><a href = 'edit/{{ $value->id }}'>Edit</a></a></td>
+            <td><a href = 'edit/{{ $value->id }}'>Edit</a></td>
             <td><a href = 'delete/{{ $value->id }}'><button class="btn btn-danger  btn-sm">Delete</button></a></td>
             </tr>
         @endforeach

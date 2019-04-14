@@ -1,7 +1,5 @@
 @extends('layouts.header_u')
-
-@section('content')
-
+@section('content') 
 
 
 <div class="container" id="register_vendor_con">
@@ -9,11 +7,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div >
-                <h3 style="text-align: center; margin-top:20px"><b>Update User</b></h3>
+                <h3 style="text-align: center; margin-top:20px"><b>User Details Modified</b></h3>
                  {{ isset($url) ? ucwords($url) : ""}}</div>
 
                 <div class="card-body">
-                    <form method="POST" action = "/edit/<?php echo $users[0]->id; ?>">
+                    <form method="POST" action = "/edit/<?php echo $profile[0]->id; ?>">
                     
                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                         @csrf
@@ -21,7 +19,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value = '<?php echo$users[0]->name; ?>'  required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value = ''  required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -35,7 +33,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value = '<?php echo$users[0]->email; ?>'  required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value = ''  required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +49,7 @@
                             <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value = '<?php echo$users[0]->contact; ?>' required >
+                                <input id="contact" type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value = '' required >
 
                                 @if ($errors->has('contact'))
                                     <span class="invalid-feedback" role="alert">
@@ -61,34 +59,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
-                            <div class="col-md-6">                                
-                                <select id="category" class="form-control{{ $errors->has('category') ? 'is-valid' : ''}}" name="category" required>
-                                    <option selected disabled value="">--Select Category--</option>
-                                    <option value="caterer">Caterer</option>
-                                    <option value="makeup">Make-up</option>
-                                    <option value="transport">Transport</option>
-                                    <option value="photographer">Photographer</option>
-                                    <option value="decorator">Decorator</option>
-                                    <option value="land">Land/Plot/Area</option>
-                                    <option value="sound">Sound/DJ</option>
-                                </select>
-
-                                @if ($errors->has('category'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('category') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="address" cols="5" rows="5" style="resize:none;" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value = '<?php echo$users[0]->address; ?>' required ></textarea>
+                                <textarea id="address" cols="5" rows="5" style="resize:none;" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value = '' required ></textarea>
                                
 
                                 @if ($errors->has('address'))
@@ -101,7 +78,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-info" value = "Update vendors">Update Vendor</button>
+                            <button type="submit" class="btn btn-info" value = "Update user">Update User</button>
                             
                             </div>
                         </div>
@@ -114,4 +91,6 @@
 
 
 
+
+    
 @endsection

@@ -193,14 +193,20 @@ Route::get('/vendororder/{vendorType}','VendorController@vendorOrder');
 Route::get('/eventDetails', 'VendorController@returnEvents');
 
 Route::get('/removeItem','HomeController@removeItem');
+
 // profile of end user
 Route::get('/user/profile','HomeController@viewuserprofile');
-
 Route::get('getEventManagerListAjax','AdminController@returnEventMangerList');
 
+//profile update
+    Route::get('edit-records','HomeController@index');
+    Route::get('edit/{id}','HomeController@show');
+    Route::post('edit/{id}','HomeController@edit'); 
 
 
-// EVENTMANAGER PAGES
+
+
+//EVENTMANAGER PAGES
 
 #profile show 
 Route::get('eventmanager/profile','ManagerViewController@profile');
@@ -250,17 +256,3 @@ Route::post('contact-to-admin','HomeController@insert');
 
 
 
-
-// user update 
-
-#user show
-Route::get('end_user/profile','HomeController@viewuserprofile');
-Route::get('view-records','HomeController@viewuserprofile');
-
-
-
-
-#user update
-Route::get('edit-records','HomeController@index');
-Route::get('edit/{id}','HomeViewController@show');
-Route::post('edit/{id}','HomeController@edit'); 

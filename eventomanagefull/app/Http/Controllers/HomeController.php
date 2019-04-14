@@ -27,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+
     }
 
     public function redirectToAskEventDetails(Request $request) {
@@ -303,14 +304,35 @@ class HomeController extends Controller
     }
     public function viewuserprofile()
     {
-
-        
         $user_id = Auth::id();
         $userprofile = DB::select("SELECT * FROM users WHERE id = $user_id");
-
         return view('end_user.profile')->with('profile',$userprofile);       
     }
-   
+    //for edit vendors details
+    
+    public function show($id) {
+        $user_id = Auth::id();
+        $profile = DB::select("select * from users where id =$user_id");
+        return view('end_user.updateprofile');
+    }
+
+
+        public function edit(Request $request,$id) {
+            $user_id = Auth::id();
+            $name = $request->input('name');
+            $email = $request->input('email');
+            $contact = $request->input('contact');
+            $address = $request->input('address');
+            DB::update('update users set name = ?,email=?,contact=?,address=? where id = $user_id',[$name,$email,$contact,$address]);
+            echo "Record updated successfully.";
+            echo '<a href="end_user/profile"> Click Here</a>';
+            }
+
+
+
+
+
+
 
    
 
