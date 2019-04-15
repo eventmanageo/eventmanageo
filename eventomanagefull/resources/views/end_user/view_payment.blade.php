@@ -79,11 +79,12 @@
 
     @endforeach
     <!-- services -->
+    <?php $total = 0; ?>
+
+    @if($payment_caterer -> isNotEmpty())  
     <div>
-        <h3 id="payment-services">Caterer packages</h3>
+        <h4 id="payment-services">Caterer packages</h4>
     </div>
-
-
     <div>
             <table class="table">
         <thead>
@@ -95,28 +96,25 @@
             </tr>
         </thead>
         @foreach ($payment_caterer as $data)
+        <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <th scope="row">1</th>
+            <td scope="col"></td>
             <td>{{ $data -> package_name }}</td>
             <td>{{ $data -> no_of_people }}</td>
-            <td>{{ $data -> package_price }}</td>
+            <td>{{ $caterer = $data -> package_price }}</td>
             </tr>
         @endforeach
-        <!-- total of amount -->
-            <tr >
-            <td colspan="3" style="text-align:right">total : </td>
-            <td style="text-align:left">#</td>
-            </tr>
-
         </tbody>
+        
         </table>
     </div>
-
+    @endif
     <!-- user makups -->
 
+    @if($makups -> isNotEmpty())
     <div>
-        <h3 id="payment-services">makups packages</h3>
+        <h4 id="payment-services">makups packages</h4>
     </div>
 
 
@@ -131,28 +129,25 @@
             </tr>
         </thead>
         @foreach ($makups as $data)
+        <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <th scope="row">1</th>
+            <td scope="row"></td>
             <td>{{ $data -> package_name }}</td>
             <td>{{ $data -> no_of_people }}</td>
-            <td>{{ $data -> package_price }}</td>
+            <td>{{ $makup = $data -> package_price }}</td>
             </tr>
         @endforeach
-        <!-- total of amount -->
-            <tr >
-            <td colspan="3" style="text-align:right">total : </td>
-            <td style="text-align:left">#</td>
-            </tr>
-
         </tbody>
         </table>
     </div>
-
-
+    @endif
+    
     <!-- photographer services -->
+
+    @if($photographer -> isNotEmpty())
     <div>
-        <h3 id="payment-services">photographers packages</h3>
+        <h4 id="payment-services">photographers packages</h4>
     </div>
 
 
@@ -166,33 +161,129 @@
             <th scope="col">Price</th>
             </tr>
         </thead>
-        @foreach ($makups as $data)
+        @foreach ($photographer as $data)
+        <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <th scope="row">1</th>
+            <td scope="row"></td>
             <td>{{ $data -> package_name }}</td>
             <td>{{ $data -> package_description }}</td>
-            <td>{{ $data -> package_price }}</td>
+            <td>{{ $photo = $data -> package_price }}</td>
             </tr>
         @endforeach
-        <!-- total of amount -->
-            <tr >
-            <td colspan="3" style="text-align:right">total : </td>
-            <td style="text-align:left">#</td>
-            </tr>
-
         </tbody>
         </table>
     </div>
-    <!-- print the page -->
+    @endif
+    <!-- decorator services -->
+
+    @if($decorator -> isNotEmpty())
     <div>
-    <button class="btn btn-primary float-right btn-sm" id="print-btn" onclick="myFunction()">Print</button>
+        <h4 id="payment-services">decorator services</h4>
     </div>
-    <script>
-        function myFunction() {
-        window.print();
-        }
-    </script>
+
+
+    <div>
+            <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">items name</th>
+            <th scope="col">items decription</th>
+            <th scope="col">Price</th>
+            </tr>
+        </thead>
+        @foreach ($decorator as $data)
+        <?php $total += $data->item_price; ?>
+        <tbody>
+            <tr>
+            <td scope="row"></td>
+            <td>{{ $data -> item_name }}</td>
+            <td>{{ $data -> item_description }}</td>
+            <td>{{ $deco = $data -> item_price }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        </table>
+    </div>
+    @endif
+
+        <!-- land services -->
+    @if($land -> isNotEmpty())
+    <div>
+        <h4 id="payment-services">Land services</h4>
+    </div>
+
+
+    <div>
+            <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">Land name</th>
+            <th scope="col">Land decription</th>
+            <th scope="col">Price</th>
+            </tr>
+        </thead>
+        @foreach ($land as $data)
+        <?php $total += $data->land_price; ?>
+        <tbody>
+            <tr>
+            <td scope="row"></td>
+            <td>{{ $data -> land_name }}</td>
+            <td>{{ $data -> land_description }}</td>
+            <td>{{ $land = $data -> land_price }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        </table>
+    </div>
+    @endif
+        
+        
+            <!-- sound services -->
+     @if($sound->isNotEmpty())       
+    <div>
+        <h4 id="payment-services">sound services</h4>
+    </div>
+
+
+    <div>
+            <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">service name</th>
+            <th scope="col">service decription</th>
+            <th scope="col">Price</th>
+            </tr>
+        </thead>
+        @foreach ($sound as $data)
+        <?php $total += $data->service_price; ?>
+        <tbody>
+            <tr>
+            <td scope="row"></td    >
+            <td>{{ $data -> service_name }}</td>
+            <td>{{ $data -> service_description }}</td>
+            <td>{{ $sound = $data -> service_price }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        </table>
+    </div>
+    @endif
+    <!-- total of all values  -->
+    <div style="float:right">
+        <label for="total">Total : {{ $total }} </label>
+        
+    </div>
+
+
+    <!-- print the page -->
+    <div style="padding-top:3%">
+    <button class="btn btn-primary" onclick="#">make payment</button>
+     </div>
+    
 
 
 

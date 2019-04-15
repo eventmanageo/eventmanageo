@@ -185,7 +185,9 @@ Route::get('/services/{vendorType}/{itemId}/{vendorId}', 'HomeController@redirec
 Route::get('getevents','HomeController@returnEvents');
 
 Route::get('saveToEvent', 'HomeController@savetoEvent');
+
 Route::get('/mybag','HomeController@myBag');
+
 Route::get('/mybag/{eventId}','HomeController@showEventItems');
 Route::get('/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
@@ -254,6 +256,11 @@ Route::post('contact-to-admin','HomeController@insert');
 
 // user payment bill generation
 
-Route::get('/user/bill_genaration','HomeController@ViewPayment');
+Route::get('/user/bill_generation/{eventId}','HomeController@ViewPayment');
+
+// update the profile
+Route::get('user/updateprofile','HomeController@updateProfile');
+
+Route::post('end_user/updateprofile','HomeController@editprofile');
 
 
