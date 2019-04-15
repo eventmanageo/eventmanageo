@@ -3,10 +3,12 @@
 
 @foreach($profile as $data)
 <div class="container" style="padding: 10px;box-shadow: 5px 10px 8px #888888">
+
+    <div><h2>Profile</h2></div><br>
     <div class="row">
-   
+    
     <div class="col-sm">Name : {{ $data -> name }}</div>
-    </div>
+    </div><br>
     <div class="row">
     
     <div class="col-sm">Email Id : {{ $data -> email }}</div>

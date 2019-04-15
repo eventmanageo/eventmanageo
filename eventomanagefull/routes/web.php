@@ -108,6 +108,9 @@ Route::get('transport','EnduserViewController@transport');
 Route::post('transport_store','EnduserViewController@transport_store');
 
 
+
+
+
 // user profile
 Route::get('profile','userProfileController@index');
 Route::post('profile_update','userProfileController@update');
@@ -183,6 +186,7 @@ Route::get('getevents','HomeController@returnEvents');
 
 Route::get('saveToEvent', 'HomeController@saveToEvent');
 Route::get('/mybag','HomeController@myBag');
+
 Route::get('/mybag/{eventId}','HomeController@showEventItems');
 Route::get('user/getItem','HomeController@getEventItem');
 Route::get('/publishEvent', 'HomeController@publishEvent');
@@ -262,3 +266,14 @@ Route::get('insert','HomeController@insertform');
 Route::post('contact-to-admin','HomeController@insert');
 
 Route::get('/vendor/packageDetails','VendorController@returnPackageDetails');
+
+// user payment bill generation
+
+Route::get('/user/bill_generation/{eventId}','HomeController@ViewPayment');
+
+// update the profile
+Route::get('user/updateprofile','HomeController@updateProfile');
+
+Route::post('end_user/updateprofile','HomeController@editprofile');
+
+

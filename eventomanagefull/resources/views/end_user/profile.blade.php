@@ -21,8 +21,16 @@
     
     <div class="col-sm">Address : {{ $data -> address }}</div>
     </div>
+
+    <div style="padding-top:2%">
+        <button class="btn btn-secondary"><a href="{{ url('user/updateprofile')}}">Update</a></button>
+    </div>
 </div>
 @endforeach
+
+
+
+
 
 @endsection
 

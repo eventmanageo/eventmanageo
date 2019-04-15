@@ -203,11 +203,16 @@ class HomeController extends Controller
 
     public function myBag(Request $request) {
         $uid = Auth::id();
+        $eventId = $request['eventId'];
+        print_r($eventId);
         $eventDetails = DB::table('event_basic_details')->where('user_id','=',$uid)->where('event_status','=','created')->get();
+        
+
         return view('end_user.my_bag')->with('eventDetails',$eventDetails);
     }
 
     public function showEventItems(Request $request, $eventId) {
+       
         return view('end_user.event_item_details')->with('eventId',$eventId);
     }
 
@@ -393,7 +398,86 @@ class HomeController extends Controller
 
     public function viewRequest()
     {
+
+
         return view('admin.viewContact');
     }
 
+    public function ViewPayment(Request $request)
+
+    {
+        $eventId = $request['eventId'];
+        $user_id = Auth::id();
+       
+        $View_payment = DB::table('users')
+            ->join('event_basic_details', 'users.id', '=', 'event_basic_details.user_id')
+            ->select('users.*', 'event_basic_details.*')
+            ->where('users.id','=',$user_id)
+            ->get();
+
+        // view user caterer
+       $payment_caterer = DB::table('user_caterers')
+            ->join('package_caterers','user_caterers.package_id','=','package_caterers.id')
+            ->select('user_caterers.*','package_caterers.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+        //  user makups
+        $payment_makups = DB::table('user_makeups')
+            ->join('package_makeups','user_makeups.package_id','=','package_makeups.id')
+            ->select('user_makeups.*','package_makeups.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+
+        // user payment photographers
+        $payment_photographer = DB::table('user_photographers')
+            ->join('package_photographers','user_photographers.package_id','=','package_photographers.id')
+            ->select('user_photographers.*','package_photographers.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+        
+        // user Decorator
+        $payment_decorator = DB::table('user_decorators')
+            ->join('decorator_services','user_decorators.decorator_service_id','=','decorator_services.id')
+            ->select('user_decorators.*','decorator_services.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+
+        // user Land
+        $payment_land = DB::table('user_land')
+            ->join('land_services','user_land.land_service_id','=','land_services.id')
+            ->select('user_land.*','land_services.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+
+        // user Sound
+        $payment_sound = DB::table('user_sounds')
+            ->join('sound_services','user_sounds.sound_service_id','=','sound_services.id')
+            ->select('user_sounds.*','sound_services.*')
+            ->where('event_id','=',$eventId)
+            ->get();
+
+        
+        return view('end_user.view_payment')->with('viewPayment',$View_payment)->with('payment_caterer',$payment_caterer)
+        ->with('makups',$payment_makups)->with('photographer',$payment_photographer)->with('decorator',$payment_decorator)
+        ->with('land',$payment_land)->with('sound',$payment_sound);
+    }
+
+    public function updateProfile()
+    {
+        $user_id = Auth::id();
+        $updateprofile = DB::select("SELECT * FROM users WHERE id = $user_id");
+        return view('end_user.updateprofile')->with('updateprofile',$updateprofile);
+    }
+    
+   
+    public function editprofile(Request $request)
+    {
+        $user_id = Auth::id();
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $contact = $request->input('contact');
+        $address = $request->input('address');
+        DB::update('update users set name = ?,email=?,contact=?,address=? where id = ?',[$name,$email,$contact,$address,$user_id]);
+        return redirect('/user/profile');
+    }
 }
