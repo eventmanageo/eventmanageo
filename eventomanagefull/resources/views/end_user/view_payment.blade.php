@@ -89,22 +89,28 @@
             <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
-            <th scope="col">packages name</th>
-            <th scope="col">number of people</th>
-            <th scope="col">Price</th>
+            <th>packages name</th>
+            <th>number of people</th>
+            <th>Price</th>
+            <th>Total</th>
             </tr>
         </thead>
+        <?php $cctotal = 0; ?>
         @foreach ($payment_caterer as $data)
-        <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <td scope="col"></td>
             <td>{{ $data -> package_name }}</td>
             <td>{{ $data -> no_of_people }}</td>
             <td>{{ $caterer = $data -> package_price }}</td>
+            <?php $ctotal = $data->no_of_people * $data->package_price; ?>
+            <td>{{$ctotal}}</td>
+            <?php $cctotal += $ctotal; ?>
+            <?php $total += $ctotal; ?>
             </tr>
         @endforeach
+        <tr>
+            <td colspan="4" class="text-right"><b>Sub total : </b>{{$cctotal}}</td>
+        </tr>
         </tbody>
         
         </table>
@@ -122,22 +128,28 @@
             <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
             <th scope="col">packages name</th>
             <th scope="col">number of people</th>
             <th scope="col">Price</th>
+            <th>Total</th>
             </tr>
         </thead>
+        <?php $cmtotal = 0; ?>
         @foreach ($makups as $data)
-        <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <td scope="row"></td>
             <td>{{ $data -> package_name }}</td>
             <td>{{ $data -> no_of_people }}</td>
+            <?php $mtotal = $data->no_of_people * $data->package_price; ?>
             <td>{{ $makup = $data -> package_price }}</td>
+            <td>{{$mtotal}}</td>
+            <?php $cmtotal += $mtotal; ?>
+            <?php $total += $mtotal ?>
             </tr>
         @endforeach
+        <tr>
+            <td colspan="4" class="text-right"><b>Sub total : </b>{{$cmtotal}}</td>
+        </tr>
         </tbody>
         </table>
     </div>
@@ -155,9 +167,7 @@
             <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
             <th scope="col">packages name</th>
-            <th scope="col">number of people</th>
             <th scope="col">Price</th>
             </tr>
         </thead>
@@ -165,9 +175,7 @@
         <?php $total += $data->package_price; ?>
         <tbody>
             <tr>
-            <td scope="row"></td>
             <td>{{ $data -> package_name }}</td>
-            <td>{{ $data -> package_description }}</td>
             <td>{{ $photo = $data -> package_price }}</td>
             </tr>
         @endforeach
@@ -187,9 +195,7 @@
             <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
             <th scope="col">items name</th>
-            <th scope="col">items decription</th>
             <th scope="col">Price</th>
             </tr>
         </thead>
@@ -197,9 +203,7 @@
         <?php $total += $data->item_price; ?>
         <tbody>
             <tr>
-            <td scope="row"></td>
             <td>{{ $data -> item_name }}</td>
-            <td>{{ $data -> item_description }}</td>
             <td>{{ $deco = $data -> item_price }}</td>
             </tr>
         @endforeach
@@ -214,14 +218,11 @@
         <h4 id="payment-services">Land services</h4>
     </div>
 
-
     <div>
-            <table class="table">
+        <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
             <th scope="col">Land name</th>
-            <th scope="col">Land decription</th>
             <th scope="col">Price</th>
             </tr>
         </thead>
@@ -229,32 +230,25 @@
         <?php $total += $data->land_price; ?>
         <tbody>
             <tr>
-            <td scope="row"></td>
             <td>{{ $data -> land_name }}</td>
-            <td>{{ $data -> land_description }}</td>
             <td>{{ $land = $data -> land_price }}</td>
             </tr>
         @endforeach
         </tbody>
         </table>
     </div>
-    @endif
+    @endif    
         
-        
-            <!-- sound services -->
-     @if($sound->isNotEmpty())       
+    <!-- sound services -->
+    @if($sound->isNotEmpty())       
     <div>
         <h4 id="payment-services">sound services</h4>
     </div>
-
-
     <div>
             <table class="table">
         <thead>
             <tr>
-            <th scope="col">id</th>
             <th scope="col">service name</th>
-            <th scope="col">service decription</th>
             <th scope="col">Price</th>
             </tr>
         </thead>
@@ -262,9 +256,7 @@
         <?php $total += $data->service_price; ?>
         <tbody>
             <tr>
-            <td scope="row"></td    >
             <td>{{ $data -> service_name }}</td>
-            <td>{{ $data -> service_description }}</td>
             <td>{{ $sound = $data -> service_price }}</td>
             </tr>
         @endforeach
@@ -274,21 +266,13 @@
     @endif
     <!-- total of all values  -->
     <div style="float:right">
-        <label for="total">Total : {{ $total }} </label>
+        <label for="total"><b>Net Total : </b>{{ $total }} </label>
         
     </div>
-
 
     <!-- print the page -->
     <div style="padding-top:3%">
     <button class="btn btn-primary" onclick="#">make payment</button>
      </div>
-    
-
-
-
-
-
-
 </div>
 @endsection
