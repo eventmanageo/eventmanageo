@@ -18,10 +18,10 @@
                     <input type="hidden" name="event_type" value="{{$event_type}}"/>
                     <div id="step1">
                         <label>Event name</label>
-                        <input type="text" class="form-control" id="event_name" name="event_name" required placeholder="Event Name"/>
+                        <input type="text" class="form-control" id="event_name" name="event_name" required placeholder="Event Name" required/>
                         <br/>
                         <label>Event city</label>
-                        <input type="text" class="form-control" id="event_location" name="event_location" required placeholder="Enter City"/>
+                        <input type="text" class="form-control" id="event_location" name="event_location" required placeholder="Enter City" required/>
                         <br/>
                         <div class="row">
                             <div class="col-sm-2">Select</div>
@@ -32,16 +32,16 @@
                         </div>
                         <br/>
                         <label>Check-in</label>
-                        <input class="form-control" type="date" id="checkin-date" name="check_in">
+                        <input class="form-control" type="date" id="checkin-date" name="check_in" required>
                         <br/>
                         <label>Check-out</label>
-                        <input class="form-control" type="date" id="checkout-date" name="check_out">
+                        <input class="form-control" type="date" id="checkout-date" name="check_out" required>
                         <br/>
                         <div class="row">
                             <div class="col">Expected no of people</div>
                         </div>
                         <div>
-                            <input type="number" id="no-guest" name="no_guest" min="100" class="form-control" placeholder="Expected no of people"/>
+                            <input type="number" id="no-guest" name="no_guest" min="100" class="form-control" placeholder="Expected no of people" required/>
                         </div>
                         <br/>
                         <div class="row">
