@@ -85,15 +85,7 @@
                   </div>
 
     </div>
-    </nav>
-
-
-
-
-
-
-
-
+  </nav>
 <!-- Write description -->
 
 <main class="py-2">
@@ -101,20 +93,7 @@
 </main>
 
 
-
-
-
   </div>
-
-
-
-
-
-
-
-
-
-
 
   <!-- jQuery CDN - Slim version (=without AJAX) -->
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
@@ -144,7 +123,5 @@
       });
     });
   </script>
-
-
 </body>
 </html>
